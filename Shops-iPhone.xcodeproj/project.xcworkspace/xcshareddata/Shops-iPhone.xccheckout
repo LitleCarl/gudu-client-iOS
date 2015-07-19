@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>60A906B4-57C0-46F1-881B-7074C3ED83FC</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Shops-iPhone</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F89121EF4911482BF77F398BD68AB4E721EF10A3</key>
+		<string>http://repo.scm.atyun.com.cn:20323/atyun/shops-iphone.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Shops-iPhone.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F89121EF4911482BF77F398BD68AB4E721EF10A3</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>http://repo.scm.atyun.com.cn:20323/atyun/shops-iphone.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F89121EF4911482BF77F398BD68AB4E721EF10A3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F89121EF4911482BF77F398BD68AB4E721EF10A3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>shops-iphone</string>
+		</dict>
+	</array>
+</dict>
+</plist>
