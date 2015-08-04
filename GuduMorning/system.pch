@@ -1,0 +1,124 @@
+//
+//  system.pch
+//  GuduMorning
+//
+//  Created by Tsao on 15/7/31.
+//  Copyright (c) 2015年 FinalFerrumbox. All rights reserved.
+//
+
+#ifndef GuduMorning_system_pch
+#define GuduMorning_system_pch
+
+#import <UIKit/UIKit.h>
+
+#import "UIImage+Tint.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <MBProgressHUD.h>
+#import <AFNetworking.h>
+#import <MJExtension.h>
+#import <AsyncDisplayKit.h>
+
+#import "AFHTTPRequestOperationManager+Singleton.h"
+#import "UIViewController+TsaoNavigationBar.h"
+#import "TsaoBaseViewController.h"
+#import "Tool.h"
+#import <RACSignal.h>
+#import <RACSubscriber.h>
+#import <RACDisposable.h>
+#import <RACErrorSignal.h>
+#import <RACSubject.h>
+#import <RACCommand.h>
+#import <RACSignal+Operations.h>
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+// 调试相关
+#pragma mark - Debug -
+
+#ifdef DEBUG
+
+#define TsaoLog(fmt, ...)                    NSLog((@"\n%s [Line %u]:\n" fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+
+#else
+
+#define YunLog(fmt, ...)                    /* */
+
+#endif
+
+// 设备相关
+
+#pragma mark - Device -
+
+#define kAppVersion                         [NSString stringWithFormat:@"%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]]
+#define kAppBuild                           [NSString stringWithFormat:@"%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]]
+
+#define kDeviceOSVersion                    [[[UIDevice currentDevice] systemVersion] floatValue]
+
+#define kIsiPhone                           [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone
+
+#pragma mark - Error Code -
+
+#define kSuccessCode                        @"20000"
+#define kSignatureInvalidCode               @"40300"
+#define kTerminalSessionKeyInvalidCode      @"40301"
+#define kUserSessionKeyInvalidCode          @"40302"
+#define kOtherErrorCode                     @"50000"
+
+#pragma mark - Device Info -
+
+#define kScreenBounds                       ([[UIScreen mainScreen] bounds])
+#define kScreenWidth                        ([[UIScreen mainScreen] bounds].size.width)
+#define kScreenHeight                       ([[UIScreen mainScreen] bounds].size.height)
+#define kScreenSize                         CGSizeMake(kScreenWidth, kScreenHeight)
+
+#define kLetterFamily                       @"HelveticaNeue"
+#define kFontFamily                         @"HelveticaNeue"
+#define kFontBold                           @"HelveticaNeue-Bold"
+
+#define kFontLangeBigSize                   30
+#define kFontLargeSize                      24
+#define kFontBigSize                        20
+#define kFontSize                           18
+#define kFontNormalSize                     16
+#define kFontSmallSize                      12
+#define kFontSmallMoreSize                  10
+#define kNavBarHeight                    64
+#define kStatusBarHeight                   20
+
+#define kLargeFont                          [UIFont fontWithName:kFontFamily size:kFontLargeSize]
+#define kBigFont                            [UIFont fontWithName:kFontFamily size:kFontBigSize]
+#define kNormalFont                         [UIFont fontWithName:kFontFamily size:kFontNormalSize]
+#define kSmallFont                          [UIFont fontWithName:kFontFamily size:kFontSmallSize]
+
+#define kLargeBoldFont                      [UIFont fontWithName:kFontBold size:kFontLargeSize]
+#define kBigBoldFont                        [UIFont fontWithName:kFontBold size:kFontBigSize]
+#define kNormalBoldFont                     [UIFont fontWithName:kFontBold size:kFontNormalSize]
+#define kSmallBoldFont                      [UIFont fontWithName:kFontBold size:kFontSmallSize]
+
+#define COLOR(r, g, b, a)                   [UIColor colorWithRed:(r / 255.0) green:(g / 255.0) blue:(b / 255.0) alpha:(a * 1.0)]
+// UIColorFromRGB(0x067AB5)];
+#define ColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define kBackgroundColor                    COLOR(250, 250, 250, 1)
+#define kLineColor                          COLOR(222, 222, 222, 1)
+#define kClearColor                         [UIColor clearColor]
+#define kNaviTitleColor                     [UIColor orangeColor]
+#define kGreenColor                         [UIColor colorWithRed:(0xD3 / 255.0) green:(0x54 / 255.0) blue:(0x00 / 255.0) alpha:1.0]
+
+#define kRoundCornerRadius                  8.0
+#define kShadowColor                        [UIColor grayColor]
+#define kUrlFromString(str)                 [NSURL URLWithString:str]
+#define kGetResponseCode(responseObject)    [[responseObject objectForKey:@"status"] objectForKey:@"code"]
+#define kGetResponseMessage(responseObject) [responseObject objectForKey:@"message"]
+#define kGetResponseData(responseObject)    [responseObject objectForKey:@"data"]
+
+
+//URL
+#pragma mark - URL -
+
+#define kHostBaseUrl                        @"http://192.168.2.27:3001"
+#define kAPIVersion1                        @"/api/v1"
+
+#define kCampusUrl                          @"/campus.json"
+
+#endif
