@@ -14,6 +14,8 @@
 		56061BB11B6C7F6B002F3499 /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 56061BB01B6C7F6B002F3499 /* Tool.m */; };
 		56061BB41B6CBAE7002F3499 /* AFHTTPRequestOperationManager+Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56061BB31B6CBAE7002F3499 /* AFHTTPRequestOperationManager+Singleton.m */; };
 		56061BB91B6CD88F002F3499 /* CampusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56061BB81B6CD88F002F3499 /* CampusModel.m */; };
+		56061BBD1B70A5A2002F3499 /* icon_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 56061BBB1B70A5A2002F3499 /* icon_pin.png */; };
+		56061BBE1B70A5A2002F3499 /* icon_pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56061BBC1B70A5A2002F3499 /* icon_pin@2x.png */; };
 		56865C8B1B6B223C00A1B324 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 56865C8A1B6B223C00A1B324 /* main.m */; };
 		56865C8E1B6B223C00A1B324 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56865C8D1B6B223C00A1B324 /* AppDelegate.m */; };
 		56865C971B6B223C00A1B324 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56865C951B6B223C00A1B324 /* Main.storyboard */; };
@@ -40,6 +42,7 @@
 		56865D021B6B22E200A1B324 /* my_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56865CEE1B6B22E200A1B324 /* my_tab@2x.png */; };
 		56865D031B6B22E200A1B324 /* my_tab_select.png in Resources */ = {isa = PBXBuildFile; fileRef = 56865CEF1B6B22E200A1B324 /* my_tab_select.png */; };
 		56865D041B6B22E200A1B324 /* my_tab_select@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56865CF01B6B22E200A1B324 /* my_tab_select@2x.png */; };
+		56B4CFF91B70BCD0009573CD /* TsaoRoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B4CFF81B70BCD0009573CD /* TsaoRoundButton.m */; };
 		56C458481B6B33360053D825 /* CustomPopTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C458471B6B33360053D825 /* CustomPopTransition.m */; };
 		56C458511B6B3D310053D825 /* MGImageUtilitiesAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C4584C1B6B3D310053D825 /* MGImageUtilitiesAppDelegate.m */; };
 		56C458521B6B3D310053D825 /* UIImage+ProportionalFill.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C4584E1B6B3D310053D825 /* UIImage+ProportionalFill.m */; };
@@ -75,6 +78,8 @@
 		56061BB31B6CBAE7002F3499 /* AFHTTPRequestOperationManager+Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPRequestOperationManager+Singleton.m"; sourceTree = "<group>"; };
 		56061BB71B6CD88F002F3499 /* CampusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusModel.h; sourceTree = "<group>"; };
 		56061BB81B6CD88F002F3499 /* CampusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusModel.m; sourceTree = "<group>"; };
+		56061BBB1B70A5A2002F3499 /* icon_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_pin.png; sourceTree = "<group>"; };
+		56061BBC1B70A5A2002F3499 /* icon_pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pin@2x.png"; sourceTree = "<group>"; };
 		56865C851B6B223C00A1B324 /* GuduMorning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuduMorning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56865C891B6B223C00A1B324 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56865C8A1B6B223C00A1B324 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -107,6 +112,8 @@
 		56865CEF1B6B22E200A1B324 /* my_tab_select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = my_tab_select.png; sourceTree = "<group>"; };
 		56865CF01B6B22E200A1B324 /* my_tab_select@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "my_tab_select@2x.png"; sourceTree = "<group>"; };
 		56865D051B6B240A00A1B324 /* system.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = system.pch; sourceTree = "<group>"; };
+		56B4CFF71B70BCD0009573CD /* TsaoRoundButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TsaoRoundButton.h; sourceTree = "<group>"; };
+		56B4CFF81B70BCD0009573CD /* TsaoRoundButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TsaoRoundButton.m; sourceTree = "<group>"; };
 		56C458461B6B33360053D825 /* CustomPopTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPopTransition.h; sourceTree = "<group>"; };
 		56C458471B6B33360053D825 /* CustomPopTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPopTransition.m; sourceTree = "<group>"; };
 		56C4584B1B6B3D310053D825 /* MGImageUtilitiesAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGImageUtilitiesAppDelegate.h; sourceTree = "<group>"; };
@@ -171,6 +178,15 @@
 				56061BB81B6CD88F002F3499 /* CampusModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		56061BBA1B70A5A2002F3499 /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				56061BBB1B70A5A2002F3499 /* icon_pin.png */,
+				56061BBC1B70A5A2002F3499 /* icon_pin@2x.png */,
+			);
+			path = Icon;
 			sourceTree = "<group>";
 		};
 		56865C7C1B6B223C00A1B324 = {
@@ -243,6 +259,7 @@
 		56865CDB1B6B22E200A1B324 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				56061BBA1B70A5A2002F3499 /* Icon */,
 				56061BA71B6BC4EE002F3499 /* UI */,
 				56865CDC1B6B22E200A1B324 /* Tab */,
 			);
@@ -361,6 +378,8 @@
 				56C458681B6B42BA0053D825 /* ChooseListView.m */,
 				56061BAC1B6C5941002F3499 /* TsaoBackButton.h */,
 				56061BAD1B6C5941002F3499 /* TsaoBackButton.m */,
+				56B4CFF71B70BCD0009573CD /* TsaoRoundButton.h */,
+				56B4CFF81B70BCD0009573CD /* TsaoRoundButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -433,6 +452,7 @@
 				TargetAttributes = {
 					56865C841B6B223C00A1B324 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = XY88E4HRCW;
 					};
 					56865CA01B6B223C00A1B324 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -470,9 +490,11 @@
 				56865CFF1B6B22E200A1B324 /* index_tab_select.png in Resources */,
 				56865CF11B6B22E200A1B324 /* about_tab.png in Resources */,
 				56061BAB1B6BC4EE002F3499 /* back_button@2x.png in Resources */,
+				56061BBD1B70A5A2002F3499 /* icon_pin.png in Resources */,
 				56865CFC1B6B22E200A1B324 /* class_tab_select@2x.png in Resources */,
 				56865C9C1B6B223C00A1B324 /* LaunchScreen.xib in Resources */,
 				56865CFB1B6B22E200A1B324 /* class_tab_select.png in Resources */,
+				56061BBE1B70A5A2002F3499 /* icon_pin@2x.png in Resources */,
 				56865CF41B6B22E200A1B324 /* about_tab_select@2x.png in Resources */,
 				56865D011B6B22E200A1B324 /* my_tab.png in Resources */,
 				56865D041B6B22E200A1B324 /* my_tab_select@2x.png in Resources */,
@@ -552,6 +574,7 @@
 				56C458581B6B424F0053D825 /* KLCPopup.m in Sources */,
 				56061BB41B6CBAE7002F3499 /* AFHTTPRequestOperationManager+Singleton.m in Sources */,
 				56865C8B1B6B223C00A1B324 /* main.m in Sources */,
+				56B4CFF91B70BCD0009573CD /* TsaoRoundButton.m in Sources */,
 				56C458511B6B3D310053D825 /* MGImageUtilitiesAppDelegate.m in Sources */,
 				56C458621B6B42690053D825 /* FirstViewController.m in Sources */,
 				56C45B4C1B6B72A00053D825 /* TsaoBaseViewController.m in Sources */,
@@ -685,6 +708,7 @@
 			baseConfigurationReference = CD723B7FCABE27EBA80C21FA /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: HANBO LIU (LK8M6M3H5J)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = GuduMorning/system.pch;
 				INFOPLIST_FILE = GuduMorning/Info.plist;
@@ -698,6 +722,7 @@
 			baseConfigurationReference = 7012629765EF15A10449A7A1 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: HANBO LIU (LK8M6M3H5J)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = GuduMorning/system.pch;
 				INFOPLIST_FILE = GuduMorning/Info.plist;

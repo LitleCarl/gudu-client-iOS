@@ -39,12 +39,12 @@
         viewController.hidesBottomBarWhenPushed = NO;
     }
     
-    if (count > 0 && [[self.viewControllers objectAtIndex:count-1] isKindOfClass:[TsaoBaseViewController class]] && [viewController isKindOfClass:[TsaoBaseViewController class]]){
-        TsaoBaseViewController *fromController = [self.viewControllers objectAtIndex:count - 1];
-        TsaoBaseViewController *toController = (TsaoBaseViewController *)viewController;
-        toController.tsaoBackNavTitle = fromController.tsaoNavTitle;
-
-    }
+//    if (count > 0 && [[self.viewControllers objectAtIndex:count-1] isKindOfClass:[TsaoBaseViewController class]] && [viewController isKindOfClass:[TsaoBaseViewController class]]){
+//        TsaoBaseViewController *fromController = [self.viewControllers objectAtIndex:count - 1];
+//        TsaoBaseViewController *toController = (TsaoBaseViewController *)viewController;
+//        toController.tsaoBackNavTitle = fromController.tsaoNavTitle;
+//
+//    }
 
     
     [super pushViewController:viewController animated:animated];

@@ -7,8 +7,19 @@
 //
 
 #import "ChooseListView.h"
+
+// Category
+#import "UIImage+Tint.h"
+
+// View
+#import "TsaoRoundButton.h"
+
 #define klineHeight 1
 #define padding 20
+#define kPinImageViewTag 32231
+
+// 点击了按钮之后发出通知取消其他按钮下的图钉显示
+#define kTransparentClickNotificationName @"kTransparentClickNotificationName"
 
 @implementation ChooseListModel
 @end
@@ -36,8 +47,8 @@
 - (void)createUI{
     
     CGFloat forkViewWidth = _cellHeight;
-    
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, _cellHeight + klineHeight, self.frame.size.width, self.frame.size.height - _cellHeight - klineHeight)];
+    CGFloat submitButtonHeight = _cellHeight;
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, _cellHeight + klineHeight, self.frame.size.width, self.frame.size.height - _cellHeight - klineHeight - submitButtonHeight)];
     [self addSubview:scrollView];
     
     CGFloat totalHeight = (self.dataSource.count) * (_cellHeight + klineHeight);
@@ -59,6 +70,14 @@
     UIView *longSeparator = [[UIView alloc] initWithFrame:CGRectMake(0, _cellHeight, self.frame.size.width, klineHeight)];
     longSeparator.backgroundColor = kLineColor;
     [self addSubview:longSeparator];
+    
+    //添加提交按钮
+    UIButton *submitButton = [[TsaoRoundButton alloc] initWithFrame:CGRectMake(0, 0, submitButtonHeight * 2, submitButtonHeight * 0.8)];
+    submitButton.enabled = NO;
+    [submitButton setTitle:@"确定" forState:UIControlStateNormal];
+    [submitButton setTitle:@"选择学校" forState:UIControlStateDisabled];
+    submitButton.center = CGPointMake(self.frame.size.width * 0.5, CGRectGetMaxY(scrollView.frame) + submitButtonHeight * 0.5);
+    [self addSubview:submitButton];
     
     if (self.dataSource.count > 0) {
         [self.dataSource enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -85,10 +104,51 @@
             
             UIButton *transparentButton = [[UIButton alloc] init];
             transparentButton.frame = wrapper.bounds;
-            [transparentButton addTarget:self action:@selector(selectItemAtIndex:) forControlEvents:UIControlEventTouchUpInside];
             transparentButton.tag = idx;
-            
             [wrapper addSubview:transparentButton];
+            
+            @weakify(transparentButton);
+            [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:kTransparentClickNotificationName object:nil] takeUntil:transparentButton.rac_willDeallocSignal] subscribeNext:^(NSNotification *notification) {
+
+                if (transparentButton_weak_ != [[notification userInfo]objectForKey:@"sender"]) {
+                        [[transparentButton_weak_.superview viewWithTag:kPinImageViewTag] setHidden:YES];
+                }
+                else {
+                        [[transparentButton_weak_.superview viewWithTag:kPinImageViewTag] setHidden:NO];
+                }
+            }];
+            
+            [[[transparentButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+             takeUntil:transparentButton.rac_willDeallocSignal]
+                subscribeNext:^(UIButton *sender) {
+                    [submitButton setEnabled:YES];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kTransparentClickNotificationName object:nil userInfo:@{@"sender" : transparentButton_weak_}];
+                }
+             ];
+            
+            @weakify(wrapper);
+            dispatch_async(kBackgroundQueue, ^{
+                ASImageNode *pinImageNode = [[ASImageNode alloc] init];
+                pinImageNode.image = [UIImage imageNamed:@"icon_pin"];
+                pinImageNode.contentMode = UIViewContentModeScaleAspectFit;
+                pinImageNode.frame = (CGRect){
+                    CGPointMake(CGRectGetMaxX(itemLabel.frame), _cellHeight * 0.2),
+                    CGSizeMake(_cellHeight * 0.6, _cellHeight * 0.6)
+                };
+                pinImageNode.hidden = YES;
+                
+                // self.view isn't a node, so we can only use it on the main thread
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[RACObserve(pinImageNode.view, hidden) skip:1] subscribeNext:^(id x) {
+                        TsaoLog(@"hidden:%@",x);
+                    }];
+                    pinImageNode.view.tag = kPinImageViewTag;
+                    [wrapper_weak_ addSubview:pinImageNode.view];
+                });
+            });
+            
+            
+            
             // 添加分割线
             if ((idx + 1) < self.dataSource.count) {
                 UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(padding, originYOffset, self.frame.size.width - padding * 2, klineHeight)];

@@ -10,6 +10,10 @@
 
 @implementation UIImage (MGTint)
 
+- (UIImage *)imageWithTintMode{
+    return [self imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+
+}
 
 - (UIImage *)imageTintedWithColor:(UIColor *)color
 {
@@ -23,7 +27,7 @@
 		// tint the image
 		[self drawInRect:rect];
 		[color set];
-		UIRectFillUsingBlendMode(rect, kCGBlendModeColor);
+		UIRectFillUsingBlendMode(rect, kCGBlendModeNormal);
 		
 		// restore alpha channel
 		[self drawInRect:rect blendMode:kCGBlendModeDestinationIn alpha:1.0f];

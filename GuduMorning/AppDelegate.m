@@ -53,7 +53,7 @@
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]}
                                              forState:UIControlStateNormal];
     
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:kGreenColor}
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:kOrangeColor}
                                              forState:UIControlStateSelected];
 }
 

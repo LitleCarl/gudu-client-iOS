@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : TsaoBaseViewController
+@interface SecondViewController : UIViewController
 
 
 @end

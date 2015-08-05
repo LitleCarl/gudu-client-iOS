@@ -22,14 +22,12 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.tabBar.translucent = NO;
+    self.tabBar.translucent = YES;
     
     FirstViewController *first = [[FirstViewController alloc] init];
-    first.showTsaoNavigationBar = YES;
     PopGestureRecognizerController *firstNav = [[PopGestureRecognizerController alloc] initWithRootViewController:first];
     
     SecondViewController *second = [[SecondViewController alloc] init];
-    second.showTsaoNavigationBar = YES;
     PopGestureRecognizerController *secondNav = [[PopGestureRecognizerController alloc] initWithRootViewController:second];
     
     self.viewControllers = @[firstNav,secondNav];

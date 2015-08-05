@@ -22,13 +22,9 @@
 #import "UIViewController+TsaoNavigationBar.h"
 #import "TsaoBaseViewController.h"
 #import "Tool.h"
-#import <RACSignal.h>
-#import <RACSubscriber.h>
-#import <RACDisposable.h>
-#import <RACErrorSignal.h>
-#import <RACSubject.h>
-#import <RACCommand.h>
-#import <RACSignal+Operations.h>
+#import <ReactiveCocoa.h>
+#import <JazzHands/IFTTTJazzHands.h>
+
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
@@ -103,7 +99,8 @@
 #define kLineColor                          COLOR(222, 222, 222, 1)
 #define kClearColor                         [UIColor clearColor]
 #define kNaviTitleColor                     [UIColor orangeColor]
-#define kGreenColor                         [UIColor colorWithRed:(0xD3 / 255.0) green:(0x54 / 255.0) blue:(0x00 / 255.0) alpha:1.0]
+#define kOrangeColor                         [UIColor colorWithRed:(0xD3 / 255.0) green:(0x54 / 255.0) blue:(0x00 / 255.0) alpha:1.0]
+#define kGreenColor                         [UIColor colorWithRed:(0x16 / 255.0) green:(0xa0 / 255.0) blue:(0x85 / 255.0) alpha:1.0]
 
 #define kRoundCornerRadius                  8.0
 #define kShadowColor                        [UIColor grayColor]
@@ -112,6 +109,8 @@
 #define kGetResponseMessage(responseObject) [responseObject objectForKey:@"message"]
 #define kGetResponseData(responseObject)    [responseObject objectForKey:@"data"]
 
+#pragma mark - Thread About -
+#define kBackgroundQueue                     dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
 
 //URL
 #pragma mark - URL -

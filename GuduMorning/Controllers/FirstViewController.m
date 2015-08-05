@@ -33,7 +33,7 @@
         self.tabBarItem.title = @"首页";
         
         self.tabBarItem.image = [[UIImage imageNamed:@"index_tab"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        self.tabBarItem.selectedImage = [[[UIImage imageNamed:@"index_tab_select"] imageTintedWithColor:kGreenColor]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        self.tabBarItem.selectedImage = [[[UIImage imageNamed:@"index_tab_select"] imageTintedWithColor:kOrangeColor]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
 
     return self;
@@ -41,11 +41,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tsaoNavTitle = @"首页";
+    self.title = @"首页";
     [self checkCampusExist];
-    
-    __block NSInteger index = 0;
-
    }
 
 - (void)didReceiveMemoryWarning {
@@ -72,17 +69,15 @@
     ASImageNode *node = [[ASImageNode alloc] init];
     node.frame = CGRectMake(0, 0, 25, 25);
     node.image = [UIImage imageNamed:@"back_button"];
-    [self.tsaoContentView addSubview:node.view];
+    [self.view addSubview:node.view];
     
     
     UIButton *click = [[UIButton alloc] initWithFrame:CGRectMake(0, 200, 100, 50)];
     [click setTitle:@"click" forState:UIControlStateNormal];
-    [self.tsaoContentView addSubview:click];
-    [click setTitleColor:kGreenColor forState:UIControlStateNormal];
+    [self.view addSubview:click];
+    [click setTitleColor:kOrangeColor forState:UIControlStateNormal];
 
-    __weak typeof(ASImageNode *) weakNode = node;
     click.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        TsaoLog(@"node:%@",weakNode);
         return [RACSignal empty];
     }];
     
