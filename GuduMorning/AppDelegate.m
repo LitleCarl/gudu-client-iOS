@@ -50,10 +50,10 @@
 
 - (void)customizeUIAppearance{
 
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]}
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}
                                              forState:UIControlStateNormal];
     
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:kOrangeColor}
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:kGreenColor}
                                              forState:UIControlStateSelected];
 }
 

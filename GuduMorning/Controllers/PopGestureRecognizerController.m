@@ -144,7 +144,17 @@
     return self.interactivePopTransition;
 }
 
+# pragma mark - 状态栏文字颜色 -
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    if ([[self.viewControllers lastObject] respondsToSelector:@selector(preferredStatusBarStyle)]){
+        return [[self.viewControllers lastObject] preferredStatusBarStyle];
+    }
+    else {
+        return UIStatusBarStyleDefault;
+    }
+}
 /*
 #pragma mark - Navigation
 

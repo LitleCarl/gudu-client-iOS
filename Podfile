@@ -5,3 +5,8 @@ pod "JazzHands"
 pod "ReactiveCocoa"
 pod 'MJExtension'
 pod 'AsyncDisplayKit'
+#pod 'MaterialKit'
+pod 'MJExtension'
+pod 'MaterialControls', '~> 1.0.2'
+pod 'MJRefresh'
+

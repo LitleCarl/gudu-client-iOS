@@ -12,7 +12,6 @@
 #import "UIImage+Tint.h"
 
 // View
-#import "TsaoRoundButton.h"
 
 #define klineHeight 1
 #define padding 20
@@ -72,7 +71,7 @@
     [self addSubview:longSeparator];
     
     //添加提交按钮
-    UIButton *submitButton = [[TsaoRoundButton alloc] initWithFrame:CGRectMake(0, 0, submitButtonHeight * 2, submitButtonHeight * 0.8)];
+    UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, submitButtonHeight * 2, submitButtonHeight * 0.8)];
     submitButton.enabled = NO;
     [submitButton setTitle:@"确定" forState:UIControlStateNormal];
     [submitButton setTitle:@"选择学校" forState:UIControlStateDisabled];

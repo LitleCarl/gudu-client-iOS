@@ -21,7 +21,7 @@
         self.tabBarItem.title = @"购物车";
         
         self.tabBarItem.image = [[UIImage imageNamed:@"cart_tab"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        self.tabBarItem.selectedImage = [[[UIImage imageNamed:@"cart_tab_select"] imageTintedWithColor:kOrangeColor] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        self.tabBarItem.selectedImage = [[[UIImage imageNamed:@"cart_tab_select"] imageTintedWithColor:kGreenColor] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
 
     return self;

@@ -24,6 +24,8 @@
     
     self.tabBar.translucent = YES;
     
+    self.tabBar.barTintColor = COLOR(71, 85, 94, 1);
+    
     FirstViewController *first = [[FirstViewController alloc] init];
     PopGestureRecognizerController *firstNav = [[PopGestureRecognizerController alloc] initWithRootViewController:first];
     

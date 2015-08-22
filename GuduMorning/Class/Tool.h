@@ -51,11 +51,22 @@
 /**
  *  异步信号订阅机制完成GET请求
  *
- *  @param url        请求的url
- *  @param parameters url参数
+ *  @param url              请求的url
+ *  @param parameters       url参数
+ *  @param showNetworkError 是否显示网络错误
  *
  *  @return 对应的信号
  */
-+ (RACSignal *)GET:(NSString *)url parameters:(NSDictionary *)parameters;
-
++ (RACSignal *)GET:(NSString *)url parameters:(NSDictionary *)parameters showNetworkError:(BOOL)showNetWorkError;
+/**
+ *  异步信号订阅机制完成GET请求,并且在对应view上添加progressView
+ *
+ *  @param url                  请求的url
+ *  @param parameters           url参数
+ *  @param progressInView       要显示progressView的view
+ *  @param showNetworkError     是否显示网络错误
+ ＊
+ *  @return 对应的信号
+ */
++ (RACSignal *)GET:(NSString *)url parameters:(NSDictionary *)parameters progressInView:(UIView *)view showNetworkError:(BOOL)showNetWorkError;
 @end

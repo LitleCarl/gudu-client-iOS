@@ -24,8 +24,10 @@ PODS:
     - AsyncDisplayKit/ASDealloc2MainObject (= 1.2.3)
   - AsyncDisplayKit/ASDealloc2MainObject (1.2.3)
   - JazzHands (2.0.3)
+  - MaterialControls (1.0.2)
   - MBProgressHUD (0.9.1)
-  - MJExtension (2.5.3)
+  - MJExtension (2.5.7)
+  - MJRefresh (2.4.7)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -41,8 +43,10 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - AsyncDisplayKit
   - JazzHands
+  - MaterialControls (~> 1.0.2)
   - MBProgressHUD (~> 0.9.1)
   - MJExtension
+  - MJRefresh
   - ReactiveCocoa
   - SDWebImage (~> 3.7)
 
@@ -50,9 +54,11 @@ SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   AsyncDisplayKit: 5c8f38225f7478e39c48196cec0dd0d2ac3455ed
   JazzHands: 0f3c8578f33f45b2fe73975deed6a5f02f9c22d3
+  MaterialControls: bdeeb94aa049b73f70739a5514be137d2d45c08a
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MJExtension: d636ed42d1af44cba81106ae7831cccb66906eb7
+  MJExtension: 2650b64a34ace8d2aa9410d1d17244917032f37a
+  MJRefresh: 6eb2f61338f89f64fd628fd43debcf479381ff59
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2

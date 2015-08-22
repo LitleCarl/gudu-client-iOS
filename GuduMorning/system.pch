@@ -24,6 +24,13 @@
 #import "Tool.h"
 #import <ReactiveCocoa.h>
 #import <JazzHands/IFTTTJazzHands.h>
+#import <MJExtension.h>
+#import <MJRefresh.h>
+
+// Model
+#import "StoreModel.h"
+#import "OwnerModel.h"
+#import "CampusModel.h"
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
@@ -54,11 +61,11 @@
 
 #pragma mark - Error Code -
 
-#define kSuccessCode                        @"20000"
-#define kSignatureInvalidCode               @"40300"
-#define kTerminalSessionKeyInvalidCode      @"40301"
-#define kUserSessionKeyInvalidCode          @"40302"
-#define kOtherErrorCode                     @"50000"
+#define kSuccessCode                          200
+//#define kSignatureInvalidCode               @"40300"
+//#define kTerminalSessionKeyInvalidCode      @"40301"
+//#define kUserSessionKeyInvalidCode          @"40302"
+//#define kOtherErrorCode                     @"50000"
 
 #pragma mark - Device Info -
 
@@ -74,16 +81,19 @@
 #define kFontLangeBigSize                   30
 #define kFontLargeSize                      24
 #define kFontBigSize                        20
+#define kFontMiddleSize                     14
 #define kFontSize                           18
 #define kFontNormalSize                     16
 #define kFontSmallSize                      12
 #define kFontSmallMoreSize                  10
-#define kNavBarHeight                    64
+#define kNavBarHeight                       64
+#define kTabBarHeight                       49
 #define kStatusBarHeight                   20
 
 #define kLargeFont                          [UIFont fontWithName:kFontFamily size:kFontLargeSize]
 #define kBigFont                            [UIFont fontWithName:kFontFamily size:kFontBigSize]
 #define kNormalFont                         [UIFont fontWithName:kFontFamily size:kFontNormalSize]
+#define kMiddleFont                         [UIFont fontWithName:kFontFamily size:kFontMiddleSize]
 #define kSmallFont                          [UIFont fontWithName:kFontFamily size:kFontSmallSize]
 
 #define kLargeBoldFont                      [UIFont fontWithName:kFontBold size:kFontLargeSize]
@@ -100,24 +110,34 @@
 #define kClearColor                         [UIColor clearColor]
 #define kNaviTitleColor                     [UIColor orangeColor]
 #define kOrangeColor                         [UIColor colorWithRed:(0xD3 / 255.0) green:(0x54 / 255.0) blue:(0x00 / 255.0) alpha:1.0]
-#define kGreenColor                         [UIColor colorWithRed:(0x16 / 255.0) green:(0xa0 / 255.0) blue:(0x85 / 255.0) alpha:1.0]
+#define kGreenColor                         [UIColor colorWithRed:(0x1a / 255.0) green:(0xbc / 255.0) blue:(0x9c / 255.0) alpha:1.0]
 
 #define kRoundCornerRadius                  8.0
 #define kShadowColor                        [UIColor grayColor]
 #define kUrlFromString(str)                 [NSURL URLWithString:str]
-#define kGetResponseCode(responseObject)    [[responseObject objectForKey:@"status"] objectForKey:@"code"]
-#define kGetResponseMessage(responseObject) [responseObject objectForKey:@"message"]
+#define kGetResponseCode(responseObject)    [[[responseObject objectForKey:@"status"] objectForKey:@"code"] integerValue]
+#define kGetResponseMessage(responseObject) [[responseObject objectForKey:@"status"] objectForKey:@"message"]
 #define kGetResponseData(responseObject)    [responseObject objectForKey:@"data"]
 
 #pragma mark - Thread About -
 #define kBackgroundQueue                     dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
 
+#pragma mark - UTIL -
+#define kDismissKeyboard                    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+
+
 //URL
 #pragma mark - URL -
 
-#define kHostBaseUrl                        @"http://192.168.2.27:3001"
+#define kHostBaseUrl                        @"http://gudu-sails.tunnel.mobi"
 #define kAPIVersion1                        @"/api/v1"
 
-#define kCampusUrl                          @"/campus.json"
+#define kCampusUrl                          @"/campus"
+#define kCampusFindOneUrl                   @"/campus/:campus_id"
+
+#define kStoreUrl                           @"/store"
+#define kStoreFindOneUrl                    @"/store/:store_id"
+
+#define kSearchUrl                           @"/search/productAndStore"
 
 #endif

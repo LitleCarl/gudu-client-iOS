@@ -9,5 +9,7 @@
 #import "CampusModel.h"
 
 @implementation CampusModel
-
+- (void)da{
+    self.id = @4;
+}
 @end
