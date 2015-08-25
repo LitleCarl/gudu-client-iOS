@@ -10,12 +10,14 @@
 
 @interface CampusModel : NSObject
 
-@property (nonatomic, copy)NSNumber *id;
+@property (nonatomic, copy) NSString *id;
 
-@property (nonatomic, copy) NSNumber *name;
+@property (nonatomic, copy) NSString *name;
 
 @property (nonatomic, copy) NSString *address;
 
 @property (nonatomic, copy) NSString *logo_filename;
+
+@property (nonatomic, strong) NSMutableArray *stores;
 
 @end

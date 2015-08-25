@@ -41,7 +41,7 @@
         string = [string stringByAppendingFormat:@"%@=%@&", key, obj];
     }
     
-    string = [string stringByAppendingFormat:@"platform=iOS&app_version=%@",kAppVersion];
+   // string = [string stringByAppendingFormat:@"platform=iOS&app_version=%@",kAppVersion];
     
     return string;
 }

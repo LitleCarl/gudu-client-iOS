@@ -8,16 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-@class OwnerModel;
+@class OwnerModel, GeoJSONModel;
 
 @interface StoreModel : NSObject
 
-@property (nonatomic, copy) NSNumber *id;
+@property (nonatomic, copy) NSString *id;
 
 /**
  *  校名
  */
 @property (nonatomic, copy) NSString *name;
+
+/**
+ *  地址
+ */
+@property (nonatomic, copy) NSString *address;
 
 /**
  *  店铺简介
@@ -37,6 +42,16 @@
 /**
  *  关联商户拥有人
  */
-@property (nonatomic ,strong) OwnerModel *owner;
+@property (nonatomic, strong) OwnerModel *owner;
+
+/**
+ *  商铺的商品数组
+ */
+@property (nonatomic, strong) NSMutableArray *products;
+
+/**
+ *  Geo类型数据
+ */
+@property (nonatomic, strong) GeoJSONModel *location;
 
 @end

@@ -14,9 +14,17 @@
 // View
 #import "SearchResultTableViewCell.h"
 
+// Category
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+
 #define kSectionHeaderPaddingLeft 8
 
+
 static NSString *reuseIdetifier = @"reuseForSearchResult";
+
+@interface SearchResultTableView () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+
+@end
 
 @implementation SearchResultTableView
 
@@ -24,12 +32,18 @@ static NSString *reuseIdetifier = @"reuseForSearchResult";
     
     if (self = [super initWithFrame:frame]) {
         self.searchResult = [[SearchResultModel alloc] init];
+        
         [[[RACObserve(self, searchResult) skip:1] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(id x) {
             [self reloadData];
+            [self reloadEmptyDataSet];
         }];
+        
         self.backgroundColor = [UIColor clearColor];
         self.delegate = self;
         self.dataSource = self;
+        self.tableFooterView = [UIView new];
+        self.emptyDataSetSource = self;
+        self.emptyDataSetDelegate = self;
     }
     return self;
 }
@@ -103,7 +117,6 @@ static NSString *reuseIdetifier = @"reuseForSearchResult";
             return self.searchResult.stores.count;
         }
         else {
-            TsaoLog(@"获取商品数量");
             return self.searchResult.products.count;
         }
     }
@@ -151,6 +164,65 @@ static NSString *reuseIdetifier = @"reuseForSearchResult";
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     return [UIView new];
+}
+
+#pragma mark - DNZEmptyDataSet -
+
+- (UIView *)customViewForEmptyDataSet:(UIScrollView *)scrollView{
+    
+    UIView *emptyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, scrollView.bounds.size.height)];
+    emptyView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin |
+    UIViewAutoresizingFlexibleLeftMargin |
+    UIViewAutoresizingFlexibleBottomMargin;
+    emptyView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.6];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0.8 * kScreenWidth, 40)];
+    [titleLabel setNumberOfLines:2];
+    titleLabel.text = @"可以在附近搜索";
+    titleLabel.font = kBigBoldFont;
+    titleLabel.textColor = [UIColor colorWithWhite:0.6 alpha:0.5];
+    titleLabel.layer.shadowColor = [titleLabel.textColor CGColor];
+    titleLabel.layer.shadowOffset = CGSizeMake(0.0, 0.2);
+    [titleLabel sizeToFit];
+    titleLabel.center = CGPointMake(kScreenWidth * 0.5, 20 + CGRectGetHeight(titleLabel.frame));
+    [emptyView addSubview:titleLabel];
+    
+    UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(titleLabel.frame) + 40, 1 / [[UIScreen mainScreen] scale])];
+    separator.backgroundColor = [titleLabel textColor];
+    separator.center = CGPointMake(CGRectGetMidX(titleLabel.frame), CGRectGetMaxY(titleLabel.frame) + 8);
+    [emptyView addSubview:separator];
+    
+    return emptyView;
+}
+//- (UIView *)customViewForEmptyDataSet:(UIScrollView *)scrollView
+//{
+//    UIView *back = [[UIView alloc] initWithFrame:CGRectMake(50, 50, 50, 50)];
+//    back.backgroundColor = kGreenColor;
+//    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+//    [activityView startAnimating];
+//    [back addSubview:activityView];
+//    return back;
+//}
+//- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
+//{
+//    return [UIImage imageNamed:@"restaurant_icons"];
+//}
+
+//- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
+//{
+//    NSString *text = @"Please Allow Photo Access";
+//    
+//    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0f],
+//                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+//    
+//    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+//}
+
+#pragma mark - DNZEmptyDataDelegate -
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView
+{
+    return YES;
 }
 
 /*

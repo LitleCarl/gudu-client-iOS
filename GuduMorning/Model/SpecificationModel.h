@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 @class ProductModel;
-@interface Specification : NSObject
+@interface SpecificationModel : NSObject
+
+/**
+ *  规格id
+ */
+@property (nonatomic, copy) NSString *id;
 
 /**
  *  规格名称

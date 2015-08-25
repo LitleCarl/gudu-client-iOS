@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class RACSignal;
+
+#define kCampusUsedKey @"I_store_the_campus_id_used"
+
 @interface Tool : NSObject
 
 /**

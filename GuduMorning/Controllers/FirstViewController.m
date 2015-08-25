@@ -28,6 +28,10 @@
 // Model
 #import "SearchResultModel.h"
 #import "ProductModel.h"
+
+// ViewController
+#import "StoreIndexViewController.h"
+
 @interface FirstViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 /**
@@ -39,6 +43,11 @@
  *  商户列表TableView
  */
 @property (nonatomic, weak) UITableView *storeTableView;
+
+/**
+ *  左上角学校选择按钮
+ */
+@property (nonatomic, weak) UIButton *campusButton;
 
 @end
 
@@ -73,9 +82,9 @@ static NSString *cellIdentifier = @"store_list_cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
      self.title = @"首页";
-    [self setUpTrigger];
     [self setNav];
     [self createUI];
+    [self setUpTrigger];
 }
 
 - (void)createUI{
@@ -97,11 +106,12 @@ static NSString *cellIdentifier = @"store_list_cell";
     @weakify(storeTableView);
     MJRefreshGifHeader *gifHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         //下拉刷新回调
-        NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:[kCampusFindOneUrl stringByReplacingOccurrencesOfString:@":campus_id" withString:@"55ced5a104c32d1b6ab0101b"] params:nil];
+        NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:[kCampusFindOneUrl stringByReplacingOccurrencesOfString:@":campus_id" withString:[Tool getUserDefaultByKey:kCampusUsedKey]] params:nil];
         RACSignal *getStoreSignal = [Tool GET:url parameters:nil showNetworkError:YES];
         [getStoreSignal subscribeNext:^(id response) {
             if (kGetResponseCode(response) == kSuccessCode) {
                 self.storeList = [StoreModel objectArrayWithKeyValuesArray:[kGetResponseData(response) objectForKey:@"stores"]];
+                [self.campusButton setTitle:[kGetResponseData(response) objectForKey:@"name"]  forState:UIControlStateNormal];
             }
         } error:^(NSError *error) {
             [storeTableView_weak_.header endRefreshing];
@@ -127,7 +137,6 @@ static NSString *cellIdentifier = @"store_list_cell";
     [gifHeader setImages:refreshingImages forState:MJRefreshStateRefreshing];
     
     //马上进入刷新状态
-    [gifHeader beginRefreshing];
     [self.view addSubview:storeTableView];
     
 }
@@ -140,6 +149,17 @@ static NSString *cellIdentifier = @"store_list_cell";
         [self.storeTableView reloadData];
     }];
 
+    // 订阅所在学校的campus_id变更
+    RACChannelTerminal *campusChangeTerminal = [[NSUserDefaults standardUserDefaults] rac_channelTerminalForKey:kCampusUsedKey];
+    [campusChangeTerminal subscribeNext:^(NSString *newCampusId) {
+        TsaoLog(@"第一次启动，或者更新campuskey:%@",newCampusId);
+        if (newCampusId == nil) {
+            [[self.campusButton rac_command] execute:nil];
+        }
+        else{
+            [self.storeTableView.header beginRefreshing];
+        }
+    }];
 }
 
 /**
@@ -153,7 +173,13 @@ static NSString *cellIdentifier = @"store_list_cell";
     UIButton *cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     cityBtn.frame = CGRectMake(10, 28, 40, 25);
     cityBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [cityBtn setTitle:@"北京" forState:UIControlStateNormal];
+    self.campusButton = cityBtn;
+    
+    [cityBtn setRac_command:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        UIViewController *campusListTableViewController = [kMainStoryBoard instantiateViewControllerWithIdentifier:@"CampusListTabelView"];
+        [self presentViewController:campusListTableViewController animated:YES completion:NULL];
+        return [RACSignal empty];
+    }]];
     [backView addSubview:cityBtn];
     //
     UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(cityBtn.frame), 36, 13, 10)];
@@ -187,7 +213,7 @@ static NSString *cellIdentifier = @"store_list_cell";
             cancelSearchButton.alpha = 0;  // 显示取消按钮
             
             blurViewUnderSearchTableView.hidden = YES;
-            
+            self.tabBarController.tabBar.hidden = NO;
         }];
 
         return [RACSignal empty];
@@ -217,6 +243,7 @@ static NSString *cellIdentifier = @"store_list_cell";
          else {
              blurViewUnderSearchTableView.hidden = NO;
          }
+         self.tabBarController.tabBar.hidden = YES;
         }
      ];
     
@@ -224,7 +251,12 @@ static NSString *cellIdentifier = @"store_list_cell";
     [[[searchView.tsaoTextField rac_signalForControlEvents:UIControlEventEditingChanged] takeUntil:searchView.rac_willDeallocSignal] subscribeNext:^(UITextField *textField) {
         NSString *searchText = textField.text;
         
-        NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:kSearchUrl params:@{@"keyword" : searchText}];
+        NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:kSearchUrl params:
+                            @{
+                              @"keyword" : searchText,
+                              @"campus_id" : [Tool getUserDefaultByKey:kCampusUsedKey]
+                              }
+                         ];
         [[[[Tool GET:url parameters:nil showNetworkError:NO] map:^id(id response) {
             return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
                 [subscriber sendNext:response];
@@ -237,7 +269,9 @@ static NSString *cellIdentifier = @"store_list_cell";
                 newResult.products = [ProductModel objectArrayWithKeyValuesArray:[kGetResponseData(response) objectForKey:@"products"]];
                 searchTableView.searchResult = newResult;
             }
-        } error:^(NSError *error) {
+            else {
+                searchTableView.searchResult = nil;
+            }
         }];
         
     }];
@@ -350,6 +384,12 @@ static NSString *cellIdentifier = @"store_list_cell";
     return 38;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    StoreIndexViewController *storeIndexViewController = [kMainStoryBoard instantiateViewControllerWithIdentifier:kStoreIndexViewControllerStoryboardId];
+    storeIndexViewController.store_id = [[self.storeList objectAtIndex:indexPath.row] id];
+    [self.navigationController pushViewController:storeIndexViewController animated:YES];
+}
+
 #pragma mark - UITableViewDataSource -
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -429,5 +469,6 @@ static NSString *cellIdentifier = @"store_list_cell";
 {
     return [UIView new];
 }
+
 
 @end

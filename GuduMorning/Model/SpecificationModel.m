@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 FinalFerrumbox. All rights reserved.
 //
 
-#import "Specification.h"
+#import "SpecificationModel.h"
 
-@implementation Specification
+@implementation SpecificationModel
 
 @end

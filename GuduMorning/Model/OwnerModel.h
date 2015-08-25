@@ -11,6 +11,11 @@
 @interface OwnerModel : NSObject
 
 /**
+ *  店主id
+ */
+@property (nonatomic, copy) NSString *id;
+
+/**
  *  商家联系人
  */
 @property (nonatomic, copy) NSString *contact_name;

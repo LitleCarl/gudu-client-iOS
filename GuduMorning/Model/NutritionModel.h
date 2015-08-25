@@ -11,6 +11,11 @@
 @interface NutritionModel : NSObject
 
 /**
+ *  营养元素id
+ */
+@property (nonatomic, copy) NSString *id;
+
+/**
  *  能量(千焦)
  */
 @property (nonatomic, copy) NSNumber *energy;

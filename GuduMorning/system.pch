@@ -31,7 +31,11 @@
 #import "StoreModel.h"
 #import "OwnerModel.h"
 #import "CampusModel.h"
-
+#import "ProductModel.h"
+#import "SearchResultModel.h"
+#import "SpecificationModel.h"
+#import "NutritionModel.h"
+#import "GeoJSONModel.h"
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
@@ -111,7 +115,7 @@
 #define kNaviTitleColor                     [UIColor orangeColor]
 #define kOrangeColor                         [UIColor colorWithRed:(0xD3 / 255.0) green:(0x54 / 255.0) blue:(0x00 / 255.0) alpha:1.0]
 #define kGreenColor                         [UIColor colorWithRed:(0x1a / 255.0) green:(0xbc / 255.0) blue:(0x9c / 255.0) alpha:1.0]
-
+#define kDarkColor                          [UIColor colorWithRed:(71 / 255.0) green:(86 / 255.0) blue: (94 / 255.0) alpha:1.0]
 #define kRoundCornerRadius                  8.0
 #define kShadowColor                        [UIColor grayColor]
 #define kUrlFromString(str)                 [NSURL URLWithString:str]
@@ -125,6 +129,10 @@
 #pragma mark - UTIL -
 #define kDismissKeyboard                    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 
+
+#pragma mark - StoryBoard -
+
+#define kMainStoryBoard                    [UIStoryboard storyboardWithName:@"Main" bundle:nil]
 
 //URL
 #pragma mark - URL -

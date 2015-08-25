@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04072CC41B8AE2CA00B68A21 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04072CC31B8AE2CA00B68A21 /* MenuViewController.m */; };
+		04072CC71B8AE40100B68A21 /* StoreIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04072CC61B8AE40100B68A21 /* StoreIndexViewController.m */; };
+		04072CCB1B8C31F700B68A21 /* MegaTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 04072CCA1B8C31F700B68A21 /* MegaTheme.m */; };
+		04072CCF1B8C325B00B68A21 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04072CCE1B8C325B00B68A21 /* ProductTableViewCell.m */; };
+		04072CD21B8C346C00B68A21 /* ProductTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04072CD11B8C346C00B68A21 /* ProductTableViewController.m */; };
+		04072CD81B8C47AB00B68A21 /* MapEventController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04072CD71B8C47AB00B68A21 /* MapEventController.m */; };
+		04072CDC1B8C4C0700B68A21 /* GeoJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04072CDB1B8C4C0700B68A21 /* GeoJSONModel.m */; };
+		04072CDF1B8C527900B68A21 /* map-annotation.png in Resources */ = {isa = PBXBuildFile; fileRef = 04072CDD1B8C527900B68A21 /* map-annotation.png */; };
+		04072CE01B8C527900B68A21 /* map-annotation@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04072CDE1B8C527900B68A21 /* map-annotation@3x.png */; };
+		04072CE21B8C52CF00B68A21 /* map-annotation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04072CE11B8C52CF00B68A21 /* map-annotation@2x.png */; };
+		04072CE61B8C5EFD00B68A21 /* event-club.png in Resources */ = {isa = PBXBuildFile; fileRef = 04072CE31B8C5EFD00B68A21 /* event-club.png */; };
+		04072CE71B8C5EFD00B68A21 /* event-club@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04072CE41B8C5EFD00B68A21 /* event-club@2x.png */; };
+		04072CE81B8C5EFD00B68A21 /* event-club@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04072CE51B8C5EFD00B68A21 /* event-club@3x.png */; };
+		04072CEB1B8C6BC200B68A21 /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 04072CE91B8C6BC200B68A21 /* phone.png */; };
+		04072CEC1B8C6BC200B68A21 /* phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04072CEA1B8C6BC200B68A21 /* phone@2x.png */; };
 		047406C71B7B3FFE00AE05BE /* TsaoSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 047406C61B7B3FFE00AE05BE /* TsaoSearchBar.m */; };
 		047406CE1B7B413400AE05BE /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 047406CD1B7B413400AE05BE /* search.png */; };
 		047406D01B7B415300AE05BE /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047406CF1B7B415300AE05BE /* search@2x.png */; };
@@ -25,8 +40,10 @@
 		04F2D16D1B8704340016FB91 /* SearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D16C1B8704340016FB91 /* SearchResultModel.m */; };
 		04F2D1701B8707F10016FB91 /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D16F1B8707F10016FB91 /* SearchResultTableViewCell.m */; };
 		04F2D1731B870AD30016FB91 /* ProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D1721B870AD30016FB91 /* ProductModel.m */; };
-		04F2D1761B870BE60016FB91 /* Specification.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D1751B870BE60016FB91 /* Specification.m */; };
+		04F2D1761B870BE60016FB91 /* SpecificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D1751B870BE60016FB91 /* SpecificationModel.m */; };
 		04F2D1791B870D040016FB91 /* NutritionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D1781B870D040016FB91 /* NutritionModel.m */; };
+		04F2D17C1B89B18F0016FB91 /* CampusListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D17B1B89B18F0016FB91 /* CampusListTableViewController.m */; };
+		04F2D17F1B89BA700016FB91 /* CampusListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2D17E1B89BA700016FB91 /* CampusListTableViewCell.m */; };
 		1C2EEFC20B1788EC57DBAD78 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86B9BFDA081524C1C477C05E /* libPods.a */; };
 		56061BAA1B6BC4EE002F3499 /* back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 56061BA81B6BC4EE002F3499 /* back_button.png */; };
 		56061BAB1B6BC4EE002F3499 /* back_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56061BA91B6BC4EE002F3499 /* back_button@2x.png */; };
@@ -85,6 +102,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04072CC21B8AE2CA00B68A21 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		04072CC31B8AE2CA00B68A21 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		04072CC51B8AE40100B68A21 /* StoreIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreIndexViewController.h; sourceTree = "<group>"; };
+		04072CC61B8AE40100B68A21 /* StoreIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreIndexViewController.m; sourceTree = "<group>"; };
+		04072CC91B8C31F700B68A21 /* MegaTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MegaTheme.h; sourceTree = "<group>"; };
+		04072CCA1B8C31F700B68A21 /* MegaTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MegaTheme.m; sourceTree = "<group>"; };
+		04072CCD1B8C325B00B68A21 /* ProductTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewCell.h; sourceTree = "<group>"; };
+		04072CCE1B8C325B00B68A21 /* ProductTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewCell.m; sourceTree = "<group>"; };
+		04072CD01B8C346C00B68A21 /* ProductTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductTableViewController.h; sourceTree = "<group>"; };
+		04072CD11B8C346C00B68A21 /* ProductTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewController.m; sourceTree = "<group>"; };
+		04072CD61B8C47AB00B68A21 /* MapEventController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapEventController.h; sourceTree = "<group>"; };
+		04072CD71B8C47AB00B68A21 /* MapEventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapEventController.m; sourceTree = "<group>"; };
+		04072CDA1B8C4C0700B68A21 /* GeoJSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoJSONModel.h; sourceTree = "<group>"; };
+		04072CDB1B8C4C0700B68A21 /* GeoJSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoJSONModel.m; sourceTree = "<group>"; };
+		04072CDD1B8C527900B68A21 /* map-annotation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-annotation.png"; sourceTree = "<group>"; };
+		04072CDE1B8C527900B68A21 /* map-annotation@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-annotation@3x.png"; sourceTree = "<group>"; };
+		04072CE11B8C52CF00B68A21 /* map-annotation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-annotation@2x.png"; sourceTree = "<group>"; };
+		04072CE31B8C5EFD00B68A21 /* event-club.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event-club.png"; sourceTree = "<group>"; };
+		04072CE41B8C5EFD00B68A21 /* event-club@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event-club@2x.png"; sourceTree = "<group>"; };
+		04072CE51B8C5EFD00B68A21 /* event-club@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event-club@3x.png"; sourceTree = "<group>"; };
+		04072CE91B8C6BC200B68A21 /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
+		04072CEA1B8C6BC200B68A21 /* phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone@2x.png"; sourceTree = "<group>"; };
 		047406C51B7B3FFE00AE05BE /* TsaoSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TsaoSearchBar.h; sourceTree = "<group>"; };
 		047406C61B7B3FFE00AE05BE /* TsaoSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TsaoSearchBar.m; sourceTree = "<group>"; };
 		047406CD1B7B413400AE05BE /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
@@ -114,10 +153,14 @@
 		04F2D16F1B8707F10016FB91 /* SearchResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultTableViewCell.m; sourceTree = "<group>"; };
 		04F2D1711B870AD30016FB91 /* ProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductModel.h; sourceTree = "<group>"; };
 		04F2D1721B870AD30016FB91 /* ProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductModel.m; sourceTree = "<group>"; };
-		04F2D1741B870BE60016FB91 /* Specification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Specification.h; sourceTree = "<group>"; };
-		04F2D1751B870BE60016FB91 /* Specification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Specification.m; sourceTree = "<group>"; };
+		04F2D1741B870BE60016FB91 /* SpecificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecificationModel.h; sourceTree = "<group>"; };
+		04F2D1751B870BE60016FB91 /* SpecificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecificationModel.m; sourceTree = "<group>"; };
 		04F2D1771B870D040016FB91 /* NutritionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NutritionModel.h; sourceTree = "<group>"; };
 		04F2D1781B870D040016FB91 /* NutritionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NutritionModel.m; sourceTree = "<group>"; };
+		04F2D17A1B89B18F0016FB91 /* CampusListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusListTableViewController.h; sourceTree = "<group>"; };
+		04F2D17B1B89B18F0016FB91 /* CampusListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusListTableViewController.m; sourceTree = "<group>"; };
+		04F2D17D1B89BA700016FB91 /* CampusListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusListTableViewCell.h; sourceTree = "<group>"; };
+		04F2D17E1B89BA700016FB91 /* CampusListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusListTableViewCell.m; sourceTree = "<group>"; };
 		56061BA81B6BC4EE002F3499 /* back_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_button.png; sourceTree = "<group>"; };
 		56061BA91B6BC4EE002F3499 /* back_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_button@2x.png"; sourceTree = "<group>"; };
 		56061BAC1B6C5941002F3499 /* TsaoBackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TsaoBackButton.h; sourceTree = "<group>"; };
@@ -208,14 +251,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04072CC81B8C31F700B68A21 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				04072CC91B8C31F700B68A21 /* MegaTheme.h */,
+				04072CCA1B8C31F700B68A21 /* MegaTheme.m */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		04072CCC1B8C323100B68A21 /* MenuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				04072CCD1B8C325B00B68A21 /* ProductTableViewCell.h */,
+				04072CCE1B8C325B00B68A21 /* ProductTableViewCell.m */,
+				04072CD01B8C346C00B68A21 /* ProductTableViewController.h */,
+				04072CD11B8C346C00B68A21 /* ProductTableViewController.m */,
+			);
+			name = MenuViewController;
+			sourceTree = "<group>";
+		};
+		04072CD51B8C47AB00B68A21 /* StoreIndexViewController */ = {
+			isa = PBXGroup;
+			children = (
+				04072CD61B8C47AB00B68A21 /* MapEventController.h */,
+				04072CD71B8C47AB00B68A21 /* MapEventController.m */,
+			);
+			path = StoreIndexViewController;
+			sourceTree = "<group>";
+		};
+		04072CD91B8C4BAC00B68A21 /* EmbedModel */ = {
+			isa = PBXGroup;
+			children = (
+				04072CDA1B8C4C0700B68A21 /* GeoJSONModel.h */,
+				04072CDB1B8C4C0700B68A21 /* GeoJSONModel.m */,
+			);
+			name = EmbedModel;
+			sourceTree = "<group>";
+		};
 		047406CC1B7B413400AE05BE /* Icon */ = {
 			isa = PBXGroup;
 			children = (
+				04072CE91B8C6BC200B68A21 /* phone.png */,
+				04072CEA1B8C6BC200B68A21 /* phone@2x.png */,
+				04072CE31B8C5EFD00B68A21 /* event-club.png */,
+				04072CE41B8C5EFD00B68A21 /* event-club@2x.png */,
+				04072CE51B8C5EFD00B68A21 /* event-club@3x.png */,
 				04F2D1641B86FC200016FB91 /* icon_arrow_dropdown_normal.png */,
 				04F2D1651B86FC200016FB91 /* icon_arrow_dropdown_selected.png */,
 				047406D11B7B47C400AE05BE /* icon_homepage_downArrow@2x.png */,
-				047406CF1B7B415300AE05BE /* search@2x.png */,
+				04072CDD1B8C527900B68A21 /* map-annotation.png */,
+				04072CE11B8C52CF00B68A21 /* map-annotation@2x.png */,
+				04072CDE1B8C527900B68A21 /* map-annotation@3x.png */,
 				047406CD1B7B413400AE05BE /* search.png */,
+				047406CF1B7B415300AE05BE /* search@2x.png */,
 			);
 			path = Icon;
 			sourceTree = "<group>";
@@ -263,6 +352,7 @@
 		56061BB61B6CD885002F3499 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				04072CD91B8C4BAC00B68A21 /* EmbedModel */,
 				56061BB71B6CD88F002F3499 /* CampusModel.h */,
 				56061BB81B6CD88F002F3499 /* CampusModel.m */,
 				04F2CCF71B84761A0016FB91 /* StoreModel.h */,
@@ -273,8 +363,8 @@
 				04F2D16C1B8704340016FB91 /* SearchResultModel.m */,
 				04F2D1711B870AD30016FB91 /* ProductModel.h */,
 				04F2D1721B870AD30016FB91 /* ProductModel.m */,
-				04F2D1741B870BE60016FB91 /* Specification.h */,
-				04F2D1751B870BE60016FB91 /* Specification.m */,
+				04F2D1741B870BE60016FB91 /* SpecificationModel.h */,
+				04F2D1751B870BE60016FB91 /* SpecificationModel.m */,
 				04F2D1771B870D040016FB91 /* NutritionModel.h */,
 				04F2D1781B870D040016FB91 /* NutritionModel.m */,
 			);
@@ -405,6 +495,7 @@
 		56C458451B6B33360053D825 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				04072CC81B8C31F700B68A21 /* Theme */,
 				56C458461B6B33360053D825 /* CustomPopTransition.h */,
 				56C458471B6B33360053D825 /* CustomPopTransition.m */,
 				56061BAF1B6C7F6B002F3499 /* Tool.h */,
@@ -455,6 +546,7 @@
 		56C458591B6B42690053D825 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				04072CD51B8C47AB00B68A21 /* StoreIndexViewController */,
 				56C4585A1B6B42690053D825 /* FirstViewController.h */,
 				56C4585B1B6B42690053D825 /* FirstViewController.m */,
 				56C4585C1B6B42690053D825 /* PopGestureRecognizerController.h */,
@@ -465,6 +557,12 @@
 				56C458611B6B42690053D825 /* TsaoTabbarController.m */,
 				56C45B4A1B6B72A00053D825 /* TsaoBaseViewController.h */,
 				56C45B4B1B6B72A00053D825 /* TsaoBaseViewController.m */,
+				04F2D17A1B89B18F0016FB91 /* CampusListTableViewController.h */,
+				04F2D17B1B89B18F0016FB91 /* CampusListTableViewController.m */,
+				04072CC21B8AE2CA00B68A21 /* MenuViewController.h */,
+				04072CC31B8AE2CA00B68A21 /* MenuViewController.m */,
+				04072CC51B8AE40100B68A21 /* StoreIndexViewController.h */,
+				04072CC61B8AE40100B68A21 /* StoreIndexViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -472,6 +570,7 @@
 		56C458661B6B42840053D825 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				04072CCC1B8C323100B68A21 /* MenuViewController */,
 				04F2CCFD1B85AC660016FB91 /* FirstViewController */,
 				56C458671B6B42BA0053D825 /* ChooseListView.h */,
 				56C458681B6B42BA0053D825 /* ChooseListView.m */,
@@ -479,6 +578,8 @@
 				56061BAD1B6C5941002F3499 /* TsaoBackButton.m */,
 				047406C51B7B3FFE00AE05BE /* TsaoSearchBar.h */,
 				047406C61B7B3FFE00AE05BE /* TsaoSearchBar.m */,
+				04F2D17D1B89BA700016FB91 /* CampusListTableViewCell.h */,
+				04F2D17E1B89BA700016FB91 /* CampusListTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -587,6 +688,7 @@
 				56865CF91B6B22E200A1B324 /* class_tab.png in Resources */,
 				56865C971B6B223C00A1B324 /* Main.storyboard in Resources */,
 				04F2CCF61B845C0D0016FB91 /* restaurant_icons.png in Resources */,
+				04072CE71B8C5EFD00B68A21 /* event-club@2x.png in Resources */,
 				56865CFF1B6B22E200A1B324 /* index_tab_select.png in Resources */,
 				56865CF11B6B22E200A1B324 /* about_tab.png in Resources */,
 				56061BAB1B6BC4EE002F3499 /* back_button@2x.png in Resources */,
@@ -597,21 +699,28 @@
 				56865D011B6B22E200A1B324 /* my_tab.png in Resources */,
 				56865D041B6B22E200A1B324 /* my_tab_select@2x.png in Resources */,
 				56865CF21B6B22E200A1B324 /* about_tab@2x.png in Resources */,
+				04072CE61B8C5EFD00B68A21 /* event-club.png in Resources */,
 				56865CF71B6B22E200A1B324 /* cart_tab_select.png in Resources */,
 				56865C991B6B223C00A1B324 /* Images.xcassets in Resources */,
 				04F2CCF41B845A580016FB91 /* paisley.png in Resources */,
 				56061BAA1B6BC4EE002F3499 /* back_button.png in Resources */,
+				04072CDF1B8C527900B68A21 /* map-annotation.png in Resources */,
+				04072CE21B8C52CF00B68A21 /* map-annotation@2x.png in Resources */,
 				56865CF81B6B22E200A1B324 /* cart_tab_select@2x.png in Resources */,
 				56865CFE1B6B22E200A1B324 /* index_tab@2x.png in Resources */,
 				04F2D1671B86FC200016FB91 /* icon_arrow_dropdown_selected.png in Resources */,
 				047406D01B7B415300AE05BE /* search@2x.png in Resources */,
 				56865D031B6B22E200A1B324 /* my_tab_select.png in Resources */,
+				04072CEC1B8C6BC200B68A21 /* phone@2x.png in Resources */,
 				56865CF31B6B22E200A1B324 /* about_tab_select.png in Resources */,
 				56865CFA1B6B22E200A1B324 /* class_tab@2x.png in Resources */,
 				047406CE1B7B413400AE05BE /* search.png in Resources */,
+				04072CE81B8C5EFD00B68A21 /* event-club@3x.png in Resources */,
 				56865CF51B6B22E200A1B324 /* cart_tab.png in Resources */,
+				04072CEB1B8C6BC200B68A21 /* phone.png in Resources */,
 				56865CFD1B6B22E200A1B324 /* index_tab.png in Resources */,
 				56865CF61B6B22E200A1B324 /* cart_tab@2x.png in Resources */,
+				04072CE01B8C527900B68A21 /* map-annotation@3x.png in Resources */,
 				04F2D1661B86FC200016FB91 /* icon_arrow_dropdown_normal.png in Resources */,
 				56865D021B6B22E200A1B324 /* my_tab@2x.png in Resources */,
 				047406D21B7B47C400AE05BE /* icon_homepage_downArrow@2x.png in Resources */,
@@ -666,13 +775,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				56C458641B6B42690053D825 /* SecondViewController.m in Sources */,
+				04072CC41B8AE2CA00B68A21 /* MenuViewController.m in Sources */,
 				04F2D16D1B8704340016FB91 /* SearchResultModel.m in Sources */,
 				56865C8E1B6B223C00A1B324 /* AppDelegate.m in Sources */,
 				047406C71B7B3FFE00AE05BE /* TsaoSearchBar.m in Sources */,
 				04F2CD061B86E01B0016FB91 /* UIView+Capture.m in Sources */,
+				04072CCF1B8C325B00B68A21 /* ProductTableViewCell.m in Sources */,
+				04072CDC1B8C4C0700B68A21 /* GeoJSONModel.m in Sources */,
 				56C458531B6B3D310053D825 /* UIImage+Tint.m in Sources */,
+				04F2D17C1B89B18F0016FB91 /* CampusListTableViewController.m in Sources */,
 				04F2D1701B8707F10016FB91 /* SearchResultTableViewCell.m in Sources */,
 				56C458481B6B33360053D825 /* CustomPopTransition.m in Sources */,
+				04072CD21B8C346C00B68A21 /* ProductTableViewController.m in Sources */,
 				56061BB91B6CD88F002F3499 /* CampusModel.m in Sources */,
 				56C458521B6B3D310053D825 /* UIImage+ProportionalFill.m in Sources */,
 				56C458651B6B42690053D825 /* TsaoTabbarController.m in Sources */,
@@ -680,7 +794,9 @@
 				56C458631B6B42690053D825 /* PopGestureRecognizerController.m in Sources */,
 				56061BAE1B6C5941002F3499 /* TsaoBackButton.m in Sources */,
 				04F2D16A1B87030B0016FB91 /* SearchResultTableView.m in Sources */,
+				04F2D17F1B89BA700016FB91 /* CampusListTableViewCell.m in Sources */,
 				04F2D1631B86ECA40016FB91 /* FXBlurView.m in Sources */,
+				04072CCB1B8C31F700B68A21 /* MegaTheme.m in Sources */,
 				56C458581B6B424F0053D825 /* KLCPopup.m in Sources */,
 				56061BB41B6CBAE7002F3499 /* AFHTTPRequestOperationManager+Singleton.m in Sources */,
 				04F2D1791B870D040016FB91 /* NutritionModel.m in Sources */,
@@ -692,8 +808,10 @@
 				56C458621B6B42690053D825 /* FirstViewController.m in Sources */,
 				04F2CCFC1B8478C50016FB91 /* OwnerModel.m in Sources */,
 				56C45B4C1B6B72A00053D825 /* TsaoBaseViewController.m in Sources */,
+				04072CD81B8C47AB00B68A21 /* MapEventController.m in Sources */,
 				56C4586C1B6B6BFC0053D825 /* UIViewController+TsaoNavigationBar.m in Sources */,
-				04F2D1761B870BE60016FB91 /* Specification.m in Sources */,
+				04072CC71B8AE40100B68A21 /* StoreIndexViewController.m in Sources */,
+				04F2D1761B870BE60016FB91 /* SpecificationModel.m in Sources */,
 				04F2CD001B85AC930016FB91 /* TsaoStoreListTableViewCell.m in Sources */,
 				56061BB11B6C7F6B002F3499 /* Tool.m in Sources */,
 			);

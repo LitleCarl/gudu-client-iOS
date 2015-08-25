@@ -9,7 +9,11 @@
 #import "CampusModel.h"
 
 @implementation CampusModel
-- (void)da{
-    self.id = @4;
++ (void)initialize{
+    [self setupObjectClassInArray:^NSDictionary *{
+        return @{
+                 @"stores" : @"StoreModel"
+                 };
+    }];
 }
 @end

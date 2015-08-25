@@ -9,5 +9,12 @@
 #import "StoreModel.h"
 
 @implementation StoreModel
++ (void)initialize{
+    [self setupObjectClassInArray:^NSDictionary *{
+        return @{
+                 @"products" : @"ProductModel"
+                 };
+    }];
+}
 
 @end

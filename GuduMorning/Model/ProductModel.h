@@ -13,6 +13,11 @@
 @interface ProductModel : NSObject
 
 /**
+ *  商品id
+ */
+@property (nonatomic, copy) NSString *id;
+
+/**
  *  产品名称
  */
 @property (nonatomic, copy) NSString *name;
@@ -21,6 +26,21 @@
  *  产品简介
  */
 @property (nonatomic, copy) NSString *brief;
+
+/**
+ *  最低价
+ */
+@property (nonatomic, copy) NSString *min_price;
+
+/**
+ *  最高价
+ */
+@property (nonatomic, copy) NSString *max_price;
+
+/**
+ *  产品分类
+ */
+@property (nonatomic, copy) NSString *category;
 
 /**
  *  商品logo

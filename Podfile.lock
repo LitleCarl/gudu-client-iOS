@@ -23,6 +23,7 @@ PODS:
   - AsyncDisplayKit (1.2.3):
     - AsyncDisplayKit/ASDealloc2MainObject (= 1.2.3)
   - AsyncDisplayKit/ASDealloc2MainObject (1.2.3)
+  - DZNEmptyDataSet (1.7.1)
   - JazzHands (2.0.3)
   - MaterialControls (1.0.2)
   - MBProgressHUD (0.9.1)
@@ -42,6 +43,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - AsyncDisplayKit
+  - DZNEmptyDataSet
   - JazzHands
   - MaterialControls (~> 1.0.2)
   - MBProgressHUD (~> 0.9.1)
@@ -53,6 +55,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   AsyncDisplayKit: 5c8f38225f7478e39c48196cec0dd0d2ac3455ed
+  DZNEmptyDataSet: 2a398066c2bf5848f7f693fb50954b5064debd12
   JazzHands: 0f3c8578f33f45b2fe73975deed6a5f02f9c22d3
   MaterialControls: bdeeb94aa049b73f70739a5514be137d2d45c08a
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad

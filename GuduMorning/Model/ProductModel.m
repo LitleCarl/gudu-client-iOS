@@ -9,5 +9,11 @@
 #import "ProductModel.h"
 
 @implementation ProductModel
-
++ (void)initialize{
+    [self setupObjectClassInArray:^NSDictionary *{
+        return @{
+                 @"specifications" : @"SpecificationModel"
+                 };
+    }];
+}
 @end
