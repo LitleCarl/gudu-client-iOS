@@ -12,7 +12,8 @@
 + (void)initialize{
     [self setupObjectClassInArray:^NSDictionary *{
         return @{
-                 @"specifications" : @"SpecificationModel"
+                 @"specifications" : @"SpecificationModel",
+                 @"product_images" : @"ProductImageModel"
                  };
     }];
 }

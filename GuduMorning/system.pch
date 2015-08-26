@@ -36,6 +36,7 @@
 #import "SpecificationModel.h"
 #import "NutritionModel.h"
 #import "GeoJSONModel.h"
+#import "ProductImageModel.h"
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
@@ -115,6 +116,9 @@
 #define kNaviTitleColor                     [UIColor orangeColor]
 #define kOrangeColor                         [UIColor colorWithRed:(0xD3 / 255.0) green:(0x54 / 255.0) blue:(0x00 / 255.0) alpha:1.0]
 #define kGreenColor                         [UIColor colorWithRed:(0x1a / 255.0) green:(0xbc / 255.0) blue:(0x9c / 255.0) alpha:1.0]
+
+#define kRedColor                           [UIColor colorWithRed:(231 / 255.0) green:(76 / 255.0) blue:(60 / 255.0) alpha:1.0]
+
 #define kDarkColor                          [UIColor colorWithRed:(71 / 255.0) green:(86 / 255.0) blue: (94 / 255.0) alpha:1.0]
 #define kRoundCornerRadius                  8.0
 #define kShadowColor                        [UIColor grayColor]
@@ -145,6 +149,9 @@
 
 #define kStoreUrl                           @"/store"
 #define kStoreFindOneUrl                    @"/store/:store_id"
+
+#define kProductUrl                          @"/product"
+#define kProductFindOneUrl                   @"/product/:product_id"
 
 #define kSearchUrl                           @"/search/productAndStore"
 

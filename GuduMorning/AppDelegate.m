@@ -54,6 +54,7 @@
     
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:kGreenColor}
                                              forState:UIControlStateSelected];
+
 }
 
 @end

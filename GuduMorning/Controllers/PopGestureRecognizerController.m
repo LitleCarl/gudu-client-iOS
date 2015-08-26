@@ -54,10 +54,10 @@
 {
     [super viewDidLoad];
 
-    self.navigationBar.hidden = YES;
+    self.navigationBarHidden = YES;
     
     self.gestureEnabled = YES;
-    
+ 
     __weak PopGestureRecognizerController *weakSelf = self;
     
     if ( [self respondsToSelector:@selector(interactivePopGestureRecognizer)] ) {

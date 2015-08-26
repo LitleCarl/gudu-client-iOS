@@ -62,4 +62,6 @@
  */
 @property (nonatomic, copy) NSString *pinyin;
 
+@property (nonatomic, strong) NSArray *product_images;
+
 @end

@@ -11,6 +11,9 @@
 // View
 #import "ProductTableViewCell.h"
 
+//ViewController
+#import "ProductScrollViewController.h"
+
 @interface ProductTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
 /**
@@ -53,6 +56,12 @@ static NSString *cellReuseId = @"Product_Reuse_Identifier";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 100;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ProductScrollViewController *controller = [kMainStoryBoard instantiateViewControllerWithIdentifier:kProductViewControllerStoryboardId];
+    controller.product_id = [[self.products objectAtIndex:indexPath.row] id];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark - UITableViewDataSource -
