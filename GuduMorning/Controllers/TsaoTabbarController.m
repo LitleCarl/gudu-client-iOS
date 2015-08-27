@@ -9,7 +9,7 @@
 #import "TsaoTabbarController.h"
 #import "PopGestureRecognizerController.h"
 #import "FirstViewController.h"
-#import "SecondViewController.h"
+#import "CartViewController.h"
 
 @interface TsaoTabbarController ()
 
@@ -29,8 +29,9 @@
     FirstViewController *first = [[FirstViewController alloc] init];
     PopGestureRecognizerController *firstNav = [[PopGestureRecognizerController alloc] initWithRootViewController:first];
     
-    SecondViewController *second = [[SecondViewController alloc] init];
+    CartViewController *second = [kCartStoryBoard instantiateViewControllerWithIdentifier:kCartViewControllerStoryBoardId];
     PopGestureRecognizerController *secondNav = [[PopGestureRecognizerController alloc] initWithRootViewController:second];
+    secondNav.navigationBarHidden = NO;
     
     self.viewControllers = @[firstNav,secondNav];
     // Do any additional setup after loading the view.

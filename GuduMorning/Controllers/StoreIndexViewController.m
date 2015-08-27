@@ -163,6 +163,7 @@
             tableViewController_weak_.products = products;
         }];
     }
+    tableViewController.automaticallyAdjustsScrollViewInsets = NO;
       return tableViewController;
 }
 

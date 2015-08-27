@@ -9,9 +9,14 @@
 #import "ProductScrollViewController.h"
 #import "MegaTheme.h"
 #import "ProductImageCell.h"
+// View
+#import "ADVProgressControl.h"
 
 // Category
 #import "UIViewController+CustomNavLeftItem.h"
+
+// Library
+#import <ActionSheetPicker.h>
 
 @interface ProductScrollViewController ()
 {
@@ -40,14 +45,29 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    self.navigationController.navigationBarHidden = NO;
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    self.navigationController.navigationBarHidden = YES;
+    [super viewWillAppear:animated];
 }
 
 - (void)setUpTrigger{
+    [[[specificationSelectButton rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:specificationSelectButton.rac_willDeallocSignal] subscribeNext:^(UIButton *button) {
+        
+        NSArray *specificationValues = [self.product.specifications valueForKeyPath:@"@distinctUnionOfObjects.value"];
+        if (specificationValues.count > 0) {
+            
+            NSInteger currentSelectIndex = [self.product.specifications indexOfObject:self.selectedSpecification];
+            
+            ActionSheetStringPicker *specPicker = [[ActionSheetStringPicker alloc] initWithTitle:@"选择规格" rows:specificationValues initialSelection:currentSelectIndex doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                self.selectedSpecification = [self.product.specifications objectAtIndex:selectedIndex];
+            } cancelBlock:^(ActionSheetStringPicker *picker) {
+                
+            } origin:specificationSelectButton];
+            [specPicker setCancelButton:[[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil]];
+            [specPicker setDoneButton:[[UIBarButtonItem alloc] initWithTitle:@"确认" style:UIBarButtonItemStylePlain target:nil action:nil]];
+
+            [specPicker showActionSheetPicker];
+        }
+    }];
+    
     [[[RACObserve(self, product) skip:1] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(ProductModel *model) {
         titleLabel.text = [model name];
         stockLabel.text = [NSString stringWithFormat:@"类别:%@", [model category]];
@@ -64,6 +84,17 @@
         }
         [productCollectionView reloadData];
         
+    }];
+    
+    [[RACObserve(self, product) takeUntil:self.rac_willDeallocSignal] subscribeNext:^(ProductModel *product) {
+        if (product.nutrition) {
+            energyProgressView.hidden = NO;
+            energyProgressView.labelText = [NSString stringWithFormat:@"热量:%@KJ",product.nutrition.energy];
+                energyProgressView.progress = MIN(product.nutrition.energy.integerValue / 550.0, 0.98);
+        }
+        else {
+            energyProgressView.hidden = YES;
+        }
     }];
     
     [[[RACObserve(self, selectedSpecification) skip:1] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(SpecificationModel *specification) {
@@ -94,13 +125,11 @@
  */
 - (void)initUI{
     
-    [self setLeftBarItemWithColor:kDarkColor];
-    
     productImageHeight = 300;
     
     productCollectionView.dataSource = self;
     productCollectionView.delegate = self;
-    productCollectionView.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
+    nutritionCollectionView.backgroundColor =  productCollectionView.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.0];
     
     productCollectionLayout.minimumLineSpacing = 10;
     productCollectionLayout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
@@ -180,21 +209,24 @@
         
         return productImageHeight;
         
-    } else if (indexPath.row == 3) {
-        
-        return 120;
-        
-    }else if (indexPath.row == 4) {
+    }
+    else if (indexPath.row == 1) {
+        return 80;
+    }
+    else if (indexPath.row == 3) {
         
         return 70;
         
-    }else if (indexPath.row == 5) {
+    }else if (indexPath.row == 4) {
         
-        return 400;
+        return 120;
         
-    }else{
-        
-        return 45;
+    }
+    else if (indexPath.row == 5) {
+        return 120;
+    }
+    else {
+        return 52;
     }
 }
 
@@ -206,6 +238,7 @@
      cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
+
 -(void)viewDidLayoutSubviews
 {
     self.tableView.separatorInset = UIEdgeInsetsZero;
@@ -214,21 +247,24 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProductImageCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProductImageCell" forIndexPath:indexPath];
-    
-    TsaoLog(@"product image:%@",[[self.product.product_images objectAtIndex:indexPath.row] image_name]);
-    [cell.productImageView sd_setImageWithURL:kUrlFromString([[self.product.product_images objectAtIndex:indexPath.row] image_name]) completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if (!error) {
-            cell.productImageView.contentMode = UIViewContentModeScaleAspectFit;
-        }
-    }];
         
-    return cell;
+        ProductImageCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProductImageCell" forIndexPath:indexPath];
+        
+        [cell.productImageView sd_setImageWithURL:kUrlFromString([[self.product.product_images objectAtIndex:indexPath.row] image_name]) completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (!error) {
+                cell.productImageView.contentMode = UIViewContentModeScaleAspectFill;
+            }
+        }];
+        return cell;
+    
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.product.product_images.count;
+    if (collectionView != nutritionCollectionView)
+        return self.product.product_images.count;
+    else
+        return 7;
 }
 
 

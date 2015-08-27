@@ -1,4 +1,5 @@
 PODS:
+  - ActionSheetPicker-3.0 (1.7.0)
   - AFNetworking (2.5.4):
     - AFNetworking/NSURLConnection (= 2.5.4)
     - AFNetworking/NSURLSession (= 2.5.4)
@@ -41,6 +42,7 @@ PODS:
   - SDWebImage/Core (3.7.3)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0
   - AFNetworking (~> 2.0)
   - AsyncDisplayKit
   - DZNEmptyDataSet
@@ -53,6 +55,7 @@ DEPENDENCIES:
   - SDWebImage (~> 3.7)
 
 SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: 6516052442fc8ca8f3cc4b3c7aa0436de12373df
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   AsyncDisplayKit: 5c8f38225f7478e39c48196cec0dd0d2ac3455ed
   DZNEmptyDataSet: 2a398066c2bf5848f7f693fb50954b5064debd12

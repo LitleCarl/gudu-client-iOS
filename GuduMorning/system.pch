@@ -137,6 +137,7 @@
 #pragma mark - StoryBoard -
 
 #define kMainStoryBoard                    [UIStoryboard storyboardWithName:@"Main" bundle:nil]
+#define kCartStoryBoard                    [UIStoryboard storyboardWithName:@"Cart" bundle:nil]
 
 //URL
 #pragma mark - URL -

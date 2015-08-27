@@ -24,12 +24,18 @@
 		04072CEC1B8C6BC200B68A21 /* phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04072CEA1B8C6BC200B68A21 /* phone@2x.png */; };
 		04072CF01B8C994900B68A21 /* ProductScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04072CEF1B8C994900B68A21 /* ProductScrollViewController.m */; };
 		04072CF31B8C9A1A00B68A21 /* ProductImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04072CF21B8C9A1A00B68A21 /* ProductImageCell.m */; };
+		0411515C1B8EE795000B3A88 /* Cart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0411515B1B8EE795000B3A88 /* Cart.storyboard */; };
+		0411515F1B8EE7DE000B3A88 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0411515E1B8EE7DE000B3A88 /* CartViewController.m */; };
+		041151631B8EE832000B3A88 /* CartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 041151621B8EE832000B3A88 /* CartCell.m */; };
 		047406C71B7B3FFE00AE05BE /* TsaoSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 047406C61B7B3FFE00AE05BE /* TsaoSearchBar.m */; };
 		047406CE1B7B413400AE05BE /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 047406CD1B7B413400AE05BE /* search.png */; };
 		047406D01B7B415300AE05BE /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047406CF1B7B415300AE05BE /* search@2x.png */; };
 		047406D21B7B47C400AE05BE /* icon_homepage_downArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047406D11B7B47C400AE05BE /* icon_homepage_downArrow@2x.png */; };
 		0496016F1B8D67D700AEFFD8 /* UIViewController+CustomNavLeftItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496016E1B8D67D700AEFFD8 /* UIViewController+CustomNavLeftItem.m */; };
 		049601721B8D7C9100AEFFD8 /* ProductImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 049601711B8D7C9100AEFFD8 /* ProductImageModel.m */; };
+		049601751B8DA7A200AEFFD8 /* ProductWrapperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049601741B8DA7A200AEFFD8 /* ProductWrapperViewController.m */; };
+		0496017B1B8DB88200AEFFD8 /* ADVProgressControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 049601781B8DB88200AEFFD8 /* ADVProgressControl.m */; };
+		0496017C1B8DB88200AEFFD8 /* ADVProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496017A1B8DB88200AEFFD8 /* ADVProgressLayer.m */; };
 		04F2CCF41B845A580016FB91 /* paisley.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F2CCF31B845A580016FB91 /* paisley.png */; };
 		04F2CCF61B845C0D0016FB91 /* restaurant_icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F2CCF51B845C0D0016FB91 /* restaurant_icons.png */; };
 		04F2CCF91B84761A0016FB91 /* StoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2CCF81B84761A0016FB91 /* StoreModel.m */; };
@@ -132,6 +138,11 @@
 		04072CEF1B8C994900B68A21 /* ProductScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductScrollViewController.m; sourceTree = "<group>"; };
 		04072CF11B8C9A1A00B68A21 /* ProductImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductImageCell.h; sourceTree = "<group>"; };
 		04072CF21B8C9A1A00B68A21 /* ProductImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductImageCell.m; sourceTree = "<group>"; };
+		0411515B1B8EE795000B3A88 /* Cart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cart.storyboard; sourceTree = "<group>"; };
+		0411515D1B8EE7DE000B3A88 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
+		0411515E1B8EE7DE000B3A88 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
+		041151611B8EE832000B3A88 /* CartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartCell.h; sourceTree = "<group>"; };
+		041151621B8EE832000B3A88 /* CartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartCell.m; sourceTree = "<group>"; };
 		047406C51B7B3FFE00AE05BE /* TsaoSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TsaoSearchBar.h; sourceTree = "<group>"; };
 		047406C61B7B3FFE00AE05BE /* TsaoSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TsaoSearchBar.m; sourceTree = "<group>"; };
 		047406CD1B7B413400AE05BE /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
@@ -141,6 +152,12 @@
 		0496016E1B8D67D700AEFFD8 /* UIViewController+CustomNavLeftItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CustomNavLeftItem.m"; sourceTree = "<group>"; };
 		049601701B8D7C9100AEFFD8 /* ProductImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductImageModel.h; sourceTree = "<group>"; };
 		049601711B8D7C9100AEFFD8 /* ProductImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductImageModel.m; sourceTree = "<group>"; };
+		049601731B8DA7A200AEFFD8 /* ProductWrapperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductWrapperViewController.h; sourceTree = "<group>"; };
+		049601741B8DA7A200AEFFD8 /* ProductWrapperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductWrapperViewController.m; sourceTree = "<group>"; };
+		049601771B8DB88200AEFFD8 /* ADVProgressControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADVProgressControl.h; sourceTree = "<group>"; };
+		049601781B8DB88200AEFFD8 /* ADVProgressControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADVProgressControl.m; sourceTree = "<group>"; };
+		049601791B8DB88200AEFFD8 /* ADVProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADVProgressLayer.h; sourceTree = "<group>"; };
+		0496017A1B8DB88200AEFFD8 /* ADVProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADVProgressLayer.m; sourceTree = "<group>"; };
 		04F2CCF31B845A580016FB91 /* paisley.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paisley.png; sourceTree = "<group>"; };
 		04F2CCF51B845C0D0016FB91 /* restaurant_icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restaurant_icons.png; sourceTree = "<group>"; };
 		04F2CCF71B84761A0016FB91 /* StoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreModel.h; sourceTree = "<group>"; };
@@ -310,6 +327,15 @@
 			path = Product;
 			sourceTree = "<group>";
 		};
+		041151601B8EE832000B3A88 /* CartViewController */ = {
+			isa = PBXGroup;
+			children = (
+				041151611B8EE832000B3A88 /* CartCell.h */,
+				041151621B8EE832000B3A88 /* CartCell.m */,
+			);
+			path = CartViewController;
+			sourceTree = "<group>";
+		};
 		047406CC1B7B413400AE05BE /* Icon */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +354,17 @@
 				047406CF1B7B415300AE05BE /* search@2x.png */,
 			);
 			path = Icon;
+			sourceTree = "<group>";
+		};
+		049601761B8DB88200AEFFD8 /* ADVProgressControl */ = {
+			isa = PBXGroup;
+			children = (
+				049601771B8DB88200AEFFD8 /* ADVProgressControl.h */,
+				049601781B8DB88200AEFFD8 /* ADVProgressControl.m */,
+				049601791B8DB88200AEFFD8 /* ADVProgressLayer.h */,
+				0496017A1B8DB88200AEFFD8 /* ADVProgressLayer.m */,
+			);
+			path = ADVProgressControl;
 			sourceTree = "<group>";
 		};
 		04F2CCF21B845A580016FB91 /* Background */ = {
@@ -503,6 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				56865C951B6B223C00A1B324 /* Main.storyboard */,
+				0411515B1B8EE795000B3A88 /* Cart.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -553,6 +591,7 @@
 		56C458541B6B424F0053D825 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				049601761B8DB88200AEFFD8 /* ADVProgressControl */,
 				04F2D1601B86ECA40016FB91 /* FXBlurView */,
 				56C458551B6B424F0053D825 /* KLCPopup */,
 			);
@@ -571,6 +610,8 @@
 		56C458591B6B42690053D825 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0411515D1B8EE7DE000B3A88 /* CartViewController.h */,
+				0411515E1B8EE7DE000B3A88 /* CartViewController.m */,
 				04F2D17A1B89B18F0016FB91 /* CampusListTableViewController.h */,
 				04F2D17B1B89B18F0016FB91 /* CampusListTableViewController.m */,
 				56C4585A1B6B42690053D825 /* FirstViewController.h */,
@@ -591,6 +632,8 @@
 				56C45B4B1B6B72A00053D825 /* TsaoBaseViewController.m */,
 				56C458601B6B42690053D825 /* TsaoTabbarController.h */,
 				56C458611B6B42690053D825 /* TsaoTabbarController.m */,
+				049601731B8DA7A200AEFFD8 /* ProductWrapperViewController.h */,
+				049601741B8DA7A200AEFFD8 /* ProductWrapperViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -598,6 +641,7 @@
 		56C458661B6B42840053D825 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				041151601B8EE832000B3A88 /* CartViewController */,
 				04072CCC1B8C323100B68A21 /* MenuViewController */,
 				04F2CCFD1B85AC660016FB91 /* FirstViewController */,
 				56C458671B6B42BA0053D825 /* ChooseListView.h */,
@@ -733,6 +777,7 @@
 				04F2CCF41B845A580016FB91 /* paisley.png in Resources */,
 				56061BAA1B6BC4EE002F3499 /* back_button.png in Resources */,
 				04072CDF1B8C527900B68A21 /* map-annotation.png in Resources */,
+				0411515C1B8EE795000B3A88 /* Cart.storyboard in Resources */,
 				04072CE21B8C52CF00B68A21 /* map-annotation@2x.png in Resources */,
 				56865CF81B6B22E200A1B324 /* cart_tab_select@2x.png in Resources */,
 				56865CFE1B6B22E200A1B324 /* index_tab@2x.png in Resources */,
@@ -804,7 +849,9 @@
 			files = (
 				56C458641B6B42690053D825 /* SecondViewController.m in Sources */,
 				049601721B8D7C9100AEFFD8 /* ProductImageModel.m in Sources */,
+				041151631B8EE832000B3A88 /* CartCell.m in Sources */,
 				04072CC41B8AE2CA00B68A21 /* MenuViewController.m in Sources */,
+				0496017C1B8DB88200AEFFD8 /* ADVProgressLayer.m in Sources */,
 				04F2D16D1B8704340016FB91 /* SearchResultModel.m in Sources */,
 				56865C8E1B6B223C00A1B324 /* AppDelegate.m in Sources */,
 				047406C71B7B3FFE00AE05BE /* TsaoSearchBar.m in Sources */,
@@ -812,6 +859,7 @@
 				04072CCF1B8C325B00B68A21 /* ProductTableViewCell.m in Sources */,
 				04072CDC1B8C4C0700B68A21 /* GeoJSONModel.m in Sources */,
 				56C458531B6B3D310053D825 /* UIImage+Tint.m in Sources */,
+				049601751B8DA7A200AEFFD8 /* ProductWrapperViewController.m in Sources */,
 				04F2D17C1B89B18F0016FB91 /* CampusListTableViewController.m in Sources */,
 				04F2D1701B8707F10016FB91 /* SearchResultTableViewCell.m in Sources */,
 				56C458481B6B33360053D825 /* CustomPopTransition.m in Sources */,
@@ -835,10 +883,12 @@
 				0496016F1B8D67D700AEFFD8 /* UIViewController+CustomNavLeftItem.m in Sources */,
 				04F2CD031B86BC650016FB91 /* UIView+CreateBorder.m in Sources */,
 				56865C8B1B6B223C00A1B324 /* main.m in Sources */,
+				0496017B1B8DB88200AEFFD8 /* ADVProgressControl.m in Sources */,
 				04072CF31B8C9A1A00B68A21 /* ProductImageCell.m in Sources */,
 				56C458511B6B3D310053D825 /* MGImageUtilitiesAppDelegate.m in Sources */,
 				56C458621B6B42690053D825 /* FirstViewController.m in Sources */,
 				04F2CCFC1B8478C50016FB91 /* OwnerModel.m in Sources */,
+				0411515F1B8EE7DE000B3A88 /* CartViewController.m in Sources */,
 				56C45B4C1B6B72A00053D825 /* TsaoBaseViewController.m in Sources */,
 				04072CD81B8C47AB00B68A21 /* MapEventController.m in Sources */,
 				56C4586C1B6B6BFC0053D825 /* UIViewController+TsaoNavigationBar.m in Sources */,

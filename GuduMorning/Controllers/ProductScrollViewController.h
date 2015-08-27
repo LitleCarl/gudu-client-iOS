@@ -10,6 +10,8 @@
 
 #define kProductViewControllerStoryboardId @"Product_View_Controller_Storyboard_ID"
 
+@class ADVProgressControl;
+
 @interface ProductScrollViewController : UITableViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 {
@@ -43,8 +45,11 @@
     
     IBOutlet UICollectionViewFlowLayout* productCollectionLayout;
     
+    __weak IBOutlet UIButton *specificationSelectButton;
     
+    __weak IBOutlet UICollectionView *nutritionCollectionView;
     
+    __weak IBOutlet ADVProgressControl *energyProgressView;
 }
 
 /**
