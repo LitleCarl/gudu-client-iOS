@@ -118,6 +118,17 @@
         }
         
     }];
+    
+    //order Button的enable属性绑定
+    RAC(orderButton, enabled) = [[RACObserve(self, selectedSpecification) takeUntil:self.rac_willDeallocSignal] map:^id(SpecificationModel *specification) {
+        if (specification.stock > 0) {
+            return @YES;
+        }
+        else{
+            return @NO;
+        }
+    }];
+    
 }
 
 /**

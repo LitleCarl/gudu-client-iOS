@@ -36,6 +36,8 @@
 		049601751B8DA7A200AEFFD8 /* ProductWrapperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049601741B8DA7A200AEFFD8 /* ProductWrapperViewController.m */; };
 		0496017B1B8DB88200AEFFD8 /* ADVProgressControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 049601781B8DB88200AEFFD8 /* ADVProgressControl.m */; };
 		0496017C1B8DB88200AEFFD8 /* ADVProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496017A1B8DB88200AEFFD8 /* ADVProgressLayer.m */; };
+		04D23C7A1B8F00B000250726 /* CartItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D23C791B8F00B000250726 /* CartItem.m */; };
+		04D23C7C1B8F080800250726 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D23C7B1B8F080800250726 /* Realm.framework */; };
 		04F2CCF41B845A580016FB91 /* paisley.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F2CCF31B845A580016FB91 /* paisley.png */; };
 		04F2CCF61B845C0D0016FB91 /* restaurant_icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F2CCF51B845C0D0016FB91 /* restaurant_icons.png */; };
 		04F2CCF91B84761A0016FB91 /* StoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2CCF81B84761A0016FB91 /* StoreModel.m */; };
@@ -158,6 +160,9 @@
 		049601781B8DB88200AEFFD8 /* ADVProgressControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADVProgressControl.m; sourceTree = "<group>"; };
 		049601791B8DB88200AEFFD8 /* ADVProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADVProgressLayer.h; sourceTree = "<group>"; };
 		0496017A1B8DB88200AEFFD8 /* ADVProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADVProgressLayer.m; sourceTree = "<group>"; };
+		04D23C781B8F00B000250726 /* CartItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartItem.h; sourceTree = "<group>"; };
+		04D23C791B8F00B000250726 /* CartItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartItem.m; sourceTree = "<group>"; };
+		04D23C7B1B8F080800250726 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		04F2CCF31B845A580016FB91 /* paisley.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paisley.png; sourceTree = "<group>"; };
 		04F2CCF51B845C0D0016FB91 /* restaurant_icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restaurant_icons.png; sourceTree = "<group>"; };
 		04F2CCF71B84761A0016FB91 /* StoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreModel.h; sourceTree = "<group>"; };
@@ -266,6 +271,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D23C7C1B8F080800250726 /* Realm.framework in Frameworks */,
 				1C2EEFC20B1788EC57DBAD78 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,6 +373,15 @@
 			path = ADVProgressControl;
 			sourceTree = "<group>";
 		};
+		04D23C771B8F00A000250726 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				04D23C781B8F00B000250726 /* CartItem.h */,
+				04D23C791B8F00B000250726 /* CartItem.m */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		04F2CCF21B845A580016FB91 /* Background */ = {
 			isa = PBXGroup;
 			children = (
@@ -457,6 +472,7 @@
 				56865C8C1B6B223C00A1B324 /* AppDelegate.h */,
 				56865C8D1B6B223C00A1B324 /* AppDelegate.m */,
 				56865C981B6B223C00A1B324 /* Images.xcassets */,
+				04D23C771B8F00A000250726 /* Realm */,
 				56C458591B6B42690053D825 /* Controllers */,
 				56C458541B6B424F0053D825 /* Library */,
 				56C4584A1B6B3D310053D825 /* Category */,
@@ -591,6 +607,7 @@
 		56C458541B6B424F0053D825 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				04D23C7B1B8F080800250726 /* Realm.framework */,
 				049601761B8DB88200AEFFD8 /* ADVProgressControl */,
 				04F2D1601B86ECA40016FB91 /* FXBlurView */,
 				56C458551B6B424F0053D825 /* KLCPopup */,
@@ -849,6 +866,7 @@
 			files = (
 				56C458641B6B42690053D825 /* SecondViewController.m in Sources */,
 				049601721B8D7C9100AEFFD8 /* ProductImageModel.m in Sources */,
+				04D23C7A1B8F00B000250726 /* CartItem.m in Sources */,
 				041151631B8EE832000B3A88 /* CartCell.m in Sources */,
 				04072CC41B8AE2CA00B68A21 /* MenuViewController.m in Sources */,
 				0496017C1B8DB88200AEFFD8 /* ADVProgressLayer.m in Sources */,
@@ -1025,6 +1043,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: HANBO LIU (LK8M6M3H5J)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GuduMorning/Library",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = GuduMorning/system.pch;
 				INFOPLIST_FILE = GuduMorning/Info.plist;
@@ -1039,6 +1061,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: HANBO LIU (LK8M6M3H5J)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GuduMorning/Library",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = GuduMorning/system.pch;
 				INFOPLIST_FILE = GuduMorning/Info.plist;
