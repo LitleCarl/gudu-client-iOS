@@ -8,6 +8,9 @@
 
 #import "CartItem.h"
 
+
+
+
 @implementation CartItem
 + (void)addProductToCart:(NSString *)product_id specification:(NSString *)specification_id mount:(NSInteger)mount increase:(BOOL)increase{
 
@@ -26,7 +29,16 @@
         else{
             item.quantity = mount;
         }
-        [RLMObject createOrUpdateInDefaultRealmWithValue:item];
+        [CartItem createOrUpdateInDefaultRealmWithValue:item];
+        [realm commitWriteTransaction];
+    }
+    else {
+        [realm beginWriteTransaction];
+        CartItem *item = [[CartItem alloc] init];
+        item.product_id = product_id;
+        item.specification_id = specification_id;
+        item.quantity = mount;
+        [CartItem createOrUpdateInDefaultRealmWithValue:item];
         [realm commitWriteTransaction];
     }
 }
@@ -49,9 +61,13 @@
         else{
             item.quantity = mount;
         }
-        [RLMObject createOrUpdateInDefaultRealmWithValue:item];
+        [CartItem createOrUpdateInDefaultRealmWithValue:item];
         [realm commitWriteTransaction];
     }
+}
+
++ (NSString *)primaryKey{
+    return @"product_id";
 }
 
 // Specify default values for properties

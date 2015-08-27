@@ -18,6 +18,7 @@
 
     IBOutlet UIButton* orderButton;
     
+    __weak IBOutlet UITableView *cartItemTableView;
 }
 
 

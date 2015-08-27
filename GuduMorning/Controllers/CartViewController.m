@@ -10,7 +10,25 @@
 #import "MegaTheme.h"
 #import "CartCell.h"
 
+// library
+#import <Realm/Realm.h>
+#import "RealmManager.h"
+
+//Realm Model
+#import "RealmProductModel.h"
+#import "RealmSpecificationModel.h"
+
 @interface CartViewController ()
+
+/**
+ *  监听token
+ */
+@property (nonatomic, strong) RLMNotificationToken* token;
+
+/**
+ *  购物车内容
+ */
+@property (nonatomic, strong) RLMResults *cartItems;
 
 @end
 
@@ -18,7 +36,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupTrigger];
     [self initUI];
+    //[self fetchData];
     // Do any additional setup after loading the view.
 }
 
@@ -32,15 +52,18 @@
     return self;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-       
-    }
+- (void)setupTrigger{
     
-    return self;
+    [RACObserve(self, cartItems) subscribeNext:^(RLMResults *results) {
+        [cartItemTableView reloadData];
+    }];
+    
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    self.token = [realm addNotificationBlock:^(NSString *note, RLMRealm * realm) {
+        self.cartItems = [CartItem allObjects];
+    }];
 }
+
 - (void)initUI{
     
     self.title = @"购物篮";
@@ -49,19 +72,17 @@
     
     totalTitle.textColor = [UIColor blackColor];
     
-    totalTitle.text = @"TOTAL";
+    totalTitle.text = @"总计";
     
     totalLabel.font = [UIFont fontWithName:[MegaTheme fontName] size:15];
     
     totalLabel.textColor = [UIColor blackColor];
     
-    totalLabel.text = @"$135";
-    
     orderButton.titleLabel.font = [UIFont fontWithName:[MegaTheme fontName] size:18];
     
     [orderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
-    [orderButton setTitle:@"PLACE ORDER" forState: UIControlStateNormal];
+    [orderButton setTitle:@"付款" forState: UIControlStateNormal];
     
     orderButton.backgroundColor = [UIColor colorWithRed:0.14 green:0.71 blue:0.32 alpha:1.0];
     
@@ -85,6 +106,13 @@
 {
     
     CartCell* cell = [tableView dequeueReusableCellWithIdentifier:@"CartCell"];
+    RLMRealm *memoryRealm = [RealmManager memoryRealm];
+    if ([RealmProductModel objectsInRealm:memoryRealm withPredicate:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"id = %@", [[self.cartItems objectAtIndex:indexPath.row] id]]]].count > 0) {
+        //内存中已缓存
+    }
+    else {
+        //未缓存
+    }
     
     cell.productImageView.image = [UIImage imageNamed:@"product-1"];
     

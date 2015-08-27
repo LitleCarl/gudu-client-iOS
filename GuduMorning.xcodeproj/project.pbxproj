@@ -37,7 +37,12 @@
 		0496017B1B8DB88200AEFFD8 /* ADVProgressControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 049601781B8DB88200AEFFD8 /* ADVProgressControl.m */; };
 		0496017C1B8DB88200AEFFD8 /* ADVProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0496017A1B8DB88200AEFFD8 /* ADVProgressLayer.m */; };
 		04D23C7A1B8F00B000250726 /* CartItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D23C791B8F00B000250726 /* CartItem.m */; };
-		04D23C7C1B8F080800250726 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D23C7B1B8F080800250726 /* Realm.framework */; };
+		04D23C7C1B8F080800250726 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D23C7B1B8F080800250726 /* Realm.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		04D23C7F1B8F312700250726 /* RoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D23C7E1B8F312700250726 /* RoundButton.m */; };
+		04D23C811B8F377500250726 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D23C801B8F377500250726 /* libc++.dylib */; };
+		04D23C841B8F3E5E00250726 /* RealmManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D23C831B8F3E5E00250726 /* RealmManager.m */; };
+		04D23C881B8F414300250726 /* RealmProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D23C871B8F414300250726 /* RealmProductModel.m */; };
+		04D23C8B1B8F419600250726 /* RealmSpecificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D23C8A1B8F419600250726 /* RealmSpecificationModel.m */; };
 		04F2CCF41B845A580016FB91 /* paisley.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F2CCF31B845A580016FB91 /* paisley.png */; };
 		04F2CCF61B845C0D0016FB91 /* restaurant_icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F2CCF51B845C0D0016FB91 /* restaurant_icons.png */; };
 		04F2CCF91B84761A0016FB91 /* StoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F2CCF81B84761A0016FB91 /* StoreModel.m */; };
@@ -163,6 +168,15 @@
 		04D23C781B8F00B000250726 /* CartItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartItem.h; sourceTree = "<group>"; };
 		04D23C791B8F00B000250726 /* CartItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartItem.m; sourceTree = "<group>"; };
 		04D23C7B1B8F080800250726 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		04D23C7D1B8F312700250726 /* RoundButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundButton.h; sourceTree = "<group>"; };
+		04D23C7E1B8F312700250726 /* RoundButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundButton.m; sourceTree = "<group>"; };
+		04D23C801B8F377500250726 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		04D23C821B8F3E5E00250726 /* RealmManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealmManager.h; sourceTree = "<group>"; };
+		04D23C831B8F3E5E00250726 /* RealmManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealmManager.m; sourceTree = "<group>"; };
+		04D23C861B8F414300250726 /* RealmProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealmProductModel.h; sourceTree = "<group>"; };
+		04D23C871B8F414300250726 /* RealmProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealmProductModel.m; sourceTree = "<group>"; };
+		04D23C891B8F419600250726 /* RealmSpecificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealmSpecificationModel.h; sourceTree = "<group>"; };
+		04D23C8A1B8F419600250726 /* RealmSpecificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealmSpecificationModel.m; sourceTree = "<group>"; };
 		04F2CCF31B845A580016FB91 /* paisley.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paisley.png; sourceTree = "<group>"; };
 		04F2CCF51B845C0D0016FB91 /* restaurant_icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restaurant_icons.png; sourceTree = "<group>"; };
 		04F2CCF71B84761A0016FB91 /* StoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreModel.h; sourceTree = "<group>"; };
@@ -271,6 +285,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D23C811B8F377500250726 /* libc++.dylib in Frameworks */,
 				04D23C7C1B8F080800250726 /* Realm.framework in Frameworks */,
 				1C2EEFC20B1788EC57DBAD78 /* libPods.a in Frameworks */,
 			);
@@ -376,10 +391,24 @@
 		04D23C771B8F00A000250726 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
+				04D23C851B8F3F7D00250726 /* InMemroyModel */,
 				04D23C781B8F00B000250726 /* CartItem.h */,
 				04D23C791B8F00B000250726 /* CartItem.m */,
+				04D23C821B8F3E5E00250726 /* RealmManager.h */,
+				04D23C831B8F3E5E00250726 /* RealmManager.m */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		04D23C851B8F3F7D00250726 /* InMemroyModel */ = {
+			isa = PBXGroup;
+			children = (
+				04D23C861B8F414300250726 /* RealmProductModel.h */,
+				04D23C871B8F414300250726 /* RealmProductModel.m */,
+				04D23C891B8F419600250726 /* RealmSpecificationModel.h */,
+				04D23C8A1B8F419600250726 /* RealmSpecificationModel.m */,
+			);
+			name = InMemroyModel;
 			sourceTree = "<group>";
 		};
 		04F2CCF21B845A580016FB91 /* Background */ = {
@@ -669,6 +698,8 @@
 				047406C61B7B3FFE00AE05BE /* TsaoSearchBar.m */,
 				04F2D17D1B89BA700016FB91 /* CampusListTableViewCell.h */,
 				04F2D17E1B89BA700016FB91 /* CampusListTableViewCell.m */,
+				04D23C7D1B8F312700250726 /* RoundButton.h */,
+				04D23C7E1B8F312700250726 /* RoundButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -685,6 +716,7 @@
 		E41DA25CAEA556E4645DB4FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04D23C801B8F377500250726 /* libc++.dylib */,
 				86B9BFDA081524C1C477C05E /* libPods.a */,
 			);
 			name = Frameworks;
@@ -883,6 +915,7 @@
 				56C458481B6B33360053D825 /* CustomPopTransition.m in Sources */,
 				04072CD21B8C346C00B68A21 /* ProductTableViewController.m in Sources */,
 				56061BB91B6CD88F002F3499 /* CampusModel.m in Sources */,
+				04D23C8B1B8F419600250726 /* RealmSpecificationModel.m in Sources */,
 				56C458521B6B3D310053D825 /* UIImage+ProportionalFill.m in Sources */,
 				56C458651B6B42690053D825 /* TsaoTabbarController.m in Sources */,
 				56C458691B6B42BA0053D825 /* ChooseListView.m in Sources */,
@@ -890,9 +923,11 @@
 				04072CF01B8C994900B68A21 /* ProductScrollViewController.m in Sources */,
 				56061BAE1B6C5941002F3499 /* TsaoBackButton.m in Sources */,
 				04F2D16A1B87030B0016FB91 /* SearchResultTableView.m in Sources */,
+				04D23C881B8F414300250726 /* RealmProductModel.m in Sources */,
 				04F2D17F1B89BA700016FB91 /* CampusListTableViewCell.m in Sources */,
 				04F2D1631B86ECA40016FB91 /* FXBlurView.m in Sources */,
 				04072CCB1B8C31F700B68A21 /* MegaTheme.m in Sources */,
+				04D23C841B8F3E5E00250726 /* RealmManager.m in Sources */,
 				56C458581B6B424F0053D825 /* KLCPopup.m in Sources */,
 				56061BB41B6CBAE7002F3499 /* AFHTTPRequestOperationManager+Singleton.m in Sources */,
 				04F2D1791B870D040016FB91 /* NutritionModel.m in Sources */,
@@ -901,6 +936,7 @@
 				0496016F1B8D67D700AEFFD8 /* UIViewController+CustomNavLeftItem.m in Sources */,
 				04F2CD031B86BC650016FB91 /* UIView+CreateBorder.m in Sources */,
 				56865C8B1B6B223C00A1B324 /* main.m in Sources */,
+				04D23C7F1B8F312700250726 /* RoundButton.m in Sources */,
 				0496017B1B8DB88200AEFFD8 /* ADVProgressControl.m in Sources */,
 				04072CF31B8C9A1A00B68A21 /* ProductImageCell.m in Sources */,
 				56C458511B6B3D310053D825 /* MGImageUtilitiesAppDelegate.m in Sources */,

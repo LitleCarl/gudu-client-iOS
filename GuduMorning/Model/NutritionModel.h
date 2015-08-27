@@ -43,6 +43,6 @@
 /**
  *  所属商品
  */
-@property (nonatomic, copy) ProductModel *product;
+@property (nonatomic, strong) ProductModel *product;
 
 @end

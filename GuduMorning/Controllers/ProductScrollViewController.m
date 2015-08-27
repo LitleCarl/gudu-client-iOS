@@ -129,6 +129,17 @@
         }
     }];
     
+    [[[orderButton rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:orderButton.rac_willDeallocSignal] subscribeNext:^(id x) {
+        
+        ProductModel *product = self.product;
+        SpecificationModel *specification = self.selectedSpecification;
+        if (product && specification) {
+            [CartItem addProductToCart:[product id] specification:[specification id] mount:1 increase:1];
+            TsaoLog(@"%@",[CartItem allObjects]);
+        }
+        
+    }];
+    
 }
 
 /**
@@ -180,14 +191,6 @@
     
     descriptionLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
     
-    orderButton.titleLabel.font = [UIFont fontWithName:[MegaTheme boldFontName] size:18];
-    [orderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
-    [orderButton setTitle:@"加入购物车" forState:UIControlStateNormal];
-    orderButton.backgroundColor = [UIColor colorWithRed:0.14 green:0.71 blue:0.32 alpha:1.0];
-    orderButton.layer.cornerRadius = 20;
-    orderButton.layer.borderWidth = 0;
-    orderButton.clipsToBounds = true;
 }
 
 /**
