@@ -81,44 +81,48 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTk-mI-PTh">
-                                                    <rect key="frame" x="96" y="11" width="42" height="21"/>
+                                                    <rect key="frame" x="96" y="11" width="42" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Yi-Ek-xXN">
-                                                    <rect key="frame" x="96" y="30" width="42" height="21"/>
+                                                    <rect key="frame" x="96" y="30" width="42" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jo6-mn-8XC">
-                                                    <rect key="frame" x="96" y="50" width="42" height="21"/>
+                                                    <rect key="frame" x="96" y="50" width="42" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bwu-QH-UbK">
-                                                    <rect key="frame" x="542" y="42" width="29" height="29"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bwu-QH-UbK">
+                                                    <rect key="frame" x="545" y="42" width="29" height="29"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="29" id="LHv-Yj-49t"/>
                                                         <constraint firstAttribute="width" secondItem="bwu-QH-UbK" secondAttribute="height" multiplier="1:1" id="clD-zc-K6A"/>
+                                                        <constraint firstAttribute="height" constant="29" id="wlN-73-55c"/>
                                                     </constraints>
                                                     <color key="textColor" white="0.50815902219999998" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uy-ta-lAg">
-                                                    <rect key="frame" x="535" y="13" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="份" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uy-ta-lAg">
+                                                    <rect key="frame" x="576" y="46.5" width="17" height="20.5"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-HeavyOblique" family="Avenir" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="S6H-MG-Czl" secondAttribute="bottom" constant="3" id="0HA-ks-5bW"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="0uy-ta-lAg" secondAttribute="trailing" constant="15" id="FRr-gP-eBr"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="0uy-ta-lAg" secondAttribute="trailing" constant="25" id="FRr-gP-eBr"/>
                                                 <constraint firstItem="S6H-MG-Czl" firstAttribute="top" secondItem="iiJ-tG-oXE" secondAttribute="topMargin" constant="3" id="GDC-rg-GFk"/>
+                                                <constraint firstItem="bwu-QH-UbK" firstAttribute="centerY" secondItem="0uy-ta-lAg" secondAttribute="centerY" id="GK0-pz-X7Z"/>
                                                 <constraint firstItem="0uy-ta-lAg" firstAttribute="top" secondItem="iiJ-tG-oXE" secondAttribute="topMargin" constant="5" id="GNM-xj-FAO"/>
+                                                <constraint firstItem="0uy-ta-lAg" firstAttribute="trailing" secondItem="iiJ-tG-oXE" secondAttribute="trailingMargin" constant="1" id="JZS-8p-myS"/>
                                                 <constraint firstItem="8Yi-Ek-xXN" firstAttribute="top" secondItem="tTk-mI-PTh" secondAttribute="bottom" constant="-1" id="K5F-Pf-0JO"/>
                                                 <constraint firstItem="Jo6-mn-8XC" firstAttribute="top" secondItem="8Yi-Ek-xXN" secondAttribute="bottom" constant="-1" id="KF1-EE-UPP"/>
                                                 <constraint firstItem="tTk-mI-PTh" firstAttribute="leading" secondItem="S6H-MG-Czl" secondAttribute="trailing" constant="8" id="Pkl-3l-Ei1"/>
@@ -128,8 +132,17 @@
                                                 <constraint firstItem="tTk-mI-PTh" firstAttribute="top" secondItem="iiJ-tG-oXE" secondAttribute="topMargin" constant="3" id="YA5-he-NgK"/>
                                                 <constraint firstItem="Jo6-mn-8XC" firstAttribute="leading" secondItem="tTk-mI-PTh" secondAttribute="leading" id="dC6-f5-6MC"/>
                                                 <constraint firstItem="tTk-mI-PTh" firstAttribute="leading" secondItem="8Yi-Ek-xXN" secondAttribute="leading" id="rmW-CV-IbM"/>
+                                                <constraint firstItem="0uy-ta-lAg" firstAttribute="leading" secondItem="bwu-QH-UbK" secondAttribute="trailing" constant="2" id="vJD-7e-0oA"/>
                                                 <constraint firstItem="0uy-ta-lAg" firstAttribute="centerX" secondItem="bwu-QH-UbK" secondAttribute="centerX" constant="-0.5" id="x2Z-p8-0H5"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="VzD-LV-bKk"/>
+                                                    <exclude reference="FRr-gP-eBr"/>
+                                                    <exclude reference="GNM-xj-FAO"/>
+                                                    <exclude reference="x2Z-p8-0H5"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="detailsLabel" destination="8Yi-Ek-xXN" id="cBd-Gq-LJd"/>
@@ -143,6 +156,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="j83-Qu-xN3" id="tC1-N4-2tb"/>
+                                    <outlet property="delegate" destination="j83-Qu-xN3" id="rDs-ed-CC5"/>
                                 </connections>
                             </tableView>
                         </subviews>

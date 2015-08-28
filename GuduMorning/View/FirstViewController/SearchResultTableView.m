@@ -17,13 +17,20 @@
 // Category
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
+// ViewController
+#import "StoreIndexViewController.h"
+#import "ProductScrollViewController.h"
+
 #define kSectionHeaderPaddingLeft 8
 
+typedef enum : NSUInteger {
+    店铺,
+    商品
+} SectionType;
 
 static NSString *reuseIdetifier = @"reuseForSearchResult";
 
 @interface SearchResultTableView () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
-
 @end
 
 @implementation SearchResultTableView
@@ -49,6 +56,26 @@ static NSString *reuseIdetifier = @"reuseForSearchResult";
 }
 
 #pragma mark - UITableViewDelegate -
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.sourceController) {
+
+        if ([self detectTypeOfSection:indexPath.section] == 店铺){
+        
+            StoreIndexViewController *storeController = [kMainStoryBoard instantiateViewControllerWithIdentifier:kStoreIndexViewControllerStoryboardId];
+            storeController.store_id = [[self.searchResult.stores objectAtIndex:indexPath.row] id];
+            
+            [self.sourceController.navigationController pushViewController:storeController animated:YES];
+        
+            }
+        else {
+            ProductScrollViewController *productController = [kMainStoryBoard instantiateViewControllerWithIdentifier:kProductViewControllerStoryboardId];
+            productController.product_id = [[self.searchResult.products objectAtIndex:indexPath.row] id];
+            [self.sourceController.navigationController pushViewController:productController animated:YES];
+        
+        }
+    }
+}
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     kDismissKeyboard
@@ -77,25 +104,34 @@ static NSString *reuseIdetifier = @"reuseForSearchResult";
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     // 有商品也有店铺,店铺section排0,商品section排1
-    if ([self numberOfSections] > 1) {
-        if (section == 0) {
-            return [NSString stringWithFormat:@"店铺(%d)",self.searchResult.stores.count];
-        }
-        else {
-            return [NSString stringWithFormat:@"早餐(%d)",self.searchResult.products.count];;
-        }
-    }
-    else if ([self numberOfSections] == 1){
-        if (self.searchResult.products.count > 0) {
-            return [NSString stringWithFormat:@"早餐(%d)",self.searchResult.products.count];;
-        }
-        else{
-            return [NSString stringWithFormat:@"店铺(%d)",self.searchResult.stores.count];
-        }
+    if ([self detectTypeOfSection:section] == 店铺){
+    
+        return [NSString stringWithFormat:@"店铺(%lu)",(unsigned long)self.searchResult.stores.count];
+
     }
     else{
-        return @"opps!";
+        return [NSString stringWithFormat:@"早餐(%lu)",(unsigned long)self.searchResult.products.count];;
+
     }
+//    if ([self numberOfSections] > 1) {
+//        if (section == 0) {
+//            return [NSString stringWithFormat:@"店铺(%lu)",(unsigned long)self.searchResult.stores.count];
+//        }
+//        else {
+//            return [NSString stringWithFormat:@"早餐(%lu)",(unsigned long)self.searchResult.products.count];;
+//        }
+//    }
+//    else if ([self numberOfSections] == 1){
+//        if (self.searchResult.products.count > 0) {
+//            return [NSString stringWithFormat:@"早餐(%lu)",(unsigned long)self.searchResult.products.count];;
+//        }
+//        else{
+//            return [NSString stringWithFormat:@"店铺(%lu)",(unsigned long)self.searchResult.stores.count];
+//        }
+//    }
+//    else{
+//        return @"opps!";
+//    }
 }
 
 #pragma mark - UITableViewDataSource -
@@ -164,6 +200,29 @@ static NSString *reuseIdetifier = @"reuseForSearchResult";
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     return [UIView new];
+}
+
+- (SectionType)detectTypeOfSection:(NSInteger)section{
+    if ([self numberOfSections] > 1) {
+        if (section == 0) {
+            return 店铺;
+        }
+        else {
+            return 商品;
+        }
+    }
+    else if ([self numberOfSections] == 1){
+        if (self.searchResult.products.count > 0) {
+            return 商品;
+        }
+        else{
+            return 店铺;
+        }
+    }
+    else{
+        return 商品;
+    }
+
 }
 
 #pragma mark - DNZEmptyDataSet -

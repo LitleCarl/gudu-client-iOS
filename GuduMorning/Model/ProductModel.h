@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class NutritionModel;
+@class NutritionModel, SpecificationModel;
 
 @interface ProductModel : NSObject
 
@@ -63,5 +63,16 @@
 @property (nonatomic, copy) NSString *pinyin;
 
 @property (nonatomic, strong) NSArray *product_images;
+
+/**
+ *  获取指定specification_id的规格
+ *
+ *  @param specification_id 指定的id
+ *
+ *  @return 规格模型
+ */
+- (SpecificationModel *)specificationForSpecificationId:(NSString *)specification_id;
+
+- (BOOL)hasSpecification:(NSString *)specification_id;
 
 @end

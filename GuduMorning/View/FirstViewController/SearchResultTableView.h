@@ -10,10 +10,14 @@
 @class SearchResultModel;
 
 @interface SearchResultTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
-
 /**
  *  模型类型为SearchResultModel
  */
 @property (nonatomic, strong) SearchResultModel *searchResult;
+
+/**
+ *  所属ViewController
+ */
+@property (nonatomic, weak) UIViewController *sourceController;
 
 @end

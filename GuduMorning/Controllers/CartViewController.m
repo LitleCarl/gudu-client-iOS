@@ -10,13 +10,12 @@
 #import "MegaTheme.h"
 #import "CartCell.h"
 
+#import "CartItemCache.h"
+
 // library
 #import <Realm/Realm.h>
-#import "RealmManager.h"
 
 //Realm Model
-#import "RealmProductModel.h"
-#import "RealmSpecificationModel.h"
 
 @interface CartViewController ()
 
@@ -36,6 +35,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.cartItems = [CartItem allObjects];
     [self setupTrigger];
     [self initUI];
     //[self fetchData];
@@ -58,10 +59,25 @@
         [cartItemTableView reloadData];
     }];
     
+    // 监听购物车变化
     RLMRealm *realm = [RLMRealm defaultRealm];
     self.token = [realm addNotificationBlock:^(NSString *note, RLMRealm * realm) {
         self.cartItems = [CartItem allObjects];
     }];
+    
+    // 监听cartItems变化,更新总计价格
+    [RACObserve(self, cartItems) subscribeNext:^(RLMResults *result) {
+        __block NSDecimalNumber *total = [NSDecimalNumber decimalNumberWithString:@"0.0"];
+        for (int i =0; i < self.cartItems.count; i++) {
+            CartItem *item = [self.cartItems objectAtIndex:i];
+            NSDecimalNumber *perPrice = [NSDecimalNumber decimalNumberWithString:item.price];
+            NSDecimalNumber *qty = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%ld", (long)item.quantity]];
+            NSDecimalNumber *all = [perPrice decimalNumberByMultiplyingBy:qty];
+            total = [total decimalNumberByAdding:all];
+        }
+        totalLabel.text = [NSString stringWithFormat:@"¥%@", [total stringValue]];
+    }];
+    
 }
 
 - (void)initUI{
@@ -104,36 +120,69 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     CartCell* cell = [tableView dequeueReusableCellWithIdentifier:@"CartCell"];
-    RLMRealm *memoryRealm = [RealmManager memoryRealm];
-    if ([RealmProductModel objectsInRealm:memoryRealm withPredicate:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"id = %@", [[self.cartItems objectAtIndex:indexPath.row] id]]]].count > 0) {
+
+    CartItem *item = [self.cartItems objectAtIndex:indexPath.row];
+
+    //if ([cacheManager objectWithKey:item.product_id]) {
         //内存中已缓存
-    }
-    else {
-        //未缓存
-    }
+        [cell.productImageView sd_setImageWithURL:kUrlFromString(item.logo_filename) completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (!error) {
+                cell.productImageView.contentMode = UIViewContentModeScaleAspectFit;
+            }
+        }];
+        
+        cell.titleLabel.text = item.name;
+        cell.detailsLabel.text = item.specificationBrief;
+        cell.priceLabel.text = [NSString stringWithFormat:@"单价:¥%@", item.price];
     
-    cell.productImageView.image = [UIImage imageNamed:@"product-1"];
+        cell.quantityTextField.text = [NSString stringWithFormat:@"%ld", (long)item.quantity];
+        
+        [[[cell.quantityTextField rac_signalForControlEvents:UIControlEventEditingDidEnd] map:^id(UITextField *field) {
+            return field.text;
+        }] subscribeNext:^(NSString *newQty) {
+            if (newQty.length == 0 || !newQty){
+                newQty = @"1";
+            }
+            if (item) {
+                [CartItem setItemWithProductId:item.product_id specification_id:item.specification_id quantity:[newQty integerValue]];
+            }
+        }];
+        
+        return cell;
+
+//    }
+//    else {
+//        //未缓存
+//        NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:[kProductFindOneUrl stringByReplacingOccurrencesOfString:@":product_id" withString:item.product_id] params:nil];
+//        RACSignal *signal = [Tool GET:url parameters:nil showNetworkError:YES];
+//        [signal subscribeNext:^(id responseObject) {
+//            
+//            if (kGetResponseCode(responseObject) == kSuccessCode) {
+//                ProductModel *model = [ProductModel objectWithKeyValues:kGetResponseData(responseObject)];
+//                [cacheManager addItem:model];
+//                [cartItemTableView reloadData];
+//            }
+//        }];
+//        return cell;
+//    }
     
-    cell.titleLabel.text = @"Espirit Shirt (Men)";
-    
-    cell.detailsLabel.text = @"Size: M, Color: White";
-    
-    cell.priceLabel.text = @"$45";
-    
-    cell.quantityTextField.text = @"1";
-    
-    return cell;
     
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 3;
+    return self.cartItems.count;
     
 }
+
+#pragma mark - UIScrollViewDelegate -
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    kDismissKeyboard;
+}
+
 /*
 #pragma mark - Navigation
 

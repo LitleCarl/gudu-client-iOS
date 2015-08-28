@@ -17,4 +17,28 @@
                  };
     }];
 }
+
+
+/**
+ *  检测是否包含指定规格
+ *
+ *  @return 包含返回yes
+ */
+- (BOOL)hasSpecification:(NSString *)specification_id{
+
+    BOOL has = [self.specifications containsObject:[SpecificationModel objectWithKeyValues:@{@"id":specification_id}]];
+    return has;
+}
+
+- (SpecificationModel *)specificationForSpecificationId:(NSString *)specification_id{
+   __block SpecificationModel *model = nil;
+    [self.specifications enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([[obj id] isEqualToString:specification_id]) {
+            model = obj;
+            *stop = YES;
+        }
+    }];
+    return model;
+}
+
 @end

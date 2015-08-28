@@ -20,7 +20,7 @@
 #import "TsaoStoreListTableViewCell.h"
 #import "FXBlurView.h"
 #import "SearchResultTableView.h"
-
+#import <AutoScrollLabel/CBAutoScrollLabel.h>
 // Category
 #import "UIView+CreateBorder.h"
 #import "UIView+Capture.h"
@@ -31,6 +31,7 @@
 
 // ViewController
 #import "StoreIndexViewController.h"
+
 
 @interface FirstViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -48,6 +49,8 @@
  *  左上角学校选择按钮
  */
 @property (nonatomic, weak) UIButton *campusButton;
+
+@property (nonatomic, weak) CBAutoScrollLabel *campusLabel;
 
 @end
 
@@ -87,6 +90,11 @@ static NSString *cellIdentifier = @"store_list_cell";
     [self setUpTrigger];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.campusLabel scrollLabelIfNeeded];
+}
+
 - (void)createUI{
     // 添加商铺列表TableView
     UITableView *storeTableView = [[UITableView alloc] initWithFrame:(CGRect){
@@ -111,7 +119,7 @@ static NSString *cellIdentifier = @"store_list_cell";
         [getStoreSignal subscribeNext:^(id response) {
             if (kGetResponseCode(response) == kSuccessCode) {
                 self.storeList = [StoreModel objectArrayWithKeyValuesArray:[kGetResponseData(response) objectForKey:@"stores"]];
-                [self.campusButton setTitle:[kGetResponseData(response) objectForKey:@"name"]  forState:UIControlStateNormal];
+                [self.campusLabel setText:[kGetResponseData(response) objectForKey:@"name"]];
             }
         } error:^(NSError *error) {
             [storeTableView_weak_.header endRefreshing];
@@ -169,7 +177,17 @@ static NSString *cellIdentifier = @"store_list_cell";
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kNavBarHeight)];
     backView.backgroundColor = kGreenColor;
     [self.view addSubview:backView];
-    //城市
+    //学校label
+    CBAutoScrollLabel *campusLabel = [[CBAutoScrollLabel alloc] initWithFrame:CGRectMake(10, 28, 40, 25)];
+    campusLabel.textColor = [UIColor whiteColor];
+    campusLabel.labelSpacing = 35; // distance between start and end labels
+    campusLabel.pauseInterval = 1.7; // seconds of pause before scrolling starts again
+    campusLabel.scrollSpeed = 30; // pixels per second
+    campusLabel.textAlignment = NSTextAlignmentCenter; // centers text when no auto-scrolling is applied
+    campusLabel.fadeLength = 12.f; // length of the left and right edge fade, 0 to disable
+    self.campusLabel = campusLabel;
+    [backView addSubview:campusLabel];
+    
     UIButton *cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     cityBtn.frame = CGRectMake(10, 28, 40, 25);
     cityBtn.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -208,10 +226,10 @@ static NSString *cellIdentifier = @"store_list_cell";
         [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
         [UIView animateWithDuration:0.2 animations:^{
             searchView.frame = CGRectMake(CGRectGetMaxX(arrowImage.frame),  20 + 6, kScreenWidth - 40 - CGRectGetMaxX(arrowImage.frame), 31);
-            cityBtn.alpha = 1;             // 隐藏地区按钮
-            arrowImage.alpha = 1;          // 隐藏下拉箭头
-            cancelSearchButton.alpha = 0;  // 显示取消按钮
-            
+            cityBtn.alpha = 1;             // 显示地区按钮
+            arrowImage.alpha = 1;          // 显示下拉箭头
+            cancelSearchButton.alpha = 0;  // 隐藏取消按钮
+            self.campusLabel.alpha = 1;
             blurViewUnderSearchTableView.hidden = YES;
             self.tabBarController.tabBar.hidden = NO;
         }];
@@ -228,6 +246,7 @@ static NSString *cellIdentifier = @"store_list_cell";
              cityBtn.alpha = 0;             // 隐藏地区按钮
              arrowImage.alpha = 0;          // 隐藏下拉箭头
              cancelSearchButton.alpha = 1;  // 显示取消按钮
+             self.campusLabel.alpha = 0;
          }];
         
          if (blurViewUnderSearchTableView == nil){
@@ -238,6 +257,7 @@ static NSString *cellIdentifier = @"store_list_cell";
              [self.view addSubview:blurViewUnderSearchTableView];
              
              searchTableView = [[SearchResultTableView alloc] initWithFrame:blurViewUnderSearchTableView.bounds];
+             searchTableView.sourceController = self;
              [blurViewUnderSearchTableView addSubview:searchTableView];
          }
          else {
@@ -290,77 +310,6 @@ static NSString *cellIdentifier = @"store_list_cell";
 }
 
 #pragma mark - 学校相关 -
-
-/**
- *  检测是否之前选择过学校,若没选择则强制用户选择
- */
-- (void)checkCampusExist{
-    ChooseListModel *model = [Tool getUserDefaultByKey:@"Campus"];
-    if (model == nil) {
-        [self toggleCampus];    // 让用户选择学校
-    }
-}
-
-/**
- *  切换学校
- */
-- (void)toggleCampus{
-    ASImageNode *node = [[ASImageNode alloc] init];
-    node.frame = CGRectMake(0, 0, 25, 25);
-    node.image = [UIImage imageNamed:@"back_button"];
-    [self.view addSubview:node.view];
-    
-    
-    UIButton *click = [[UIButton alloc] initWithFrame:CGRectMake(0, 200, 100, 50)];
-    [click setTitle:@"click" forState:UIControlStateNormal];
-    [self.view addSubview:click];
-    [click setTitleColor:kGreenColor forState:UIControlStateNormal];
-
-    click.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        return [RACSignal empty];
-    }];
-    
-    NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:kAPIVersion1 requestURL:kCampusUrl params:@{@"campus_city" : @"上海市"}];
-    
-    RACSignal *getCampusSignal = [Tool GET:url parameters:nil showNetworkError:YES];
-    
-    __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [hud show:YES];
-
-  //  [getCampusSignal subscribeNext:^(id responseObject) {
-//        NSString *code = kGetResponseCode(responseObject);
-//        if ([code isEqualToString:kSuccessCode]) {
-//            NSArray *data = kGetResponseData(responseObject);
-//            NSMutableArray *dataSource = [CampusModel objectArrayWithKeyValuesArray:data];
-//            NSMutableArray *modelData = [NSMutableArray new];
-//                for (int i = 0; i < dataSource.count; i++) {
-//                    ChooseListModel *model = [[ChooseListModel alloc] init];
-////                    model.itemDesc = [[dataSource objectAtIndex:i] campus_name];
-////                    model.imageUrl = [[dataSource objectAtIndex:i] campus_logo_url];
-////                    model.itemId = [[dataSource objectAtIndex:i] campus_id].stringValue;
-////                    [modelData addObject:model];
-//                }
-//            
-//                ChooseListView *listView = [[ChooseListView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth *0.88, kScreenHeight * 0.68) title:@"学校" dataSource:modelData cellHeight:60];
-//                __weak typeof(listView) weakListView = listView;
-//                listView.completionBlock = ^(NSInteger index){
-//                    [weakListView dismissPresentingPopup];
-//            
-//                };
-//            
-//                KLCPopup *popup = [KLCPopup popupWithContentView:listView showType:KLCPopupShowTypeBounceInFromBottom dismissType:KLCPopupDismissTypeSlideOutToBottom maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:NO dismissOnContentTouch:NO];
-//                [popup show];
-//        }
-//    }
-//     error:^(NSError *error) {
-//        [hud hide:YES];
-//    }
-//     completed:^{
-//         TsaoLog(@"completed");
-//        [hud hide:YES];
-//    }];
-    
-}
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {

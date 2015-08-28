@@ -10,4 +10,14 @@
 
 @implementation SpecificationModel
 
+- (BOOL)isEqual:(id)object{
+    if (![object isKindOfClass:[SpecificationModel class]]) {
+        return NO;
+    }
+    else if ([[self id] isEqualToString:[object id]])
+        return YES;
+    else {
+        return NO;
+    }
+}
 @end

@@ -24,6 +24,7 @@ PODS:
   - AsyncDisplayKit (1.2.3):
     - AsyncDisplayKit/ASDealloc2MainObject (= 1.2.3)
   - AsyncDisplayKit/ASDealloc2MainObject (1.2.3)
+  - AutoScrollLabel (0.4.2)
   - DZNEmptyDataSet (1.7.1)
   - JazzHands (2.0.3)
   - MaterialControls (1.0.2)
@@ -45,6 +46,7 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0
   - AFNetworking (~> 2.0)
   - AsyncDisplayKit
+  - AutoScrollLabel
   - DZNEmptyDataSet
   - JazzHands
   - MaterialControls (~> 1.0.2)
@@ -58,6 +60,7 @@ SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 6516052442fc8ca8f3cc4b3c7aa0436de12373df
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   AsyncDisplayKit: 5c8f38225f7478e39c48196cec0dd0d2ac3455ed
+  AutoScrollLabel: 661f3f33042db40e495cb4ebe599b903c8bf80cd
   DZNEmptyDataSet: 2a398066c2bf5848f7f693fb50954b5064debd12
   JazzHands: 0f3c8578f33f45b2fe73975deed6a5f02f9c22d3
   MaterialControls: bdeeb94aa049b73f70739a5514be137d2d45c08a

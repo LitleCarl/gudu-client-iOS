@@ -134,7 +134,7 @@
         ProductModel *product = self.product;
         SpecificationModel *specification = self.selectedSpecification;
         if (product && specification) {
-            [CartItem addProductToCart:[product id] specification:[specification id] mount:1 increase:1];
+            [CartItem addProductToCart:product specification:[specification id] mount:1 increase:1];
             TsaoLog(@"%@",[CartItem allObjects]);
         }
         

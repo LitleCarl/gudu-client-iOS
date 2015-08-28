@@ -30,7 +30,7 @@
     
     self.quantityLabel.textColor =[ UIColor colorWithWhite:0.4 alpha:1.0];
     
-    self.quantityLabel.text = @"Qty";
+    self.quantityLabel.text = @"份";
     
     self.productImageView.layer.borderColor =[UIColor colorWithWhite:0.6 alpha:1.0].CGColor;
     

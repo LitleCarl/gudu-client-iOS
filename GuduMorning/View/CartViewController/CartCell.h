@@ -10,16 +10,16 @@
 
 @interface CartCell : UITableViewCell
 
-@property(nonatomic, strong) IBOutlet UIImageView* productImageView;
+@property(nonatomic, weak) IBOutlet UIImageView* productImageView;
 
-@property(nonatomic, strong) IBOutlet UILabel* titleLabel;
+@property(nonatomic, weak) IBOutlet UILabel* titleLabel;
 
-@property(nonatomic, strong) IBOutlet UILabel* detailsLabel;
+@property(nonatomic, weak) IBOutlet UILabel* detailsLabel;
 
-@property(nonatomic, strong) IBOutlet UILabel* priceLabel;
+@property(nonatomic, weak) IBOutlet UILabel* priceLabel;
 
-@property(nonatomic, strong) IBOutlet UILabel* quantityLabel;
+@property(nonatomic, weak) IBOutlet UILabel* quantityLabel;
 
-@property(nonatomic, strong) IBOutlet UITextField* quantityTextField;
+@property(nonatomic, weak) IBOutlet UITextField* quantityTextField;
 
 @end
