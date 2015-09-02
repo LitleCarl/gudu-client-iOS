@@ -8,6 +8,46 @@
 
 #import <Realm/Realm.h>
 
+@interface CartItemPure : NSObject
+@property NSString *productAndSpecification;
+
+/**
+ *  产品id
+ */
+@property NSString *product_id;
+
+/**
+ *  规格id
+ */
+@property NSString *specification_id;
+
+/**
+ *  logo地址
+ */
+@property (nonatomic, copy) NSString *logo_filename;
+
+/**
+ *  产品数量
+ */
+@property NSInteger quantity;
+
+/**
+ *  产品名称
+ */
+@property (nonatomic, copy) NSString *name;
+
+/**
+ *  规格描述,'颜色:红'
+ */
+@property (nonatomic, copy) NSString *specificationBrief;
+
+/**
+ *  单价
+ */
+@property (nonatomic, copy) NSString *price;
+
+@end
+
 @interface CartItem : RLMObject
 
 @property NSString *productAndSpecification;

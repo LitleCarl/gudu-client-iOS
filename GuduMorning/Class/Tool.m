@@ -85,7 +85,6 @@
 + (RACSignal *)GET:(NSString *)url parameters:(NSDictionary *)parameters progressInView:(__weak UIView *)view showNetworkError:(BOOL)showNetWorkError{
     
     return [RACSignal createSignal:^RACDisposable *(id subscriber){
-        TsaoLog(@"GET QUERY");
         // 显示progressView
         if (view) {
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
@@ -114,4 +113,49 @@
     }];
 }
 
++ (RACSignal *)POST:(NSString *)url parameters:(NSDictionary *)parameters showNetworkError:(BOOL)showNetWorkError{
+    
+    return [self POST:url parameters:parameters progressInView:nil showNetworkError:showNetWorkError];
+    
+}
+
++ (RACSignal *)POST:(NSString *)url parameters:(NSDictionary *)parameters progressInView:(__weak UIView *)view showNetworkError:(BOOL)showNetWorkError{
+    
+    return [RACSignal createSignal:^RACDisposable *(id subscriber){
+        // 显示progressView
+        if (view) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+            [hud show:YES];
+        }
+        AFHTTPRequestOperationManager *manager =[AFHTTPRequestOperationManager singleton];
+        [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [subscriber sendNext:responseObject];
+            [subscriber sendCompleted];
+            if (view) {
+                [MBProgressHUD hideAllHUDsForView:view animated:YES];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            if (view) {
+                [MBProgressHUD hideAllHUDsForView:view animated:YES];
+            }
+            if (showNetWorkError) {
+                MDSnackbar *snackBar = [[MDSnackbar alloc] initWithText:@"oops,网线被拔掉啦～😢" actionTitle:@"异常" duration:2.0f];
+                snackBar.actionTitleColor = kGreenColor;
+                snackBar.multiline = YES;
+                [snackBar show];
+            }
+            [subscriber sendError:error];
+        }];
+        return nil;
+    }];
+}
+
+#pragma mark - SnackBar -
+
++ (void)showSnackBarWithText:(NSString *)text title:(NSString *)title duration:(CGFloat)duration {
+    MDSnackbar *snackBar = [[MDSnackbar alloc] initWithText:text actionTitle:title duration:duration];
+    snackBar.actionTitleColor = kGreenColor;
+    snackBar.multiline = YES;
+    [snackBar show];
+}
 @end

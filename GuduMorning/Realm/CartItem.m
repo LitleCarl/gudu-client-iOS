@@ -10,6 +10,10 @@
 
 #import "CartItemCache.h"
 
+@implementation CartItemPure
+
+@end
+
 @implementation CartItem
 + (void)addProductToCart:(ProductModel *)product specification:(NSString *)specification_id mount:(NSInteger)mount increase:(BOOL)increase{
         
@@ -88,11 +92,11 @@
     CartItem *item = [results firstObject];
     if (item) {
         [realm beginWriteTransaction];
-        item.quantity = quantity;
-        if (item.quantity <= 0) {
+        if (quantity <= 0) {
             [realm deleteObject:item];
         }
         else{
+            item.quantity = quantity;
             [CartItem createOrUpdateInDefaultRealmWithValue:item];
         }
         [realm commitWriteTransaction];
@@ -115,5 +119,21 @@
 //{
 //    return @[];
 //}
+
+- (CartItemPure *)convertToPure{
+    CartItemPure *item = [[CartItemPure alloc] init];
+    item.product_id = self.product_id;
+    item.specification_id = self.specification_id;
+    item.quantity = self.quantity;
+    return item;
+}
+
++ (NSMutableArray *)keyValuesArrayWithObjectArray:(NSArray *)objectArray{
+    NSMutableArray *array = [NSMutableArray new];
+    [objectArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [array addObject:[obj convertToPure]];
+    }];
+    return [CartItemPure keyValuesArrayWithObjectArray:array];
+}
 
 @end

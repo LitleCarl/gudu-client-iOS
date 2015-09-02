@@ -10,7 +10,11 @@
 #import "PopGestureRecognizerController.h"
 #import "FirstViewController.h"
 #import "CartViewController.h"
+#import "MineViewController.h"
+#import "LoginViewController.h"
 
+// Session
+#import "UserSession.h"
 @interface TsaoTabbarController ()
 
 @end
@@ -33,8 +37,30 @@
     PopGestureRecognizerController *secondNav = [[PopGestureRecognizerController alloc] initWithRootViewController:second];
     secondNav.navigationBarHidden = NO;
     
-    self.viewControllers = @[firstNav,secondNav];
+    MineViewController *mineController = [[MineViewController alloc] init];
+    PopGestureRecognizerController *mineNav = [[PopGestureRecognizerController alloc] initWithRootViewController:mineController];
+
+    
+    self.viewControllers = @[firstNav, secondNav, mineNav];
     // Do any additional setup after loading the view.
+    [self setUpTrigger];
+}
+
+- (void)setUpTrigger{
+    [RACObserve([UserSession sharedSession], isLogin) subscribeNext:^(NSNumber *isLogin) {
+        if (![isLogin boolValue]) {
+            LoginViewController *loginViewController = [kUserStoryBoard instantiateViewControllerWithIdentifier:kLoginViewControllerStoryBoardId];
+            PopGestureRecognizerController *loginController = [[PopGestureRecognizerController alloc] initWithRootViewController:loginViewController];
+
+            self.viewControllers = @[self.viewControllers[0], self.viewControllers[1], loginController];
+        }
+        else {
+            MineViewController *mineController = [[MineViewController alloc] init];
+            PopGestureRecognizerController *mineNav = [[PopGestureRecognizerController alloc] initWithRootViewController:mineController];
+            self.viewControllers = @[self.viewControllers[0], self.viewControllers[1], mineNav
+                                     ];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

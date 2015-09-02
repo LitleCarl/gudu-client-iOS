@@ -19,9 +19,6 @@
     // Override point for customization after application launch.
     [self customizeUIAppearance];
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer.timeoutInterval = 20;
-    
     return YES;
 }
 

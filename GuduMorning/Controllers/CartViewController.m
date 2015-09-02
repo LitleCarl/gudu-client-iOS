@@ -12,6 +12,9 @@
 
 #import "CartItemCache.h"
 
+// Category
+#import "RLMResults+ToArray.h"
+
 // library
 #import <Realm/Realm.h>
 
@@ -55,6 +58,7 @@
 
 - (void)setupTrigger{
     
+    // 监听cartItems并刷新table
     [RACObserve(self, cartItems) subscribeNext:^(RLMResults *results) {
         [cartItemTableView reloadData];
     }];
@@ -78,6 +82,30 @@
         totalLabel.text = [NSString stringWithFormat:@"¥%@", [total stringValue]];
     }];
     
+    RAC(orderButton, enabled) = [[RACObserve(self, cartItems) takeUntil:self.rac_willDeallocSignal] map:^id(id value) {
+        RLMResults *result = value;
+        if (result.count > 0) {
+            return @YES;
+        }
+        else {
+            return @NO;
+        }
+    }];
+    
+    [[[orderButton rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:orderButton.rac_willDeallocSignal] subscribeNext:^(id x) {
+        [self.cartItems convertToArrayWithCompletionBlock:^(NSMutableArray *results) {
+            NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:kOrderPlaceOrderUrl params:nil];
+            NSDictionary *param = @{@"cart_items" : [CartItem keyValuesArrayWithObjectArray:results]};
+            RACSignal *signal = [Tool POST:url parameters:param progressInView:self.view showNetworkError:YES];
+            [signal subscribeNext:^(id responseObject) {
+                if (kGetResponseCode(responseObject) == kSuccessCode){
+                    // 创建成功
+                }
+            }];
+
+        }];
+        
+    }];
 }
 
 - (void)initUI{
@@ -93,21 +121,6 @@
     totalLabel.font = [UIFont fontWithName:[MegaTheme fontName] size:15];
     
     totalLabel.textColor = [UIColor blackColor];
-    
-    orderButton.titleLabel.font = [UIFont fontWithName:[MegaTheme fontName] size:18];
-    
-    [orderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
-    [orderButton setTitle:@"付款" forState: UIControlStateNormal];
-    
-    orderButton.backgroundColor = [UIColor colorWithRed:0.14 green:0.71 blue:0.32 alpha:1.0];
-    
-    orderButton.layer.cornerRadius = 20;
-    
-    orderButton.layer.borderWidth = 0;
-    
-    orderButton.clipsToBounds = true;
-    
 
 }
 
@@ -137,8 +150,8 @@
         cell.priceLabel.text = [NSString stringWithFormat:@"单价:¥%@", item.price];
     
         cell.quantityTextField.text = [NSString stringWithFormat:@"%ld", (long)item.quantity];
-        
-        [[[cell.quantityTextField rac_signalForControlEvents:UIControlEventEditingDidEnd] map:^id(UITextField *field) {
+    
+        [[[[cell.quantityTextField rac_signalForControlEvents:UIControlEventEditingDidEnd] takeUntil:cell.rac_prepareForReuseSignal] map:^id(UITextField *field) {
             return field.text;
         }] subscribeNext:^(NSString *newQty) {
             if (newQty.length == 0 || !newQty){

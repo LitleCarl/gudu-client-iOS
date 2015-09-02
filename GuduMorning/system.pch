@@ -37,6 +37,7 @@
 #import "NutritionModel.h"
 #import "GeoJSONModel.h"
 #import "ProductImageModel.h"
+#import "UserModel.h"
 
 // Realm
 #import "CartItem.h"
@@ -142,6 +143,7 @@
 
 #define kMainStoryBoard                    [UIStoryboard storyboardWithName:@"Main" bundle:nil]
 #define kCartStoryBoard                    [UIStoryboard storyboardWithName:@"Cart" bundle:nil]
+#define kUserStoryBoard                    [UIStoryboard storyboardWithName:@"User" bundle:nil]
 
 //URL
 #pragma mark - URL -
@@ -159,5 +161,12 @@
 #define kProductFindOneUrl                   @"/product/:product_id"
 
 #define kSearchUrl                           @"/search/productAndStore"
+
+#define kSendSmsUrl                          @"/service/sendSMSCode"
+
+#define kLoginUrl                            @"/user/loginWithSMSCode"
+
+// 创建订单
+#define kOrderPlaceOrderUrl                 @"/order/placeOrder"
 
 #endif
