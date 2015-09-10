@@ -66,6 +66,15 @@
  
     if ([campus id]){
         [Tool setUserDefault:@{kCampusUsedKey : [campus id]}];
+        // 创建成功
+        /**
+         *  删除购物车商品
+         */
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        [realm deleteObjects:[CartItem allObjects]];
+        [realm commitWriteTransaction];
+
         [self backToPrv:nil];
     }
 }

@@ -10,4 +10,9 @@
 #define kLoginViewControllerStoryBoardId @"Login_View_Controller_Storyboard_id"
 @interface LoginViewController : UIViewController
 
+/**
+ *  登录成功后自动dismiss
+ */
+@property (nonatomic, assign) BOOL needDismiss;
+
 @end

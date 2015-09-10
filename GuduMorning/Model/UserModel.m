@@ -9,5 +9,11 @@
 #import "UserModel.h"
 
 @implementation UserModel
-
++ (void)initialize{
+    [self setupObjectClassInArray:^NSDictionary *{
+        return @{
+                 @"addresses" : @"AddressModel"
+                 };
+    }];
+}
 @end

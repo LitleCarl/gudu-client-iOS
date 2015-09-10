@@ -15,8 +15,8 @@
         
         self.titleLabel.font = [UIFont fontWithName:[MegaTheme boldFontName] size:18];
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        
-        [self setTitle:@"加入购物车" forState:UIControlStateNormal];
+        self.contentEdgeInsets = UIEdgeInsetsMake(4, 20, 4, 20);
+        self.titleLabel.font = [UIFont fontWithName:[MegaTheme fontName] size:12.0];
         self.backgroundColor = [UIColor colorWithRed:0.14 green:0.71 blue:0.32 alpha:1.0];
         self.layer.cornerRadius = 20;
         self.layer.borderWidth = 0;
@@ -27,6 +27,7 @@
 }
 
 - (void)setEnabled:(BOOL)enabled{
+    [super setEnabled:enabled];
     if (enabled) {
         self.backgroundColor = [UIColor colorWithRed:0.14 green:0.71 blue:0.32 alpha:1.0];
     }

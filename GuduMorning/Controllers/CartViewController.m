@@ -14,14 +14,19 @@
 
 // Category
 #import "RLMResults+ToArray.h"
-
+#import "UIScrollView+EmptyDataSet.h"
 // library
 #import <Realm/Realm.h>
 
-//Realm Model
+// ViewController
+#import "LoginViewController.h"
+#import "SelectAddressViewController.h"
 
-@interface CartViewController ()
+@interface CartViewController () <DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
+{
+    __weak IBOutlet UIView *cartBottomView;
 
+}
 /**
  *  监听token
  */
@@ -61,6 +66,12 @@
     // 监听cartItems并刷新table
     [RACObserve(self, cartItems) subscribeNext:^(RLMResults *results) {
         [cartItemTableView reloadData];
+        
+    }];
+    
+    // 没有商品就隐藏底部
+    RAC(cartBottomView, hidden) = [RACObserve(self, cartItems) map:^(RLMResults *result) {
+        return @(result.count < 1);
     }];
     
     // 监听购物车变化
@@ -93,24 +104,26 @@
     }];
     
     [[[orderButton rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:orderButton.rac_willDeallocSignal] subscribeNext:^(id x) {
-        [self.cartItems convertToArrayWithCompletionBlock:^(NSMutableArray *results) {
-            NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:kOrderPlaceOrderUrl params:nil];
-            NSDictionary *param = @{@"cart_items" : [CartItem keyValuesArrayWithObjectArray:results]};
-            RACSignal *signal = [Tool POST:url parameters:param progressInView:self.view showNetworkError:YES];
-            [signal subscribeNext:^(id responseObject) {
-                if (kGetResponseCode(responseObject) == kSuccessCode){
-                    // 创建成功
-                }
-            }];
-
-        }];
+        
+        if ([UserSession sharedUserSession].isLogin == NO) {
+            LoginViewController *loginController = [kUserStoryBoard instantiateViewControllerWithIdentifier:kLoginViewControllerStoryBoardId];
+            loginController.needDismiss = YES;
+            [self presentViewController:loginController animated:YES completion:NULL];
+        }
+        else {
+            SelectAddressViewController *selectAddress = [kCartStoryBoard instantiateViewControllerWithIdentifier:kSelectAddressViewControllerStoryboardId];
+            selectAddress.cartItems = self.cartItems;
+            [self.navigationController pushViewController:selectAddress animated:YES];
+            
+        }
+       
         
     }];
 }
 
 - (void)initUI{
     
-    self.title = @"购物篮";
+    cartItemTableView.tableFooterView = [UIView new];
    
     totalTitle.font =  [UIFont fontWithName:[MegaTheme fontName] size:15];
     
@@ -194,6 +207,25 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     kDismissKeyboard;
+}
+
+#pragma mark - DZNEmptyDataSource -
+
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state
+{
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:[MegaTheme fontName] size:11.0]};
+    
+    return [[NSAttributedString alloc] initWithString:@"随便逛逛" attributes:attributes];
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *text = @"没有商品";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:14.0f],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 /*

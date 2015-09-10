@@ -32,13 +32,14 @@
     
     FirstViewController *first = [[FirstViewController alloc] init];
     PopGestureRecognizerController *firstNav = [[PopGestureRecognizerController alloc] initWithRootViewController:first];
-    
+        
     CartViewController *second = [kCartStoryBoard instantiateViewControllerWithIdentifier:kCartViewControllerStoryBoardId];
     PopGestureRecognizerController *secondNav = [[PopGestureRecognizerController alloc] initWithRootViewController:second];
     secondNav.navigationBarHidden = NO;
     
     MineViewController *mineController = [[MineViewController alloc] init];
     PopGestureRecognizerController *mineNav = [[PopGestureRecognizerController alloc] initWithRootViewController:mineController];
+    mineNav.navigationBarHidden = NO;
 
     
     self.viewControllers = @[firstNav, secondNav, mineNav];
@@ -47,7 +48,7 @@
 }
 
 - (void)setUpTrigger{
-    [RACObserve([UserSession sharedSession], isLogin) subscribeNext:^(NSNumber *isLogin) {
+    [RACObserve([UserSession sharedUserSession], isLogin) subscribeNext:^(NSNumber *isLogin) {
         if (![isLogin boolValue]) {
             LoginViewController *loginViewController = [kUserStoryBoard instantiateViewControllerWithIdentifier:kLoginViewControllerStoryBoardId];
             PopGestureRecognizerController *loginController = [[PopGestureRecognizerController alloc] initWithRootViewController:loginViewController];
@@ -59,6 +60,8 @@
             PopGestureRecognizerController *mineNav = [[PopGestureRecognizerController alloc] initWithRootViewController:mineController];
             self.viewControllers = @[self.viewControllers[0], self.viewControllers[1], mineNav
                                      ];
+            mineNav.navigationBarHidden = NO;
+
         }
     }];
 }

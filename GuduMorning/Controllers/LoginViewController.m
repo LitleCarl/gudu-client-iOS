@@ -90,7 +90,10 @@
         RACSignal *loginSignal = [Tool POST:url parameters:params progressInView:self.view showNetworkError:YES];
         [loginSignal subscribeNext:^(id responseObject) {
             if (kGetResponseCode(responseObject) == kSuccessCode) {
-                [[UserSession sharedSession] setSessionToken:[kGetResponseData(responseObject) objectForKey:@"token"]];
+                [[UserSession sharedUserSession] setSessionToken:[kGetResponseData(responseObject) objectForKey:@"token"]];
+                if (self.needDismiss){
+                    [self dismissViewControllerAnimated:YES completion:NULL];
+                }
                 TsaoLog(@"登录成功");
             }
             else {

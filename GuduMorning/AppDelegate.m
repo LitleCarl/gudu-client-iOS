@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "TsaoTabbarController.h"
-
+#import <Pingpp.h>
 @interface AppDelegate ()
 @end
 
@@ -44,8 +44,34 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    [Pingpp handleOpenURL:url
+           withCompletion:^(NSString *result, PingppError *error) {
+               if ([result isEqualToString:@"success"]) {
+                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"支付成功" message:@"" delegate:self cancelButtonTitle:@"" otherButtonTitles:@"查看订单", nil];
+                   [alert show];
+                  [[NSNotificationCenter defaultCenter] postNotificationName:kPaymentDone object:nil userInfo:@{@"result": @YES}];
+               } else {
+                   // 支付失败或取消
+                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"支付失败" message:@"" delegate:self cancelButtonTitle:@"" otherButtonTitles:@"好的", nil];
+                   [alert show];
+                   NSLog(@"Error: code=%lu msg=%@", error.code, [error getMsg]);
+                   [[NSNotificationCenter defaultCenter] postNotificationName:kPaymentDone object:nil userInfo:@{@"result": @NO}];
+               }
+           }];
+    return  YES;
+}
+
+/**
+ *  定制ui
+ */
 - (void)customizeUIAppearance{
 
+    [[UINavigationBar appearance] setTintColor:kWetAsphaltColor];
+    
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}
                                              forState:UIControlStateNormal];
     

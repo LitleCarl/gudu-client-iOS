@@ -12,6 +12,8 @@
 
 - (void)drawBottomLine:(BorderType)typeOfBorder lineWidth:(CGFloat)lineWidth fillColor:(UIColor *)color{
     CGRect frame = self.frame;
+   // [self.layer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
+
     if (0 < (TopBorder & typeOfBorder)) {
         CALayer *layer = [self generateLayer:lineWidth fillColor:color];
         CGRect layerFrame = CGRectZero;

@@ -419,5 +419,13 @@ static NSString *cellIdentifier = @"store_list_cell";
     return [UIView new];
 }
 
+/**
+ *  隐藏导航栏
+ *
+ *  @return  返回yes则隐藏
+ */
+- (BOOL)hideNavBar{
+    return YES;
+}
 
 @end

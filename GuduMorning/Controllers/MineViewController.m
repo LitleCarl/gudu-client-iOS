@@ -13,7 +13,8 @@
 
 // ViewController
 #import "LoginViewController.h"
-
+#import "OrderTableViewController.h"
+#import "AddressManageViewController.h"
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray *rowData;
@@ -51,6 +52,7 @@
 }
 
 -(void)createUI{
+    self.title = @"我的资料";
     rowData = [[NSMutableArray alloc] init];
     NSMutableDictionary *dic1 = [[NSMutableDictionary alloc] init];
     [dic1 setObject:@"全部订单" forKey:@"title"];
@@ -61,7 +63,7 @@
     [dic2 setObject:@"icon_mine_onsite" forKey:@"image"];
     [rowData addObject:dic2];
     NSMutableDictionary *dic3 = [[NSMutableDictionary alloc] init];
-    [dic3 setObject:@"带评价订单" forKey:@"title"];
+    [dic3 setObject:@"待评价订单" forKey:@"title"];
     [dic3 setObject:@"icon_mine_onsite" forKey:@"image"];
     [rowData addObject:dic3];
     NSMutableDictionary *dic4 = [[NSMutableDictionary alloc] init];
@@ -129,10 +131,10 @@
         //用户名
         UILabel *userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10+55+5, 15, 200, 30)];
         userNameLabel.font = [UIFont systemFontOfSize:13];
-        RAC(userNameLabel, text) = [[RACObserve([UserSession sharedSession], user) takeUntil:headerView.rac_willDeallocSignal] map:^id(UserModel *user) {
+        RAC(userNameLabel, text) = [[RACObserve([UserSession sharedUserSession], user) takeUntil:headerView.rac_willDeallocSignal] map:^id(UserModel *user) {
             TsaoLog(@"value:%@", user);
             if (user.phone == nil) {
-                return @"请登录";
+                return @"";
             }
             else{
                 return user.phone;
@@ -177,7 +179,7 @@
         
         cell.textLabel.font = [UIFont systemFontOfSize:15];
     }else{
-        cell.textLabel.text = @"我的标题";
+        cell.textLabel.text = @"收货地址管理";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
@@ -188,7 +190,34 @@
 
 #pragma mark - UITableViewDelegate
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0 && indexPath.section == 0) {
+        AddressManageViewController *controller = [kUserStoryBoard instantiateViewControllerWithIdentifier:kAddressManageViewControllerStoryboardId];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    
+    if (indexPath.row == 0 && indexPath.section == 1) {
+        OrderTableViewController *controller = [kUserStoryBoard instantiateViewControllerWithIdentifier:kOrderTableViewControllerStoryboardId];
+        controller.orderType = AllOrder;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else if (indexPath.row == 1 && indexPath.section == 1) {
+        OrderTableViewController *controller = [kUserStoryBoard instantiateViewControllerWithIdentifier:kOrderTableViewControllerStoryboardId];
+        controller.orderType = notPaid;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else if (indexPath.row == 2 && indexPath.section == 1) {
+        OrderTableViewController *controller = [kUserStoryBoard instantiateViewControllerWithIdentifier:kOrderTableViewControllerStoryboardId];
+        controller.orderType = NotCommentedOrder;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else if (indexPath.row == 3 && indexPath.section == 1) {
+        OrderTableViewController *controller = [kUserStoryBoard instantiateViewControllerWithIdentifier:kOrderTableViewControllerStoryboardId];
+        controller.orderType = done;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    
+}
 
 
 /*

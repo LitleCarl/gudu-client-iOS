@@ -15,4 +15,6 @@
  */
 @property (nonatomic, copy) NSString *phone;
 
+@property (nonatomic, strong) NSMutableArray *addresses;
+
 @end

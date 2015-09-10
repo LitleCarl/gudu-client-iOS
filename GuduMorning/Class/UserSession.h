@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#define kUserSessionNeedReloadNotificationName @"UserSessionIsNotUpToDateAndNeedToUpdate"
 @interface UserSession : NSObject
 
 /**
@@ -15,7 +15,7 @@
  *
  *  @return UserSession的实例
  */
-+ (instancetype)sharedSession;
++ (instancetype)sharedUserSession;
 
 /**
  *  是否已经登录

@@ -27,8 +27,19 @@
     self.gestureEnabled = enabled;
 }
 
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated{
+   UIViewController*controllerPoped = [super popViewControllerAnimated:animated];
+    if ([self.topViewController respondsToSelector:@selector(hideNavBar)]) {
+        id topController = self.topViewController;
+        self.navigationBarHidden = [topController hideNavBar];
+    }
+    else{
+        self.navigationBarHidden = NO;
+    }
+    return controllerPoped;
+}
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
-    
     NSUInteger count = self.viewControllers.count;
     
     //除了NavigationController根控制器，其他全部隐藏tabbar
@@ -48,6 +59,15 @@
 
     
     [super pushViewController:viewController animated:animated];
+    
+    id tagerController = viewController;
+    if ([tagerController respondsToSelector:@selector(hideNavBar)]) {
+        self.navigationBarHidden = [tagerController hideNavBar];
+    }
+    else{
+        self.navigationBarHidden = NO;
+    }
+
 }
 
 - (void)viewDidLoad
@@ -56,7 +76,7 @@
 
     self.navigationBarHidden = YES;
     
-    self.gestureEnabled = YES;
+    self.gestureEnabled = NO;
  
     __weak PopGestureRecognizerController *weakSelf = self;
     

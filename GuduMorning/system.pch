@@ -26,6 +26,7 @@
 #import <JazzHands/IFTTTJazzHands.h>
 #import <MJExtension.h>
 #import <MJRefresh.h>
+#import <MBProgressHUD+BWMExtension.h>
 
 // Model
 #import "StoreModel.h"
@@ -38,12 +39,27 @@
 #import "GeoJSONModel.h"
 #import "ProductImageModel.h"
 #import "UserModel.h"
+#import "OrderModel.h"
+#import "OrderItemModel.h"
+#import "AddressModel.h"
+#import "PaymentModel.h"
+#import "BasicConfigManager.h"
+// Session
+#import "UserSession.h"
 
 // Realm
 #import "CartItem.h"
 
+// Protocol
+#import "HideNavigationBar.h"
+
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define kUrlScheme  @"gudu-morning-usst"
+
+// 支付成功回调
+#define kPaymentDone @"Payment_Has_Been_Done"
 
 // 调试相关
 #pragma mark - Debug -
@@ -57,6 +73,9 @@
 #define YunLog(fmt, ...)                    /* */
 
 #endif
+
+// UTIL
+#define kNullToString(str)                  ([str isEqual:[NSNull null]] || str == nil) ? @"" : str
 
 // 设备相关
 
@@ -125,6 +144,12 @@
 #define kRedColor                           [UIColor colorWithRed:(231 / 255.0) green:(76 / 255.0) blue:(60 / 255.0) alpha:1.0]
 
 #define kDarkColor                          [UIColor colorWithRed:(71 / 255.0) green:(86 / 255.0) blue: (94 / 255.0) alpha:1.0]
+
+//Flat Color
+#define kWetAsphaltColor                         [UIColor colorWithRed:(0x34 / 255.0) green:(0x49 / 255.0) blue:(0x5e / 255.0) alpha:1.0]
+#define kMidNightBlue ColorFromRGB(0x2c3e50)
+#define kSilverColor ColorFromRGB(0Xbdc3c7)
+#define kCloudsColor ColorFromRGB(0xecf0f1)
 #define kRoundCornerRadius                  8.0
 #define kShadowColor                        [UIColor grayColor]
 #define kUrlFromString(str)                 [NSURL URLWithString:str]
@@ -137,14 +162,14 @@
 
 #pragma mark - UTIL -
 #define kDismissKeyboard                    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
-
+#define kSetNeedReloadUserSession           [[NSNotificationCenter defaultCenter] postNotificationName:kUserSessionNeedReloadNotificationName object:nil]
 
 #pragma mark - StoryBoard -
 
 #define kMainStoryBoard                    [UIStoryboard storyboardWithName:@"Main" bundle:nil]
 #define kCartStoryBoard                    [UIStoryboard storyboardWithName:@"Cart" bundle:nil]
 #define kUserStoryBoard                    [UIStoryboard storyboardWithName:@"User" bundle:nil]
-
+#define kKeyWindow                          [[UIApplication sharedApplication] keyWindow]
 //URL
 #pragma mark - URL -
 
@@ -153,6 +178,8 @@
 
 #define kCampusUrl                          @"/campus"
 #define kCampusFindOneUrl                   @"/campus/:campus_id"
+
+#define kUserFindOneWithTokenUrl            @"/user/getWithToken"
 
 #define kStoreUrl                           @"/store"
 #define kStoreFindOneUrl                    @"/store/:store_id"
@@ -163,10 +190,23 @@
 #define kSearchUrl                           @"/search/productAndStore"
 
 #define kSendSmsUrl                          @"/service/sendSMSCode"
+#define kBasicConfig                         @"/service/basicConfig"
 
+// 登录
 #define kLoginUrl                            @"/user/loginWithSMSCode"
 
 // 创建订单
 #define kOrderPlaceOrderUrl                 @"/order/placeOrder"
+// 支付订单获取Charge
+#define kPayOrderUrl                        @"/pay/pay"
+// 获取订单
+#define kGetOrdersUrl                      @"/order/myOrders"
+
+// 添加收货地址
+#define kAddAddressUrl                      @"/address/addAddress"
+// 更新收货地址
+#define kUpdateAddressUrl                      @"/address/updateAddress"
+// 删除收货地址
+#define kdeleteAddressUrl                      @"/address/deleteAddress"
 
 #endif

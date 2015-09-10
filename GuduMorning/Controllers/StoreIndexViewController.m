@@ -108,7 +108,7 @@
  *  加载初始化信息，只拉取店铺简单信息
  */
 - (void)initBasicInfo{
-    
+    self.title = @"店铺";
     NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:[kStoreFindOneUrl stringByReplacingOccurrencesOfString:@":store_id" withString:self.store_id] params:nil];
 
     RACSignal *signal = [Tool GET:url parameters:nil progressInView:self.view showNetworkError:YES];
@@ -170,7 +170,7 @@
 /**
  *  statusbar tint
  *
- *  @return <#return value description#>
+ *  @return return value description
  */
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
@@ -181,5 +181,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+/**
+ *  隐藏导航栏
+ *
+ *  @return  返回yes则隐藏
+ */
+- (BOOL)hideNavBar{
+    return YES;
+}
 
 @end

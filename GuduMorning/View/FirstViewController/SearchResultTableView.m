@@ -15,7 +15,7 @@
 #import "SearchResultTableViewCell.h"
 
 // Category
-#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "UIScrollView+EmptyDataSet.h"
 
 // ViewController
 #import "StoreIndexViewController.h"

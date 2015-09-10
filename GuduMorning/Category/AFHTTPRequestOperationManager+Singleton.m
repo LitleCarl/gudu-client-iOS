@@ -8,6 +8,8 @@
 
 #import "AFHTTPRequestOperationManager+Singleton.h"
 
+#import "UserSession.h"
+
 @implementation AFHTTPRequestOperationManager (Singleton)
 
 static AFHTTPRequestOperationManager *instance;
@@ -20,7 +22,12 @@ static AFHTTPRequestOperationManager *instance;
         [serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         instance.requestSerializer = serializer;
-        //instance.responseSerializer = [AFJSONResponseSerializer serializer];
+        UserSession *session = [UserSession sharedUserSession];
+        [RACObserve(session, sessionToken) subscribeNext:^(NSString *token) {
+            if (token != nil) {
+                [serializer setValue:token forHTTPHeaderField:@"x-access-token"];
+            }
+        }];
     }
     return instance;
 }

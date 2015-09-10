@@ -97,6 +97,51 @@
  */
 + (RACSignal *)POST:(NSString *)url parameters:(NSDictionary *)parameters progressInView:(UIView *)view showNetworkError:(BOOL)showNetWorkError;
 
+/**
+ *  异步信号订阅机制完成delete请求
+ *
+ *  @param url              请求的url
+ *  @param parameters       url参数
+ *  @param showNetworkError 是否显示网络错误
+ *
+ *  @return 对应的信号
+ */
++ (RACSignal *)DELETE:(NSString *)url parameters:(NSDictionary *)parameters showNetworkError:(BOOL)showNetWorkError;
+
+/**
+ *  异步信号订阅机制完成delete请求,并且在对应view上添加progressView
+ *
+ *  @param url                  请求的url
+ *  @param parameters           url参数
+ *  @param progressInView       要显示progressView的view
+ *  @param showNetworkError     是否显示网络错误
+ ＊
+ *  @return 对应的信号
+ */
++ (RACSignal *)DELETE:(NSString *)url parameters:(NSDictionary *)parameters progressInView:(__weak UIView *)view showNetworkError:(BOOL)showNetWorkError;
+
+/**
+ *  异步信号订阅机制完成PUT请求
+ *
+ *  @param url              请求的url
+ *  @param parameters       url参数
+ *  @param showNetworkError 是否显示网络错误
+ *
+ *  @return 对应的信号
+ */
++ (RACSignal *)PUT:(NSString *)url parameters:(NSDictionary *)parameters showNetworkError:(BOOL)showNetWorkError;
+
+/**
+ *  异步信号订阅机制完成PUT请求,并且在对应view上添加progressView
+ *
+ *  @param url                  请求的url
+ *  @param parameters           url参数
+ *  @param progressInView       要显示progressView的view
+ *  @param showNetworkError     是否显示网络错误
+ ＊
+ *  @return 对应的信号
+ */
++ (RACSignal *)PUT:(NSString *)url parameters:(NSDictionary *)parameters progressInView:(__weak UIView *)view showNetworkError:(BOOL)showNetWorkError;
 #pragma mark - SnackBar -
 
 /**
