@@ -36,6 +36,8 @@
     else{
         self.navigationBarHidden = NO;
     }
+    
+    TsaoLog(@"pop一个controller");
     return controllerPoped;
 }
 

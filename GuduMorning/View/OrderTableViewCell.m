@@ -12,10 +12,10 @@
 #import "ThemeButton.h"
 //View Controller
 #import "ProductScrollViewController.h"
-
+#import "PayResultHandlerManager.h"
 //Ping
 #import <Pingpp.h>
-@interface OrderTableViewCell () <UITableViewDataSource, UITableViewDelegate>
+@interface OrderTableViewCell () <UITableViewDataSource, UITableViewDelegate, PayResultHandlerDelegate>
 {
     /// 学校名称显示label
     __weak IBOutlet UILabel *campusNameLabel;
@@ -34,6 +34,20 @@
     __weak IBOutlet ThemeButton *waitingProductButton;
     /// 评论按钮
     __weak IBOutlet ThemeButton *commentButton;
+    
+    /// 订单成交时间(未支付订单隐藏)
+    __weak IBOutlet UILabel *timePaidLabel;
+    /// 订单编号按钮
+    __weak IBOutlet UILabel *orderNumberLabel;
+    
+    /// 收货人地址
+    __weak IBOutlet UILabel *receiverAddressLabel;
+    
+    /// 收货人电话
+    __weak IBOutlet UILabel *receiverPhoneLabel;
+    
+    // 支付方式图标
+    __weak IBOutlet UIImageView *payChannelImageView;
 }
 @end
 
@@ -73,7 +87,7 @@
     }
     
     // 设置商品总数
-    NSString *itemCount = [NSString stringWithFormat:@"%d", (long)order.order_items.count];
+    NSString *itemCount = [NSString stringWithFormat:@"%lu", (unsigned long)order.order_items.count];
     NSMutableAttributedString *attStringOfItemCount = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"共%@个商品", itemCount]];
     
     [attStringOfItemCount addAttribute:NSFontAttributeName
@@ -92,7 +106,7 @@
     [itemsAmountLabel setAttributedText:attStringOfItemCount];
 
     // 设置付款金额
-    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"实付:¥%@", order.price]];
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"实付:¥%@", order.pay_price]];
     
     [attString addAttribute:NSFontAttributeName
                   value:[UIFont systemFontOfSize:10.0]
@@ -108,11 +122,42 @@
                       range:NSMakeRange(3, attString.length - 3)];
     [totalPriceLabel setAttributedText:attString];
    
+    receiverAddressLabel.text = order.receiver_address;
+    [receiverAddressLabel sizeToFit];
+    receiverPhoneLabel.text = order.receiver_phone;
+    [receiverPhoneLabel sizeToFit];
+    
+    if ([order.pay_method isEqualToString:kPayMethodWeixin]) {
+        payChannelImageView.image = [UIImage imageNamed:@"pay_weixin"];
+        payChannelImageView.hidden = NO;
+
+    }
+    else if([order.pay_method isEqualToString:kPayMethodAlipay]){
+        payChannelImageView.image = [UIImage imageNamed:@"pay_ali"];
+        payChannelImageView.hidden = NO;
+    }
+    else {
+        payChannelImageView.hidden = YES;
+    }
+
 }
 
 - (void)setUpTrigger{
     [[RACObserve(self, order) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(OrderModel *order) {
         [contentTableView reloadData];
+        
+        // 订单编号
+        orderNumberLabel.text = [NSString stringWithFormat:@"订单编号:%@", self.order.order_number];
+        
+        // 成交时间
+        if (self.order.payment) {
+            timePaidLabel.text = [NSString stringWithFormat:@"成交时间:%@", self.order.payment.time_paid];
+            timePaidLabel.hidden = NO;
+        }
+        else {
+            timePaidLabel.hidden = YES;
+        }
+        
         if (order.status > notPaid) {
             payButton.maxWidthConstaint.constant = 0;
         }
@@ -133,50 +178,26 @@
         }
     }];
     
-    [[payButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:kPayOrderUrl params:nil];
-        NSDictionary *param = @{@"order" : [self.order keyValues]};
-        RACSignal *signal = [Tool POST:url parameters:param progressInView:kKeyWindow showNetworkError:YES];
+    [[[payButton rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+        NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:[kPayOrderUrl stringByReplacingOccurrencesOfString:@":order_id" withString:self.order.id] params:nil];
+        RACSignal *signal = [Tool GET:url parameters:nil progressInView:kKeyWindow showNetworkError:YES];
         [signal subscribeNext:^(id responseObject) {
-            TsaoLog(@"responseObject:%@", responseObject);
             if (kGetResponseCode(responseObject) == kSuccessCode){
-                // 创建成功
-                /**
-                 *  删除购物车商品
-                 */
-                RLMRealm *realm = [RLMRealm defaultRealm];
-                [realm beginWriteTransaction];
-                [realm deleteObjects:[CartItem allObjects]];
-                [realm commitWriteTransaction];
-                
-                id charge = kGetResponseData(responseObject);
+                id data = kGetResponseData(responseObject);
+                                
+                id charge = [data objectForKey:@"charge"];
+                [PayResultHandlerManager sharedManager].delegate = self;
+
                 [Pingpp createPayment:charge
                        viewController:nil
                          appURLScheme:kUrlScheme
                        withCompletion:^(NSString *result, PingppError *error) {
-                           if ([result isEqualToString:@"success"]) {
-                               TsaoLog(@"支付成功!!");
-                               // 支付成功
-                           } else {
-                               // 支付失败或取消
-                               NSLog(@"!!Error: code=%lu msg=%@", error.code, [error getMsg]);
-                           }
+                      
                        }];
             }
         }];
         
-//        [Pingpp createPayment:charge
-//               viewController:self
-//                 appURLScheme:kUrlScheme
-//               withCompletion:^(NSString *result, PingppError *error) {
-//                   if ([result isEqualToString:@"success"]) {
-//                       TsaoLog(@"支付成功!!");
-//                       // 支付成功
-//                   } else {
-//                       // 支付失败或取消
-//                       NSLog(@"!!Error: code=%lu msg=%@", error.code, [error getMsg]);
-//                   }
-//               }];
+
     }];
 }
 
@@ -214,6 +235,17 @@
     OrderContentViewTableViewCell *orderContentViewCell = [tableView dequeueReusableCellWithIdentifier:kOrderContentCellReuseID];
     orderContentViewCell.order_item = [self.order.order_items objectAtIndex:indexPath.row];
     return orderContentViewCell;
+}
+
+#pragma mark - PayResultHandlerDelegate -
+
+- (void)handle:(NSString *)result error:(PingppError *)error{
+    if ([result isEqualToString:@"success"]) {
+        [MBProgressHUD bwm_showTitle:@"支付成功" toView:kKeyWindow hideAfter:2.0 msgType:BWMMBProgressHUDMsgTypeSuccessful];
+    }
+    else{
+        [MBProgressHUD bwm_showTitle:@"支付失败" toView:kKeyWindow hideAfter:2.0 msgType:BWMMBProgressHUDMsgTypeSuccessful];
+    }
 }
 
 @end

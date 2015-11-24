@@ -36,4 +36,9 @@
  */
 @property (nonatomic, strong) NSArray *payMethodSet;
 
+/**
+ *  红包启用
+ */
+@property (nonatomic, assign) BOOL red_pack_available;
+
 @end

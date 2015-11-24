@@ -64,7 +64,7 @@
     
     [keys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         if ([obj isKindOfClass:[NSString class]]) {
-            [userDefault setObject:obj forKey:obj];
+            [userDefault setObject:nil forKey:obj];
         }
     }];
     [userDefault synchronize];

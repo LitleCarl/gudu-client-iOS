@@ -27,6 +27,33 @@
 		0411515C1B8EE795000B3A88 /* Cart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0411515B1B8EE795000B3A88 /* Cart.storyboard */; };
 		0411515F1B8EE7DE000B3A88 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0411515E1B8EE7DE000B3A88 /* CartViewController.m */; };
 		041151631B8EE832000B3A88 /* CartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 041151621B8EE832000B3A88 /* CartCell.m */; };
+		041BDCD61BE4BA4A00422DB5 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 041BDCD31BE4BA4A00422DB5 /* cross.png */; };
+		041BDCD71BE4BA4A00422DB5 /* dice.png in Resources */ = {isa = PBXBuildFile; fileRef = 041BDCD41BE4BA4A00422DB5 /* dice.png */; };
+		041BDCD81BE4BA4A00422DB5 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 041BDCD51BE4BA4A00422DB5 /* plus.png */; };
+		041BDCDF1BE4BA7600422DB5 /* floatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BDCDB1BE4BA7600422DB5 /* floatTableViewCell.m */; };
+		041BDCE01BE4BA7600422DB5 /* floatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041BDCDC1BE4BA7600422DB5 /* floatTableViewCell.xib */; };
+		041BDCE11BE4BA7600422DB5 /* VCFloatingActionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BDCDE1BE4BA7600422DB5 /* VCFloatingActionButton.m */; };
+		041BDCE41BE4D7EE00422DB5 /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BDCE31BE4D7EE00422DB5 /* CardView.m */; };
+		041BDCE61BE4DC7600422DB5 /* RecommendStoreCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041BDCE51BE4DC7600422DB5 /* RecommendStoreCardView.xib */; };
+		041BDCE91BE4DE2500422DB5 /* RecommendStoreImageVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BDCE81BE4DE2500422DB5 /* RecommendStoreImageVIew.m */; };
+		041BDCEC1BE4F92800422DB5 /* StoreIndexCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BDCEB1BE4F92800422DB5 /* StoreIndexCardViewController.m */; };
+		041BDCEF1BE8BACE00422DB5 /* RandomRecommendViewOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BDCEE1BE8BACE00422DB5 /* RandomRecommendViewOwner.m */; };
+		041BDCF71BE9CDCA00422DB5 /* pay_ali.png in Resources */ = {isa = PBXBuildFile; fileRef = 041BDCF11BE9CDCA00422DB5 /* pay_ali.png */; };
+		041BDCF81BE9CDCA00422DB5 /* pay_ali@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 041BDCF21BE9CDCA00422DB5 /* pay_ali@2x~ipad.png */; };
+		041BDCF91BE9CDCA00422DB5 /* pay_ali@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 041BDCF31BE9CDCA00422DB5 /* pay_ali@2x~iphone.png */; };
+		041BDCFA1BE9CDCA00422DB5 /* pay_weixin.png in Resources */ = {isa = PBXBuildFile; fileRef = 041BDCF41BE9CDCA00422DB5 /* pay_weixin.png */; };
+		041BDCFB1BE9CDCA00422DB5 /* pay_weixin@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 041BDCF51BE9CDCA00422DB5 /* pay_weixin@2x~ipad.png */; };
+		041BDCFC1BE9CDCA00422DB5 /* pay_weixin@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 041BDCF61BE9CDCA00422DB5 /* pay_weixin@2x~iphone.png */; };
+		041BDD021BEC6F4100422DB5 /* CouponCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BDD011BEC6F4100422DB5 /* CouponCollectionViewController.m */; };
+		041BDD061BEC79A600422DB5 /* CouponCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BDD051BEC79A600422DB5 /* CouponCollectionView.m */; };
+		041BDD091BEC98D700422DB5 /* CouponModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BDD081BEC98D700422DB5 /* CouponModel.m */; };
+		041BDD0C1BECAF7600422DB5 /* CouponCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BDD0B1BECAF7600422DB5 /* CouponCollectionViewCell.m */; };
+		041BDD0F1BEDFDAE00422DB5 /* SelectCouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BDD0E1BEDFDAE00422DB5 /* SelectCouponViewController.m */; };
+		041BDD121BEDFE8700422DB5 /* SelectCouponCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BDD111BEDFE8700422DB5 /* SelectCouponCollectionViewCell.m */; };
+		041BDD141BF2D12700422DB5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041BDD131BF2D12700422DB5 /* CoreTelephony.framework */; };
+		041BDD191BF2D16200422DB5 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 041BDD161BF2D16200422DB5 /* libWeChatSDK.a */; };
+		041BDD1C1BF2DC2500422DB5 /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BDD1B1BF2DC2500422DB5 /* WXApiManager.m */; };
+		041BDD1F1BF5784000422DB5 /* BindRoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 041BDD1E1BF5784000422DB5 /* BindRoleViewController.m */; };
 		043697FE1B9AA3F50065D0A5 /* SelectAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043697FD1B9AA3F50065D0A5 /* SelectAddressViewController.m */; };
 		043698021B9AA4440065D0A5 /* AddressListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043698011B9AA4440065D0A5 /* AddressListCell.m */; };
 		043698051B9AA59F0065D0A5 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043698041B9AA59F0065D0A5 /* AddressModel.m */; };
@@ -65,6 +92,10 @@
 		04A0A0BD1B9148C7002EA70E /* RLMResults+ToArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0A0BC1B9148C7002EA70E /* RLMResults+ToArray.m */; };
 		04A0A0BF1B955458002EA70E /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A0A0BE1B955458002EA70E /* User.storyboard */; };
 		04A0A0C61B956A88002EA70E /* TsaoCodeSenderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0A0C51B956A88002EA70E /* TsaoCodeSenderButton.m */; };
+		04A73EFF1BFEEA11008A8335 /* Confused-256.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A73EFD1BFEEA11008A8335 /* Confused-256.png */; };
+		04A73F001BFEEA11008A8335 /* Laugh-256.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A73EFE1BFEEA11008A8335 /* Laugh-256.png */; };
+		04A73F031BFEECCD008A8335 /* PayResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A73F021BFEECCD008A8335 /* PayResultViewController.m */; };
+		04A73F061BFEF2FD008A8335 /* PayResultHandlerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A73F051BFEF2FD008A8335 /* PayResultHandlerManager.m */; };
 		04B8D12E1B968843003A81E1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8D12C1B968843003A81E1 /* LoginViewController.m */; };
 		04B8D1301B96886A003A81E1 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B8D12F1B96886A003A81E1 /* MineViewController.m */; };
 		04B8D1331B9689CC003A81E1 /* icon_tabbar_mine_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04B8D1311B9689CC003A81E1 /* icon_tabbar_mine_selected@2x.png */; };
@@ -186,6 +217,49 @@
 		0411515E1B8EE7DE000B3A88 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
 		041151611B8EE832000B3A88 /* CartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartCell.h; sourceTree = "<group>"; };
 		041151621B8EE832000B3A88 /* CartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartCell.m; sourceTree = "<group>"; };
+		041BDCD31BE4BA4A00422DB5 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
+		041BDCD41BE4BA4A00422DB5 /* dice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice.png; sourceTree = "<group>"; };
+		041BDCD51BE4BA4A00422DB5 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
+		041BDCDA1BE4BA7600422DB5 /* floatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = floatTableViewCell.h; sourceTree = "<group>"; };
+		041BDCDB1BE4BA7600422DB5 /* floatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = floatTableViewCell.m; sourceTree = "<group>"; };
+		041BDCDC1BE4BA7600422DB5 /* floatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = floatTableViewCell.xib; sourceTree = "<group>"; };
+		041BDCDD1BE4BA7600422DB5 /* VCFloatingActionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCFloatingActionButton.h; sourceTree = "<group>"; };
+		041BDCDE1BE4BA7600422DB5 /* VCFloatingActionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VCFloatingActionButton.m; sourceTree = "<group>"; };
+		041BDCE21BE4D7EE00422DB5 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
+		041BDCE31BE4D7EE00422DB5 /* CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardView.m; sourceTree = "<group>"; };
+		041BDCE51BE4DC7600422DB5 /* RecommendStoreCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendStoreCardView.xib; sourceTree = "<group>"; };
+		041BDCE71BE4DE2500422DB5 /* RecommendStoreImageVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendStoreImageVIew.h; sourceTree = "<group>"; };
+		041BDCE81BE4DE2500422DB5 /* RecommendStoreImageVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendStoreImageVIew.m; sourceTree = "<group>"; };
+		041BDCEA1BE4F92800422DB5 /* StoreIndexCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreIndexCardViewController.h; sourceTree = "<group>"; };
+		041BDCEB1BE4F92800422DB5 /* StoreIndexCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreIndexCardViewController.m; sourceTree = "<group>"; };
+		041BDCED1BE8BACE00422DB5 /* RandomRecommendViewOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomRecommendViewOwner.h; sourceTree = "<group>"; };
+		041BDCEE1BE8BACE00422DB5 /* RandomRecommendViewOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomRecommendViewOwner.m; sourceTree = "<group>"; };
+		041BDCF11BE9CDCA00422DB5 /* pay_ali.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_ali.png; sourceTree = "<group>"; };
+		041BDCF21BE9CDCA00422DB5 /* pay_ali@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay_ali@2x~ipad.png"; sourceTree = "<group>"; };
+		041BDCF31BE9CDCA00422DB5 /* pay_ali@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay_ali@2x~iphone.png"; sourceTree = "<group>"; };
+		041BDCF41BE9CDCA00422DB5 /* pay_weixin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_weixin.png; sourceTree = "<group>"; };
+		041BDCF51BE9CDCA00422DB5 /* pay_weixin@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay_weixin@2x~ipad.png"; sourceTree = "<group>"; };
+		041BDCF61BE9CDCA00422DB5 /* pay_weixin@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay_weixin@2x~iphone.png"; sourceTree = "<group>"; };
+		041BDD001BEC6F4100422DB5 /* CouponCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponCollectionViewController.h; sourceTree = "<group>"; };
+		041BDD011BEC6F4100422DB5 /* CouponCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponCollectionViewController.m; sourceTree = "<group>"; };
+		041BDD041BEC79A600422DB5 /* CouponCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponCollectionView.h; sourceTree = "<group>"; };
+		041BDD051BEC79A600422DB5 /* CouponCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponCollectionView.m; sourceTree = "<group>"; };
+		041BDD071BEC98D700422DB5 /* CouponModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponModel.h; sourceTree = "<group>"; };
+		041BDD081BEC98D700422DB5 /* CouponModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponModel.m; sourceTree = "<group>"; };
+		041BDD0A1BECAF7600422DB5 /* CouponCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponCollectionViewCell.h; sourceTree = "<group>"; };
+		041BDD0B1BECAF7600422DB5 /* CouponCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponCollectionViewCell.m; sourceTree = "<group>"; };
+		041BDD0D1BEDFDAE00422DB5 /* SelectCouponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCouponViewController.h; sourceTree = "<group>"; };
+		041BDD0E1BEDFDAE00422DB5 /* SelectCouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCouponViewController.m; sourceTree = "<group>"; };
+		041BDD101BEDFE8700422DB5 /* SelectCouponCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCouponCollectionViewCell.h; sourceTree = "<group>"; };
+		041BDD111BEDFE8700422DB5 /* SelectCouponCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCouponCollectionViewCell.m; sourceTree = "<group>"; };
+		041BDD131BF2D12700422DB5 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		041BDD161BF2D16200422DB5 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		041BDD171BF2D16200422DB5 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		041BDD181BF2D16200422DB5 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		041BDD1A1BF2DC2500422DB5 /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
+		041BDD1B1BF2DC2500422DB5 /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
+		041BDD1D1BF5784000422DB5 /* BindRoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindRoleViewController.h; sourceTree = "<group>"; };
+		041BDD1E1BF5784000422DB5 /* BindRoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindRoleViewController.m; sourceTree = "<group>"; };
 		043697FC1B9AA3F50065D0A5 /* SelectAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectAddressViewController.h; sourceTree = "<group>"; };
 		043697FD1B9AA3F50065D0A5 /* SelectAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectAddressViewController.m; sourceTree = "<group>"; };
 		043698001B9AA4440065D0A5 /* AddressListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListCell.h; sourceTree = "<group>"; };
@@ -252,6 +326,12 @@
 		04A0A0C01B956993002EA70E /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		04A0A0C41B956A88002EA70E /* TsaoCodeSenderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TsaoCodeSenderButton.h; sourceTree = "<group>"; };
 		04A0A0C51B956A88002EA70E /* TsaoCodeSenderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TsaoCodeSenderButton.m; sourceTree = "<group>"; };
+		04A73EFD1BFEEA11008A8335 /* Confused-256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Confused-256.png"; sourceTree = "<group>"; };
+		04A73EFE1BFEEA11008A8335 /* Laugh-256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Laugh-256.png"; sourceTree = "<group>"; };
+		04A73F011BFEECCD008A8335 /* PayResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayResultViewController.h; sourceTree = "<group>"; };
+		04A73F021BFEECCD008A8335 /* PayResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayResultViewController.m; sourceTree = "<group>"; };
+		04A73F041BFEF2FD008A8335 /* PayResultHandlerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayResultHandlerManager.h; sourceTree = "<group>"; };
+		04A73F051BFEF2FD008A8335 /* PayResultHandlerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayResultHandlerManager.m; sourceTree = "<group>"; };
 		04B8D12C1B968843003A81E1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		04B8D12D1B968843003A81E1 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
 		04B8D12F1B96886A003A81E1 /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
@@ -381,9 +461,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				041BDD141BF2D12700422DB5 /* CoreTelephony.framework in Frameworks */,
 				043698171B9B0A8D0065D0A5 /* libsqlite3.0.dylib in Frameworks */,
 				043698151B9B0A860065D0A5 /* libz.dylib in Frameworks */,
 				043698131B9B0A7D0065D0A5 /* Security.framework in Frameworks */,
+				041BDD191BF2D16200422DB5 /* libWeChatSDK.a in Frameworks */,
 				043698111B9B0A770065D0A5 /* SystemConfiguration.framework in Frameworks */,
 				0436980F1B9B0A710065D0A5 /* CFNetwork.framework in Frameworks */,
 				04D23C811B8F377500250726 /* libc++.dylib in Frameworks */,
@@ -456,6 +538,64 @@
 				041151621B8EE832000B3A88 /* CartCell.m */,
 			);
 			path = CartViewController;
+			sourceTree = "<group>";
+		};
+		041BDCD21BE4BA4A00422DB5 /* FloatingActionButton */ = {
+			isa = PBXGroup;
+			children = (
+				041BDCD31BE4BA4A00422DB5 /* cross.png */,
+				041BDCD41BE4BA4A00422DB5 /* dice.png */,
+				041BDCD51BE4BA4A00422DB5 /* plus.png */,
+			);
+			path = FloatingActionButton;
+			sourceTree = "<group>";
+		};
+		041BDCD91BE4BA7600422DB5 /* ActionFloatingButton */ = {
+			isa = PBXGroup;
+			children = (
+				041BDCDA1BE4BA7600422DB5 /* floatTableViewCell.h */,
+				041BDCDB1BE4BA7600422DB5 /* floatTableViewCell.m */,
+				041BDCDC1BE4BA7600422DB5 /* floatTableViewCell.xib */,
+				041BDCDD1BE4BA7600422DB5 /* VCFloatingActionButton.h */,
+				041BDCDE1BE4BA7600422DB5 /* VCFloatingActionButton.m */,
+			);
+			path = ActionFloatingButton;
+			sourceTree = "<group>";
+		};
+		041BDCF01BE9CDCA00422DB5 /* PayChannel */ = {
+			isa = PBXGroup;
+			children = (
+				041BDCF11BE9CDCA00422DB5 /* pay_ali.png */,
+				041BDCF21BE9CDCA00422DB5 /* pay_ali@2x~ipad.png */,
+				041BDCF31BE9CDCA00422DB5 /* pay_ali@2x~iphone.png */,
+				041BDCF41BE9CDCA00422DB5 /* pay_weixin.png */,
+				041BDCF51BE9CDCA00422DB5 /* pay_weixin@2x~ipad.png */,
+				041BDCF61BE9CDCA00422DB5 /* pay_weixin@2x~iphone.png */,
+			);
+			path = PayChannel;
+			sourceTree = "<group>";
+		};
+		041BDD031BEC799200422DB5 /* CouponView */ = {
+			isa = PBXGroup;
+			children = (
+				041BDD041BEC79A600422DB5 /* CouponCollectionView.h */,
+				041BDD051BEC79A600422DB5 /* CouponCollectionView.m */,
+				041BDD0A1BECAF7600422DB5 /* CouponCollectionViewCell.h */,
+				041BDD0B1BECAF7600422DB5 /* CouponCollectionViewCell.m */,
+				041BDD101BEDFE8700422DB5 /* SelectCouponCollectionViewCell.h */,
+				041BDD111BEDFE8700422DB5 /* SelectCouponCollectionViewCell.m */,
+			);
+			path = CouponView;
+			sourceTree = "<group>";
+		};
+		041BDD151BF2D16200422DB5 /* Weixin */ = {
+			isa = PBXGroup;
+			children = (
+				041BDD161BF2D16200422DB5 /* libWeChatSDK.a */,
+				041BDD171BF2D16200422DB5 /* WXApi.h */,
+				041BDD181BF2D16200422DB5 /* WXApiObject.h */,
+			);
+			path = Weixin;
 			sourceTree = "<group>";
 		};
 		043697FF1B9AA4220065D0A5 /* AddressViewController */ = {
@@ -559,6 +699,15 @@
 			name = LoginViewController;
 			sourceTree = "<group>";
 		};
+		04A73EFC1BFEEA11008A8335 /* Emotion */ = {
+			isa = PBXGroup;
+			children = (
+				04A73EFD1BFEEA11008A8335 /* Confused-256.png */,
+				04A73EFE1BFEEA11008A8335 /* Laugh-256.png */,
+			);
+			path = Emotion;
+			sourceTree = "<group>";
+		};
 		04D23C771B8F00A000250726 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
@@ -639,6 +788,8 @@
 				043699751B9D80FD0065D0A5 /* OrderItemModel.m */,
 				043699771B9D81CE0065D0A5 /* PaymentModel.h */,
 				043699781B9D81CE0065D0A5 /* PaymentModel.m */,
+				041BDD071BEC98D700422DB5 /* CouponModel.h */,
+				041BDD081BEC98D700422DB5 /* CouponModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -715,6 +866,9 @@
 		56865CDB1B6B22E200A1B324 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				04A73EFC1BFEEA11008A8335 /* Emotion */,
+				041BDCF01BE9CDCA00422DB5 /* PayChannel */,
+				041BDCD21BE4BA4A00422DB5 /* FloatingActionButton */,
 				04F2CCF21B845A580016FB91 /* Background */,
 				04B8D1371B968AA4003A81E1 /* bg_login.png */,
 				047406CC1B7B413400AE05BE /* Icon */,
@@ -767,6 +921,7 @@
 			isa = PBXGroup;
 			children = (
 				56865C9A1B6B223C00A1B324 /* LaunchScreen.xib */,
+				041BDCE51BE4DC7600422DB5 /* RecommendStoreCardView.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -783,6 +938,12 @@
 				04D23C8F1B8FFFA700250726 /* CartItemCache.m */,
 				04B8D1391B968CF0003A81E1 /* UserSession.h */,
 				04B8D13A1B968CF0003A81E1 /* UserSession.m */,
+				041BDCED1BE8BACE00422DB5 /* RandomRecommendViewOwner.h */,
+				041BDCEE1BE8BACE00422DB5 /* RandomRecommendViewOwner.m */,
+				041BDD1A1BF2DC2500422DB5 /* WXApiManager.h */,
+				041BDD1B1BF2DC2500422DB5 /* WXApiManager.m */,
+				04A73F041BFEF2FD008A8335 /* PayResultHandlerManager.h */,
+				04A73F051BFEF2FD008A8335 /* PayResultHandlerManager.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -815,6 +976,7 @@
 		56C458541B6B424F0053D825 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				041BDD151BF2D16200422DB5 /* Weixin */,
 				0454D6D41BA02EBE000D134E /* DZNEmptyDataSet */,
 				049601761B8DB88200AEFFD8 /* ADVProgressControl */,
 				04F2D1601B86ECA40016FB91 /* FXBlurView */,
@@ -835,10 +997,16 @@
 		56C458591B6B42690053D825 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0454D6E01BA12AA4000D134E /* AddAddressViewController.h */,
+				0454D6E11BA12AA4000D134E /* AddAddressViewController.m */,
+				0454D6DD1BA03B48000D134E /* AddressManageViewController.h */,
+				0454D6DE1BA03B48000D134E /* AddressManageViewController.m */,
 				04F2D17A1B89B18F0016FB91 /* CampusListTableViewController.h */,
 				04F2D17B1B89B18F0016FB91 /* CampusListTableViewController.m */,
 				0411515D1B8EE7DE000B3A88 /* CartViewController.h */,
 				0411515E1B8EE7DE000B3A88 /* CartViewController.m */,
+				0454D6E31BA16690000D134E /* EditAddressViewController.h */,
+				0454D6E41BA16690000D134E /* EditAddressViewController.m */,
 				56C4585A1B6B42690053D825 /* FirstViewController.h */,
 				56C4585B1B6B42690053D825 /* FirstViewController.m */,
 				04A0A0C01B956993002EA70E /* LoginViewController.h */,
@@ -847,6 +1015,8 @@
 				04072CC31B8AE2CA00B68A21 /* MenuViewController.m */,
 				04B8D12D1B968843003A81E1 /* MineViewController.h */,
 				04B8D12F1B96886A003A81E1 /* MineViewController.m */,
+				043699641B9D47C00065D0A5 /* OrderTableViewController.h */,
+				043699651B9D47C00065D0A5 /* OrderTableViewController.m */,
 				56C4585C1B6B42690053D825 /* PopGestureRecognizerController.h */,
 				56C4585D1B6B42690053D825 /* PopGestureRecognizerController.m */,
 				04072CED1B8C993900B68A21 /* Product */,
@@ -856,6 +1026,8 @@
 				049601741B8DA7A200AEFFD8 /* ProductWrapperViewController.m */,
 				56C4585E1B6B42690053D825 /* SecondViewController.h */,
 				56C4585F1B6B42690053D825 /* SecondViewController.m */,
+				043697FC1B9AA3F50065D0A5 /* SelectAddressViewController.h */,
+				043697FD1B9AA3F50065D0A5 /* SelectAddressViewController.m */,
 				04072CD51B8C47AB00B68A21 /* StoreIndexViewController */,
 				04072CC51B8AE40100B68A21 /* StoreIndexViewController.h */,
 				04072CC61B8AE40100B68A21 /* StoreIndexViewController.m */,
@@ -863,16 +1035,16 @@
 				56C45B4B1B6B72A00053D825 /* TsaoBaseViewController.m */,
 				56C458601B6B42690053D825 /* TsaoTabbarController.h */,
 				56C458611B6B42690053D825 /* TsaoTabbarController.m */,
-				043697FC1B9AA3F50065D0A5 /* SelectAddressViewController.h */,
-				043697FD1B9AA3F50065D0A5 /* SelectAddressViewController.m */,
-				043699641B9D47C00065D0A5 /* OrderTableViewController.h */,
-				043699651B9D47C00065D0A5 /* OrderTableViewController.m */,
-				0454D6DD1BA03B48000D134E /* AddressManageViewController.h */,
-				0454D6DE1BA03B48000D134E /* AddressManageViewController.m */,
-				0454D6E01BA12AA4000D134E /* AddAddressViewController.h */,
-				0454D6E11BA12AA4000D134E /* AddAddressViewController.m */,
-				0454D6E31BA16690000D134E /* EditAddressViewController.h */,
-				0454D6E41BA16690000D134E /* EditAddressViewController.m */,
+				041BDCEA1BE4F92800422DB5 /* StoreIndexCardViewController.h */,
+				041BDCEB1BE4F92800422DB5 /* StoreIndexCardViewController.m */,
+				041BDD001BEC6F4100422DB5 /* CouponCollectionViewController.h */,
+				041BDD011BEC6F4100422DB5 /* CouponCollectionViewController.m */,
+				041BDD0D1BEDFDAE00422DB5 /* SelectCouponViewController.h */,
+				041BDD0E1BEDFDAE00422DB5 /* SelectCouponViewController.m */,
+				041BDD1D1BF5784000422DB5 /* BindRoleViewController.h */,
+				041BDD1E1BF5784000422DB5 /* BindRoleViewController.m */,
+				04A73F011BFEECCD008A8335 /* PayResultViewController.h */,
+				04A73F021BFEECCD008A8335 /* PayResultViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -880,6 +1052,8 @@
 		56C458661B6B42840053D825 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				041BDD031BEC799200422DB5 /* CouponView */,
+				041BDCD91BE4BA7600422DB5 /* ActionFloatingButton */,
 				0436996A1B9D7AD80065D0A5 /* OrderViewController */,
 				043697FF1B9AA4220065D0A5 /* AddressViewController */,
 				04A0A0C31B956A5F002EA70E /* LoginViewController */,
@@ -900,6 +1074,10 @@
 				043699681B9D77490065D0A5 /* TsaoBorderViewForCode.m */,
 				0436996E1B9D7CC70065D0A5 /* ThemeButton.h */,
 				0436996F1B9D7CC70065D0A5 /* ThemeButton.m */,
+				041BDCE21BE4D7EE00422DB5 /* CardView.h */,
+				041BDCE31BE4D7EE00422DB5 /* CardView.m */,
+				041BDCE71BE4DE2500422DB5 /* RecommendStoreImageVIew.h */,
+				041BDCE81BE4DE2500422DB5 /* RecommendStoreImageVIew.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -916,6 +1094,7 @@
 		E41DA25CAEA556E4645DB4FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				041BDD131BF2D12700422DB5 /* CoreTelephony.framework */,
 				0436981C1B9B0BD10065D0A5 /* libpingpp.a */,
 				0436981A1B9B0BA10065D0A5 /* libPingpp.a */,
 				043698181B9B0AB90065D0A5 /* libPingpp.a */,
@@ -982,7 +1161,7 @@
 				TargetAttributes = {
 					56865C841B6B223C00A1B324 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = XY88E4HRCW;
+						DevelopmentTeam = S6EBGVAJG2;
 					};
 					56865CA01B6B223C00A1B324 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -1029,9 +1208,12 @@
 				56865CF41B6B22E200A1B324 /* about_tab_select@2x.png in Resources */,
 				56865D011B6B22E200A1B324 /* my_tab.png in Resources */,
 				56865D041B6B22E200A1B324 /* my_tab_select@2x.png in Resources */,
+				041BDCE61BE4DC7600422DB5 /* RecommendStoreCardView.xib in Resources */,
+				041BDCF71BE9CDCA00422DB5 /* pay_ali.png in Resources */,
 				56865CF21B6B22E200A1B324 /* about_tab@2x.png in Resources */,
 				043699631B9D47390065D0A5 /* shop@2x.png in Resources */,
 				04B8D1341B9689CC003A81E1 /* icon_tabbar_mine@2x.png in Resources */,
+				041BDCD71BE4BA4A00422DB5 /* dice.png in Resources */,
 				04072CE61B8C5EFD00B68A21 /* event-club.png in Resources */,
 				56865CF71B6B22E200A1B324 /* cart_tab_select.png in Resources */,
 				043698091B9ABF280065D0A5 /* tick@2x.png in Resources */,
@@ -1042,6 +1224,7 @@
 				56061BAA1B6BC4EE002F3499 /* back_button.png in Resources */,
 				04072CDF1B8C527900B68A21 /* map-annotation.png in Resources */,
 				0411515C1B8EE795000B3A88 /* Cart.storyboard in Resources */,
+				041BDCD81BE4BA4A00422DB5 /* plus.png in Resources */,
 				04072CE21B8C52CF00B68A21 /* map-annotation@2x.png in Resources */,
 				56865CF81B6B22E200A1B324 /* cart_tab_select@2x.png in Resources */,
 				56865CFE1B6B22E200A1B324 /* index_tab@2x.png in Resources */,
@@ -1049,20 +1232,29 @@
 				047406D01B7B415300AE05BE /* search@2x.png in Resources */,
 				56865D031B6B22E200A1B324 /* my_tab_select.png in Resources */,
 				04072CEC1B8C6BC200B68A21 /* phone@2x.png in Resources */,
+				04A73EFF1BFEEA11008A8335 /* Confused-256.png in Resources */,
 				56865CF31B6B22E200A1B324 /* about_tab_select.png in Resources */,
 				56865CFA1B6B22E200A1B324 /* class_tab@2x.png in Resources */,
 				047406CE1B7B413400AE05BE /* search.png in Resources */,
 				04072CE81B8C5EFD00B68A21 /* event-club@3x.png in Resources */,
+				041BDCF81BE9CDCA00422DB5 /* pay_ali@2x~ipad.png in Resources */,
 				56865CF51B6B22E200A1B324 /* cart_tab.png in Resources */,
 				04072CEB1B8C6BC200B68A21 /* phone.png in Resources */,
 				043698081B9ABF280065D0A5 /* tick.png in Resources */,
 				0454D6DA1BA02EBE000D134E /* LICENSE in Resources */,
 				56865CFD1B6B22E200A1B324 /* index_tab.png in Resources */,
 				04B8D1331B9689CC003A81E1 /* icon_tabbar_mine_selected@2x.png in Resources */,
+				041BDCF91BE9CDCA00422DB5 /* pay_ali@2x~iphone.png in Resources */,
 				56865CF61B6B22E200A1B324 /* cart_tab@2x.png in Resources */,
+				041BDCE01BE4BA7600422DB5 /* floatTableViewCell.xib in Resources */,
+				041BDCD61BE4BA4A00422DB5 /* cross.png in Resources */,
 				04072CE01B8C527900B68A21 /* map-annotation@3x.png in Resources */,
 				04B8D1381B968AA4003A81E1 /* bg_login.png in Resources */,
 				04F2D1661B86FC200016FB91 /* icon_arrow_dropdown_normal.png in Resources */,
+				041BDCFA1BE9CDCA00422DB5 /* pay_weixin.png in Resources */,
+				04A73F001BFEEA11008A8335 /* Laugh-256.png in Resources */,
+				041BDCFC1BE9CDCA00422DB5 /* pay_weixin@2x~iphone.png in Resources */,
+				041BDCFB1BE9CDCA00422DB5 /* pay_weixin@2x~ipad.png in Resources */,
 				56865D021B6B22E200A1B324 /* my_tab@2x.png in Resources */,
 				047406D21B7B47C400AE05BE /* icon_homepage_downArrow@2x.png in Resources */,
 			);
@@ -1122,17 +1314,24 @@
 				041151631B8EE832000B3A88 /* CartCell.m in Sources */,
 				04072CC41B8AE2CA00B68A21 /* MenuViewController.m in Sources */,
 				0496017C1B8DB88200AEFFD8 /* ADVProgressLayer.m in Sources */,
+				041BDCEC1BE4F92800422DB5 /* StoreIndexCardViewController.m in Sources */,
 				04B8D1301B96886A003A81E1 /* MineViewController.m in Sources */,
 				04F2D16D1B8704340016FB91 /* SearchResultModel.m in Sources */,
+				04A73F031BFEECCD008A8335 /* PayResultViewController.m in Sources */,
 				0454D6DF1BA03B48000D134E /* AddressManageViewController.m in Sources */,
 				56865C8E1B6B223C00A1B324 /* AppDelegate.m in Sources */,
 				047406C71B7B3FFE00AE05BE /* TsaoSearchBar.m in Sources */,
+				041BDD091BEC98D700422DB5 /* CouponModel.m in Sources */,
 				04F2CD061B86E01B0016FB91 /* UIView+Capture.m in Sources */,
 				04072CCF1B8C325B00B68A21 /* ProductTableViewCell.m in Sources */,
 				04072CDC1B8C4C0700B68A21 /* GeoJSONModel.m in Sources */,
 				56C458531B6B3D310053D825 /* UIImage+Tint.m in Sources */,
+				041BDD061BEC79A600422DB5 /* CouponCollectionView.m in Sources */,
+				041BDD0C1BECAF7600422DB5 /* CouponCollectionViewCell.m in Sources */,
 				04B8D13E1B968FFE003A81E1 /* UserModel.m in Sources */,
 				049601751B8DA7A200AEFFD8 /* ProductWrapperViewController.m in Sources */,
+				041BDCE41BE4D7EE00422DB5 /* CardView.m in Sources */,
+				041BDD121BEDFE8700422DB5 /* SelectCouponCollectionViewCell.m in Sources */,
 				04F2D17C1B89B18F0016FB91 /* CampusListTableViewController.m in Sources */,
 				04F2D1701B8707F10016FB91 /* SearchResultTableViewCell.m in Sources */,
 				56C458481B6B33360053D825 /* CustomPopTransition.m in Sources */,
@@ -1151,6 +1350,7 @@
 				56061BAE1B6C5941002F3499 /* TsaoBackButton.m in Sources */,
 				04F2D16A1B87030B0016FB91 /* SearchResultTableView.m in Sources */,
 				04F2D17F1B89BA700016FB91 /* CampusListTableViewCell.m in Sources */,
+				041BDCDF1BE4BA7600422DB5 /* floatTableViewCell.m in Sources */,
 				04A0A0C61B956A88002EA70E /* TsaoCodeSenderButton.m in Sources */,
 				04F2D1631B86ECA40016FB91 /* FXBlurView.m in Sources */,
 				04072CCB1B8C31F700B68A21 /* MegaTheme.m in Sources */,
@@ -1158,6 +1358,7 @@
 				04B8D12E1B968843003A81E1 /* LoginViewController.m in Sources */,
 				043699691B9D77490065D0A5 /* TsaoBorderViewForCode.m in Sources */,
 				56061BB41B6CBAE7002F3499 /* AFHTTPRequestOperationManager+Singleton.m in Sources */,
+				04A73F061BFEF2FD008A8335 /* PayResultHandlerManager.m in Sources */,
 				04F2D1791B870D040016FB91 /* NutritionModel.m in Sources */,
 				04F2CCF91B84761A0016FB91 /* StoreModel.m in Sources */,
 				043698051B9AA59F0065D0A5 /* AddressModel.m in Sources */,
@@ -1169,6 +1370,7 @@
 				04F2CD031B86BC650016FB91 /* UIView+CreateBorder.m in Sources */,
 				04D442AB1B9FD3840033AB8C /* OrderContentViewTableViewCell.m in Sources */,
 				56865C8B1B6B223C00A1B324 /* main.m in Sources */,
+				041BDD1F1BF5784000422DB5 /* BindRoleViewController.m in Sources */,
 				04D23C7F1B8F312700250726 /* RoundButton.m in Sources */,
 				0496017B1B8DB88200AEFFD8 /* ADVProgressControl.m in Sources */,
 				04072CF31B8C9A1A00B68A21 /* ProductImageCell.m in Sources */,
@@ -1179,15 +1381,21 @@
 				04F2CCFC1B8478C50016FB91 /* OwnerModel.m in Sources */,
 				043699701B9D7CC70065D0A5 /* ThemeButton.m in Sources */,
 				0411515F1B8EE7DE000B3A88 /* CartViewController.m in Sources */,
+				041BDCE91BE4DE2500422DB5 /* RecommendStoreImageVIew.m in Sources */,
 				043699731B9D7F740065D0A5 /* OrderModel.m in Sources */,
 				56C45B4C1B6B72A00053D825 /* TsaoBaseViewController.m in Sources */,
+				041BDCEF1BE8BACE00422DB5 /* RandomRecommendViewOwner.m in Sources */,
 				04072CD81B8C47AB00B68A21 /* MapEventController.m in Sources */,
 				56C4586C1B6B6BFC0053D825 /* UIViewController+TsaoNavigationBar.m in Sources */,
 				043697FE1B9AA3F50065D0A5 /* SelectAddressViewController.m in Sources */,
+				041BDD021BEC6F4100422DB5 /* CouponCollectionViewController.m in Sources */,
 				04072CC71B8AE40100B68A21 /* StoreIndexViewController.m in Sources */,
 				04F2D1761B870BE60016FB91 /* SpecificationModel.m in Sources */,
+				041BDD0F1BEDFDAE00422DB5 /* SelectCouponViewController.m in Sources */,
 				04F2CD001B85AC930016FB91 /* TsaoStoreListTableViewCell.m in Sources */,
 				043698021B9AA4440065D0A5 /* AddressListCell.m in Sources */,
+				041BDCE11BE4BA7600422DB5 /* VCFloatingActionButton.m in Sources */,
+				041BDD1C1BF2DC2500422DB5 /* WXApiManager.m in Sources */,
 				0454D6DC1BA02EBE000D134E /* UIScrollView+EmptyDataSet.m in Sources */,
 				56061BB11B6C7F6B002F3499 /* Tool.m in Sources */,
 			);
@@ -1317,8 +1525,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CD723B7FCABE27EBA80C21FA /* Pods.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: HANBO LIU (LK8M6M3H5J)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GuduMorning/Library",
@@ -1348,8 +1558,12 @@
 					"$(PROJECT_DIR)/GuduMorning/Library/lib/Channels/UnionPay",
 					"$(PROJECT_DIR)/GuduMorning/Library/lib/Channels/Wx",
 					"$(PROJECT_DIR)/GuduMorning/Library/lib",
+					"$(PROJECT_DIR)/GuduMorning/Library/Weixin",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zaocan84.iphone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1357,8 +1571,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7012629765EF15A10449A7A1 /* Pods.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: HANBO LIU (LK8M6M3H5J)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GuduMorning/Library",
@@ -1388,8 +1604,12 @@
 					"$(PROJECT_DIR)/GuduMorning/Library/lib/Channels/UnionPay",
 					"$(PROJECT_DIR)/GuduMorning/Library/lib/Channels/Wx",
 					"$(PROJECT_DIR)/GuduMorning/Library/lib",
+					"$(PROJECT_DIR)/GuduMorning/Library/Weixin",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zaocan84.iphone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

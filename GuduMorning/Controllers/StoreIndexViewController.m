@@ -14,6 +14,8 @@
 #import "MapEventController.h"
 #define  kMapViewControllerSegue @"Map_View_Controller"
 #define kMenuViewControllerSegue @"menuViewController"
+#define  kCardViewControllerSegue @"Card_View_Controller"
+#import "StoreIndexCardViewController.h"
 
 @interface StoreIndexViewController () <MDTabBarViewControllerDelegate>
 
@@ -28,9 +30,9 @@
 @property (nonatomic, weak) MenuViewController *menuViewController;
 
 /**
- *  菜单segment中的MapViewController
+ *  菜单segment中的cardViewController
  */
-@property (nonatomic, weak) MapEventController *mapViewController;
+@property (nonatomic, weak) StoreIndexCardViewController *cardViewController;
 
 /**
  *  MDTabbar的items
@@ -100,8 +102,8 @@
     self.items = categories;
     [self.menuViewController setItems:categories];
     
-    // 设置mapViewController的store
-    self.mapViewController.store = self.store;
+    // 设置cardViewController的store
+    self.cardViewController.store = self.store;
 }
 
 /**
@@ -114,7 +116,7 @@
     RACSignal *signal = [Tool GET:url parameters:nil progressInView:self.view showNetworkError:YES];
     [signal subscribeNext:^(id responseObject) {
         if (kGetResponseCode(responseObject) == kSuccessCode) {
-            self.store = [StoreModel objectWithKeyValues:kGetResponseData(responseObject)];
+            self.store = [StoreModel objectWithKeyValues:[kGetResponseData(responseObject) objectForKey:@"store"]];
         }
     }];
 }
@@ -134,8 +136,8 @@
         [controller setItems:@[@"加载中..."]];
         self.menuViewController = controller;
     }
-    else if ([[segue identifier] isEqualToString:kMapViewControllerSegue]) {
-        self.mapViewController = [segue destinationViewController];
+    else if ([[segue identifier] isEqualToString:kCardViewControllerSegue]) {
+        self.cardViewController = [segue destinationViewController];
     }
 }
 

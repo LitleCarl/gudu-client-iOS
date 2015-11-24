@@ -25,6 +25,11 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *productPriceLabel;
 
+/**
+ *  月售标签
+ */
+@property (weak, nonatomic) IBOutlet UILabel *monthSaleLabel;
+
 @end
 
 @implementation ProductTableViewCell
@@ -57,6 +62,7 @@
     [self.productImageView sd_setImageWithURL:kUrlFromString(product.logo_filename)];
     self.productNameLabel.text = product.name;
     self.productPriceLabel.text = [NSString stringWithFormat:@"¥%@~¥%@", product.min_price, product.max_price];
+    self.monthSaleLabel.text = [NSString stringWithFormat:@"月售:%@", product.month_sale];
 }
 
 @end

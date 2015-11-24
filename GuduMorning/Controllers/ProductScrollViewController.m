@@ -9,6 +9,7 @@
 #import "ProductScrollViewController.h"
 #import "MegaTheme.h"
 #import "ProductImageCell.h"
+#import "CartViewController.h"
 // View
 #import "ADVProgressControl.h"
 
@@ -17,7 +18,7 @@
 
 // Library
 #import <ActionSheetPicker.h>
-
+#import <MDSnackbar.h>
 @interface ProductScrollViewController ()
 {
     CGFloat productImageHeight;
@@ -120,22 +121,29 @@
     }];
     
     //order Button的enable属性绑定
-    RAC(orderButton, enabled) = [[RACObserve(self, selectedSpecification) takeUntil:self.rac_willDeallocSignal] map:^id(SpecificationModel *specification) {
-        if (specification.stock > 0) {
-            return @YES;
-        }
-        else{
-            return @NO;
-        }
-    }];
+//    RAC(orderButton, enabled) = [[RACObserve(self, selectedSpecification) takeUntil:self.rac_willDeallocSignal] map:^id(SpecificationModel *specification) {
+//        if (specification.stock.integerValue > 0) {
+//            return @YES;
+//        }
+//        else{
+//            return @NO;
+//        }
+//    }];
     
     [[[orderButton rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:orderButton.rac_willDeallocSignal] subscribeNext:^(id x) {
         
         ProductModel *product = self.product;
         SpecificationModel *specification = self.selectedSpecification;
+        
+        if (specification.stock.integerValue < 1) {
+            [MBProgressHUD bwm_showHUDAddedTo:kKeyWindow title:@"库存不够" animated:YES];
+        }
+        
         if (product && specification) {
             [CartItem addProductToCart:product specification:[specification id] mount:1 increase:1];
-            TsaoLog(@"%@",[CartItem allObjects]);
+            MDSnackbar *snack = [[MDSnackbar alloc] initWithText:[NSString stringWithFormat:@"成功添加一个:%@", product.name] actionTitle:@"购物车" duration:1.5f];
+            [snack addTarget:self action:@selector(showCart)];
+            [snack show];
         }
         
     }];
@@ -147,7 +155,7 @@
  */
 - (void)initUI{
     
-    productImageHeight = 300;
+    productImageHeight = kScreenWidth - 20;
     
     productCollectionView.dataSource = self;
     productCollectionView.delegate = self;
@@ -202,7 +210,7 @@
         RACSignal *signal = [Tool GET:url parameters:nil progressInView:self.view showNetworkError:YES];
         [signal subscribeNext:^(id responseObject) {
             if (kGetResponseCode(responseObject) == kSuccessCode) {
-                self.product = [ProductModel objectWithKeyValues:kGetResponseData(responseObject)];
+                self.product = [ProductModel objectWithKeyValues:[kGetResponseData(responseObject) objectForKey:@"product"]];
             }
         }];
         
@@ -215,7 +223,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)showCart{
+    CartViewController *cart = [kCartStoryBoard instantiateViewControllerWithIdentifier:kCartViewControllerStoryBoardId];
+    [self.navigationController pushViewController:cart animated:YES];
+}
+
 #pragma mark - Table view data source
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -299,6 +313,7 @@
     
     return cellWidth;
 }
+
 /*
 #pragma mark - Navigation
 

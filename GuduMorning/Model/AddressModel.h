@@ -17,6 +17,6 @@
 
 @property (nonatomic, copy) NSString *phone;
 
-@property (nonatomic, copy) NSString *user;
+@property (nonatomic, strong) UserModel *user;
 
 @end

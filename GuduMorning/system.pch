@@ -29,6 +29,7 @@
 #import <MBProgressHUD+BWMExtension.h>
 
 // Model
+#import "CouponModel.h"
 #import "StoreModel.h"
 #import "OwnerModel.h"
 #import "CampusModel.h"
@@ -56,17 +57,17 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
-#define kUrlScheme  @"gudu-morning-usst"
+#define kUrlScheme  @"zaocan84"
 
 // 支付成功回调
 #define kPaymentDone @"Payment_Has_Been_Done"
 
 // 调试相关
 #pragma mark - Debug -
+#define TsaoLog(fmt, ...)                    NSLog((@"\n%s [Line %u]:\n" fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 
 #ifdef DEBUG
 
-#define TsaoLog(fmt, ...)                    NSLog((@"\n%s [Line %u]:\n" fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 
 #else
 
@@ -93,7 +94,7 @@
 #define kSuccessCode                          200
 //#define kSignatureInvalidCode               @"40300"
 //#define kTerminalSessionKeyInvalidCode      @"40301"
-//#define kUserSessionKeyInvalidCode          @"40302"
+#define kUserSessionKeyInvalidCode            800
 //#define kOtherErrorCode                     @"50000"
 
 #pragma mark - Device Info -
@@ -173,40 +174,50 @@
 //URL
 #pragma mark - URL -
 
-#define kHostBaseUrl                        @"http://gudu-sails.tunnel.mobi"
-#define kAPIVersion1                        @"/api/v1"
+#define kHostBaseUrl                         @"http://api.zaocan84.com"
+#define kAPIVersion1                         @"/api/v1"
 
-#define kCampusUrl                          @"/campus"
-#define kCampusFindOneUrl                   @"/campus/:campus_id"
+#define kCampusUrl                           @"/campuses"
+#define kCampusFindOneUrl                    @"/campuses/:campus_id"
+#define kStoresInCampusUrl                   @"/campuses/:campus_id/stores"
 
-#define kUserFindOneWithTokenUrl            @"/user/getWithToken"
+#define kUserFindOneWithTokenUrl             @"/users"
 
-#define kStoreUrl                           @"/store"
-#define kStoreFindOneUrl                    @"/store/:store_id"
+#define kStoreUrl                            @"/stores"
+#define kStoreFindOneUrl                     @"/stores/:store_id"
 
-#define kProductUrl                          @"/product"
-#define kProductFindOneUrl                   @"/product/:product_id"
+#define kProductUrl                          @"/products"
+#define kProductFindOneUrl                   @"/products/:product_id"
 
-#define kSearchUrl                           @"/search/productAndStore"
+#define kSearchUrl                           @"/services/search_product_and_store_for_campus"
 
-#define kSendSmsUrl                          @"/service/sendSMSCode"
-#define kBasicConfig                         @"/service/basicConfig"
+#define kSendSmsUrl                          @"/services/send_login_sms_code"
+#define kBasicConfig                         @"/services/basic_config"
+#define kRandomRecomment                     @"/services/random_recommend_store_in_campus"
 
 // 登录
-#define kLoginUrl                            @"/user/loginWithSMSCode"
+#define kLoginUrl                            @"/users/login_with_sms_code"
+// 绑定微信登录
+#define kBindWeixinUrl                       @"/users/bind_weixin"
 
 // 创建订单
-#define kOrderPlaceOrderUrl                 @"/order/placeOrder"
+#define kOrderPlaceOrderUrl                  @"/orders"
 // 支付订单获取Charge
-#define kPayOrderUrl                        @"/pay/pay"
+#define kPayOrderUrl                         @"/orders/:order_id/get_charge_for_unpaid_order"
 // 获取订单
-#define kGetOrdersUrl                      @"/order/myOrders"
+#define kGetOrdersUrl                        @"/orders"
 
 // 添加收货地址
-#define kAddAddressUrl                      @"/address/addAddress"
+#define kAddAddressUrl                       @"/addresses"
 // 更新收货地址
-#define kUpdateAddressUrl                      @"/address/updateAddress"
+#define kUpdateAddressUrl                    @"/addresses/:address_id"
 // 删除收货地址
-#define kdeleteAddressUrl                      @"/address/deleteAddress"
+#define kdeleteAddressUrl                    @"/addresses/:address_id"
+
+// 获取用户的优惠券
+#define kCouponsUrl                          @"/users/:user_id/coupons"
+
+// 用户微信登录回调
+#define kWeixinLoginUrl                         @"/authorizations/authorization"
 
 #endif

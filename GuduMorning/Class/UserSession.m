@@ -37,12 +37,10 @@
                 NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:kUserFindOneWithTokenUrl params:nil];
                 [[Tool GET:url parameters:nil showNetworkError:NO] subscribeNext:^(id responseObject) {
                     if (kGetResponseCode(responseObject) == kSuccessCode) {
-                         self.user = [UserModel objectWithKeyValues:kGetResponseData(responseObject)];
+                         self.user = [UserModel objectWithKeyValues:[kGetResponseData(responseObject) objectForKey:@"user"]];
                     }
-                    else {
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                            [self fetchUserInfo];
-                        });
+                    else if(kGetResponseCode(responseObject) == kUserSessionKeyInvalidCode) {
+                        [Tool resetUserDefautsForKeys:@[kSessionUserDefaultKey]];
                     }
                    
                 }
@@ -66,11 +64,13 @@
 
 - (void)setUpTrigger{
     RACChannelTerminal *sessionChangeTerminal = [[NSUserDefaults standardUserDefaults] rac_channelTerminalForKey:kSessionUserDefaultKey];
-    [self fetchUserInfo];
     // 双向绑定user default
-    [RACObserve(self, sessionToken) subscribeNext:^(id x) {
+    [[RACObserve(self, sessionToken) skip:1] subscribeNext:^(id x) {
         if (x != nil) {
             [Tool setUserDefault:@{kSessionUserDefaultKey : x}];
+        }
+        else {
+            [Tool resetUserDefautsForKeys:@[kSessionUserDefaultKey]];
         }
     }];
     
@@ -83,6 +83,9 @@
         TsaoLog(@"登录成功：%d", token != nil);
         return [NSNumber numberWithBool:token != nil];
     }];
+    
+    [self fetchUserInfo];
+
 }
 
 

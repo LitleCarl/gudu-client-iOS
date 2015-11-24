@@ -39,7 +39,7 @@
         }
     }];
     RACSignal *addressValid = [addressField.rac_textSignal map:^id(NSString *text) {
-        if (text.length >= 5) {
+        if (text.length >= 1) {
             return @YES;
         }
         else {

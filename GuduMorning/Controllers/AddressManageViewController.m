@@ -19,6 +19,8 @@
 #import "EditAddressViewController.h"
 #define kAddressCellReuseID @"address_cell"
 
+#import "MegaTheme.h"
+
 @interface AddressManageViewController () <UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, SWTableViewCellDelegate>
 {
     /// 添加地址按钮
@@ -119,5 +121,6 @@
     }];
 
 }
+
 
 @end

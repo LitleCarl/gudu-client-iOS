@@ -23,7 +23,7 @@
 /**
  *  支付时间
  */
-@property (nonatomic, strong) NSDate *time_paid;
+@property (nonatomic, strong) NSString *time_paid;
 
 /**
  *  关联订单

@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#define kPayMethodWeixin @"wx"
+#define kPayMethodAlipay @"alipay"
+
 @class PaymentModel;
 typedef enum : NSUInteger {
     Dead = 0 ,
@@ -16,6 +19,7 @@ typedef enum : NSUInteger {
     notCommented = 4,
     done = 5,
 } OrderStatus;
+
 @interface OrderModel : NSObject
 
 /**
@@ -37,6 +41,17 @@ typedef enum : NSUInteger {
  *  订单价格
  */
 @property (nonatomic, copy) NSString *price;
+
+/**
+ *  订单实际价格
+ */
+@property (nonatomic, copy) NSString *pay_price;
+
+
+/**
+ *  订单编号
+ */
+@property (nonatomic, copy) NSString *order_number;
 
 /**
  *  送货时间
@@ -71,5 +86,10 @@ typedef enum : NSUInteger {
  *  相关商品
  */
 @property (nonatomic, strong) NSArray *order_items;
+
+/**
+ *  支付方式
+ */
+@property (nonatomic, copy) NSString *pay_method;
 
 @end

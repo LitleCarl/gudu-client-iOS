@@ -9,6 +9,11 @@
 #import "AppDelegate.h"
 #import "TsaoTabbarController.h"
 #import <Pingpp.h>
+#import "WXApi.h"
+#import "WXApiManager.h"
+
+#import "PayResultHandlerManager.h"
+
 @interface AppDelegate ()
 @end
 
@@ -18,7 +23,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self customizeUIAppearance];
-    
+    [WXApi registerApp:@"wxc4638e10bf2d70d1" withDescription:@"早餐巴士"];
+
     return YES;
 }
 
@@ -44,25 +50,66 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    BOOL handled = [Pingpp handleOpenURL:url
+                          withCompletion:^(NSString *result, PingppError *error) {
+                              
+                              dispatch_async(dispatch_get_main_queue(), ^{
+                                  if ([result isEqualToString:@"success"]) {
+                                      //                       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"支付成功" message:@"" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil];
+                                      //
+                                      //                       [alert show];
+                                      [[NSNotificationCenter defaultCenter] postNotificationName:kPaymentDone object:nil userInfo:@{@"result": @YES}];
+                                  } else {
+                                      // 支付失败或取消
+                                      //                       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"支付失败" message:@"请重试" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil];
+                                      //                       [alert show];
+                                      [[NSNotificationCenter defaultCenter] postNotificationName:kPaymentDone object:nil userInfo:@{@"result": @NO}];
+                                  }
+                                  
+                                  [[PayResultHandlerManager sharedManager] giveHandleToDelegate:result error:error];
+                              });
+                              
+                              
+                          }];
+    
+    if (handled == NO) {
+        handled = [WXApi handleOpenURL:url delegate: [WXApiManager sharedManager]];
+    }
+    return  handled;
+//    return  [WXApi handleOpenURL:url delegate: [WXApiManager sharedManager]];
+}
+
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-    [Pingpp handleOpenURL:url
+    BOOL handled = [Pingpp handleOpenURL:url
            withCompletion:^(NSString *result, PingppError *error) {
-               if ([result isEqualToString:@"success"]) {
-                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"支付成功" message:@"" delegate:self cancelButtonTitle:@"" otherButtonTitles:@"查看订单", nil];
-                   [alert show];
-                  [[NSNotificationCenter defaultCenter] postNotificationName:kPaymentDone object:nil userInfo:@{@"result": @YES}];
-               } else {
-                   // 支付失败或取消
-                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"支付失败" message:@"" delegate:self cancelButtonTitle:@"" otherButtonTitles:@"好的", nil];
-                   [alert show];
-                   NSLog(@"Error: code=%lu msg=%@", error.code, [error getMsg]);
-                   [[NSNotificationCenter defaultCenter] postNotificationName:kPaymentDone object:nil userInfo:@{@"result": @NO}];
-               }
+               
+               dispatch_async(dispatch_get_main_queue(), ^{
+                   if ([result isEqualToString:@"success"]) {
+//                       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"支付成功" message:@"" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil];
+//                       
+//                       [alert show];
+                       [[NSNotificationCenter defaultCenter] postNotificationName:kPaymentDone object:nil userInfo:@{@"result": @YES}];
+                   } else {
+                       // 支付失败或取消
+//                       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"支付失败" message:@"请重试" delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil];
+//                       [alert show];
+                       [[NSNotificationCenter defaultCenter] postNotificationName:kPaymentDone object:nil userInfo:@{@"result": @NO}];
+                   }
+               
+                   [[PayResultHandlerManager sharedManager] giveHandleToDelegate:result error:error];
+               });
+               
+               
            }];
-    return  YES;
+    
+    if (handled == NO) {
+        handled = [WXApi handleOpenURL:url delegate: [WXApiManager sharedManager]];
+    }
+    return  handled;
 }
 
 /**

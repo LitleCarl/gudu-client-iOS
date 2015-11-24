@@ -38,8 +38,9 @@
         
         [signal subscribeNext:^(id responseObject) {
             if (kGetResponseCode(responseObject) == kSuccessCode) {
-                self.deliveryTimeSet = [kGetResponseData(responseObject) objectForKey:@"availableDeliveryTime"];
-                self.payMethodSet = [PayMethodModel objectArrayWithKeyValuesArray:[kGetResponseData(responseObject) objectForKey:@"availablePayMethod"]];
+                self.deliveryTimeSet = [[kGetResponseData(responseObject) objectForKey:@"config"] objectForKey:@"availableDeliveryTime"];
+                self.payMethodSet = [PayMethodModel objectArrayWithKeyValuesArray:[[kGetResponseData(responseObject) objectForKey:@"config"] objectForKey:@"availablePayMethod"]];
+                self.red_pack_available = [[[kGetResponseData(responseObject) objectForKey:@"config"] objectForKey:@"red_pack_available"] boolValue];
             }
             else {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{

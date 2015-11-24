@@ -10,11 +10,15 @@
 
 @interface UserModel : NSObject
 
+@property (nonatomic, copy) NSString *id;
+
 /**
  *  手机号
  */
 @property (nonatomic, copy) NSString *phone;
 
 @property (nonatomic, strong) NSMutableArray *addresses;
+
+@property (nonatomic, copy) NSString *avatar;
 
 @end

@@ -54,4 +54,25 @@
  */
 @property (nonatomic, strong) GeoJSONModel *location;
 
+/**
+ *  店铺签名
+ */
+@property (nonatomic, copy) NSString *signature;
+
+/**
+ *  店铺月售
+ */
+@property (nonatomic, copy) NSString *month_sale;
+
+/**
+ *  店铺回头率
+ */
+@property (nonatomic, copy) NSNumber *back_ratio;
+
+/**
+ *  店铺主打菜单
+ */
+@property (nonatomic, copy) NSString *main_food_list;
+
+
 @end

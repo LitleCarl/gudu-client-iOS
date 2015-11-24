@@ -33,6 +33,14 @@ static NSString *cellReuseId = @"order_cell_reuse_id";
 }
 
 /**
+ *  当前页
+ */
+@property (nonatomic, assign) NSInteger page;
+/**
+ *  当前页显示数量
+ */
+@property (nonatomic, assign) NSInteger limit;
+/**
  *  显示的order数据源
  */
 @property (nonatomic, strong) NSMutableArray *orderList;
@@ -53,6 +61,7 @@ static NSString *cellReuseId = @"order_cell_reuse_id";
     orderTableView.emptyDataSetSource = self;
     orderTableView.tableFooterView = [UIView new];
     [tabView drawBottomLine:BottomBorder lineWidth:1/[[UIScreen mainScreen] scale] fillColor:kLineColor];
+    orderTableView.backgroundColor = ColorFromRGB(0xeeeeee);
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -62,7 +71,12 @@ static NSString *cellReuseId = @"order_cell_reuse_id";
 /**
  *  重新拉取数据
  */
-- (void)fetchData{
+- (void)fetchData:(BOOL) loadMore{
+    
+    if (loadMore == NO) {
+        self.page = 0;
+    }
+    
     NSNumber *order_status = nil;
     if (self.orderType == AllOrder) {
         order_status = nil;
@@ -79,21 +93,59 @@ static NSString *cellReuseId = @"order_cell_reuse_id";
     else if (self.orderType == NotCommentedOrder){
         order_status = @(notCommented);
     }
-    NSDictionary *param = nil;
+    NSMutableDictionary *param = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                 @"page": @(self.page + 1),
+                                                                                 @"limit": @(self.limit)
+                                                                                 }];;
     if (order_status != nil) {
-        param = @{@"status": order_status};
+        [param setValue:order_status forKey:@"status"];
     }
     NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:kGetOrdersUrl params:param];
     RACSignal *signal = [Tool GET:url parameters:nil progressInView:self.view showNetworkError:YES];
     [signal subscribeNext:^(id responseObject) {
         if (kGetResponseCode(responseObject) == kSuccessCode) {
-            self.orderList = [OrderModel objectArrayWithKeyValuesArray:kGetResponseData(responseObject)];
+            NSDictionary *data = kGetResponseData(responseObject);
+           NSMutableArray *newOrderList  = [OrderModel objectArrayWithKeyValuesArray:[data objectForKey:@"orders"]];
+            self.page = [[data objectForKey:@"page"] integerValue];
+
+            if (loadMore) {
+                [self.orderList addObjectsFromArray:newOrderList];
+                [orderTableView reloadData];
+                [orderTableView.footer endRefreshing];
+
+            }else{
+                
+                self.orderList = newOrderList;
+                TsaoLog(@"新数据的数量:%lu", (unsigned long)self.orderList.count);
+                [orderTableView.header endRefreshing];
+
+            }
+
         }
     }];
 }
 
 - (void)setUpTrigger{
+    
+    self.page = 0;
+    self.limit = 10;
+    
+    MJRefreshNormalHeader *gifHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self fetchData:NO];
+    }];
+//    //设置普通状态的动画图片
+//    NSMutableArray *idleImages = [NSMutableArray array];
+//    for (NSUInteger i = 1; i<=60; ++i) {
+//        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_anim__000%zd",i]];
+//        [idleImages addObject:image];
+//    }
+    orderTableView.header = gifHeader;
+    //[gifHeader setImages:idleImages forState:MJRefreshStateIdle];
 
+    orderTableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [self fetchData:YES];
+    }];
+    
     [RACObserve(self, orderType) subscribeNext:^(NSNumber *type) {
         [@[allOrderButton, notPaidOrderButton, notDeliveredOrderButton, notReceivedOrderButton, notCommentedOrderButton] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             [obj setTitleColor:kMidNightBlue forState:UIControlStateNormal];
@@ -119,7 +171,7 @@ static NSString *cellReuseId = @"order_cell_reuse_id";
         
         indicatorLeadingContraint.constant = indicatorOffset;
         
-        [self fetchData];
+        [self fetchData: NO];
     }];
     
     [[RACObserve(indicatorLeadingContraint, constant) skip:1] subscribeNext:^(id x) {
@@ -131,6 +183,7 @@ static NSString *cellReuseId = @"order_cell_reuse_id";
     // 监听数据源的变化并重新加载数据
     [[RACObserve(self, orderList) skip:1] subscribeNext:^(id x) {
         [orderTableView reloadData];
+        TsaoLog(@"列表刷新了");
     }];
     
 }
@@ -163,7 +216,7 @@ static NSString *cellReuseId = @"order_cell_reuse_id";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     OrderModel *order = [self.orderList objectAtIndex:indexPath.row];
-    return 151 + 70 * order.order_items.count ;
+    return 151 + 70 * order.order_items.count + 88;
 }
 
 #pragma mark - DZNEmptyDataSource -
@@ -192,7 +245,7 @@ static NSString *cellReuseId = @"order_cell_reuse_id";
  */
 - (void)emptyDataSetDidTapButton:(UIScrollView *)scrollView
 {
-    [self fetchData];
+    [self fetchData:NO];
 }
 
 @end

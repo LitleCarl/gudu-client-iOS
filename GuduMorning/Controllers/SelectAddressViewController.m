@@ -11,13 +11,25 @@
 // View
 #import "AddressListCell.h"
 #import <ActionSheetStringPicker.h>
+
+// Theme
+#import "MegaTheme.h"
+
 // Category
 #import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "RLMResults+ToArray.h"
 #import "UIView+CreateBorder.h"
 #import "Pingpp.h"
 #define kReuseCell @"address_cell"
+#import "UIScrollView+EmptyDataSet.h"
 
+// ViewController
+#import "AddAddressViewController.h"
+#import "SelectCouponViewController.h"
+#import "PayResultViewController.h"
+
+// Class
+#import "PayResultHandlerManager.h"
 typedef enum : NSUInteger {
     None,    //未有任何操作
     Waiting,//支付请求等待响应
@@ -25,7 +37,7 @@ typedef enum : NSUInteger {
     PayFailed,//支付失败
 } PayStatus;
 
-@interface SelectAddressViewController () <UITableViewDataSource, UITableViewDelegate>{
+@interface SelectAddressViewController () <UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, SelectCouponDelegate, PayResultHandlerDelegate>{
 
     __weak IBOutlet UIView *selectDeliveryTimeAndPayMethod;
     __weak IBOutlet UIView *bottomView;
@@ -40,6 +52,12 @@ typedef enum : NSUInteger {
     __weak IBOutlet UIButton *deliveryTimeButton;
     __weak IBOutlet UIButton *payMethodButton;
     __weak IBOutlet UIButton *submitButton;
+    
+    // 优惠券
+    __weak IBOutlet UIView *couponView;
+    __weak IBOutlet UIButton *selectCouponButton;
+    __weak IBOutlet UILabel *currentCouponLabelView;
+    
 }
 
 /**
@@ -70,6 +88,14 @@ typedef enum : NSUInteger {
  *  支付方式
  */
 @property (nonatomic, copy) NSNumber *payMethodIndex;
+
+@property (nonatomic, strong) CouponModel *coupon;
+
+/**
+ *  订单提交后才有值
+ */
+@property (nonatomic, strong) OrderModel *order;
+
 @end
 
 @implementation SelectAddressViewController
@@ -84,7 +110,7 @@ typedef enum : NSUInteger {
     self.title = @"地址&支付";
     // 等待basic config加载
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
+    [couponView drawBottomLine:TopBorder lineWidth:1/[UIScreen mainScreen].scale fillColor:kLineColor];
     [selectDeliveryTimeAndPayMethod  drawBottomLine:TopBorder lineWidth:1/[UIScreen mainScreen].scale fillColor:kLineColor];
     [bottomView drawBottomLine:TopBorder lineWidth:1/[UIScreen mainScreen].scale fillColor:kLineColor];
     addressTableView.tableFooterView = [UIView new];
@@ -112,7 +138,7 @@ typedef enum : NSUInteger {
 
             //进入订单界面
             //TODO...
-            [self.navigationController popViewControllerAnimated:YES];
+//            [self.navigationController popViewControllerAnimated:YES];
         }
         else if (statusCode == PayFailed){
             [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -133,7 +159,7 @@ typedef enum : NSUInteger {
     RACSignal *payMethodChoosed = RACObserve(self, payMethodIndex);
     RACSignal *deliveryTimeChoosed = RACObserve(self, deliveryTimeIndex);
     RAC(submitButton, enabled) = [RACSignal combineLatest:@[payMethodChoosed, deliveryTimeChoosed, RACObserve(self, addressList)] reduce:^(NSString *payMethod, NSNumber *deliveryTimeIndex, NSArray *addressList){
-        return @(payMethod != nil && deliveryTimeIndex != nil && addressList.count > 0);
+        return @(payMethod.integerValue >= 0 && deliveryTimeIndex.integerValue >= 0 && addressList.count > 0);
     }];
     
     [[submitButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
@@ -141,17 +167,22 @@ typedef enum : NSUInteger {
         
                     [self.cartItems convertToArrayWithCompletionBlock:^(NSMutableArray *results) {
                         NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:kOrderPlaceOrderUrl params:nil];
-                        NSDictionary *param = @{
-                                                @"delivery_time": [self.availableDeliveryTime objectAtIndex:self.deliveryTimeIndex.integerValue],
-                                                @"pay_method": [(PayMethodModel *)[self.availablePayMethod objectAtIndex:self.payMethodIndex.integerValue] code],
-                                                @"receiver_address" :selectAddress.address,
-                                                @"receiver_phone" :selectAddress.phone,
-                                                @"receiver_name" :selectAddress.name,
-                                                @"cart_items" : [CartItem keyValuesArrayWithObjectArray:results],
-                                                @"campus" : kNullToString([Tool getUserDefaultByKey: kCampusUsedKey])
-                                                };
+                        NSMutableDictionary *param = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                                     @"delivery_time": [self.availableDeliveryTime objectAtIndex:self.deliveryTimeIndex.integerValue],
+                                                                                                     @"pay_method": [(PayMethodModel *)[self.availablePayMethod objectAtIndex:self.payMethodIndex.integerValue] code],
+                                                                                                     @"receiver_address" :selectAddress.address,
+                                                                                                     @"receiver_phone" :selectAddress.phone,
+                                                                                                     @"receiver_name" :selectAddress.name,
+                                                                                                     @"cart_items" : [CartItem keyValuesArrayWithObjectArray:results],
+                                                                                                     @"campus" : kNullToString([Tool getUserDefaultByKey: kCampusUsedKey])
+                                                                                                     }];
+                        
+                        if (self.coupon) {
+                            [param setObject:self.coupon.id forKey:@"coupon_id"];
+                        }
                         RACSignal *signal = [Tool POST:url parameters:param progressInView:self.view showNetworkError:YES];
                         [signal subscribeNext:^(id responseObject) {
+                            TsaoLog(@"charge 回调:%@", responseObject);
                             if (kGetResponseCode(responseObject) == kSuccessCode){
                                 // 创建成功
                                 /**
@@ -163,18 +194,20 @@ typedef enum : NSUInteger {
                                 [realm commitWriteTransaction];
 
                                 id charge = [kGetResponseData(responseObject) objectForKey:@"charge"];
+                                
+                                self.order = [OrderModel objectWithKeyValues:[kGetResponseData(responseObject) objectForKey:@"order"]];
+                                
+                                [[PayResultHandlerManager sharedManager] setDelegate:self];
+                                
                                 [Pingpp createPayment:charge
-                                       viewController:self
+                                       viewController:nil
                                          appURLScheme:kUrlScheme
                                        withCompletion:^(NSString *result, PingppError *error) {
-                                           if ([result isEqualToString:@"success"]) {
-                                               TsaoLog(@"支付成功!!");
-                                               // 支付成功
-                                           } else {
-                                               // 支付失败或取消
-                                               NSLog(@"!!Error: code=%lu msg=%@", error.code, [error getMsg]);
-                                           }
+                                          
                                        }];
+                            }
+                            else if(kGetResponseMessage(responseObject)){
+                                [MBProgressHUD bwm_showTitle:[NSString stringWithFormat:@"%@", kGetResponseMessage(responseObject)] toView:kKeyWindow hideAfter:2.0 msgType:BWMMBProgressHUDMsgTypeSuccessful];
                             }
                         }];
                         
@@ -238,12 +271,12 @@ typedef enum : NSUInteger {
     
     //绑定送餐时间和支付方式的显示
     [RACObserve(self, payMethodIndex) subscribeNext:^(NSNumber *payMethodIndex) {
-        if (payMethodIndex) {
+        if (payMethodIndex.integerValue >= 0) {
             payMethodLabel.text = [[self.availablePayMethod objectAtIndex:payMethodIndex.integerValue] name];
         }
     }];
     [RACObserve(self, deliveryTimeIndex) subscribeNext:^(NSNumber *deliveryTimeIndex) {
-        if (deliveryTimeIndex) {
+        if (deliveryTimeIndex.integerValue >= 0) {
             deliveryTimelabel.text = [self.availableDeliveryTime objectAtIndex:deliveryTimeIndex.integerValue];
         }
     }];
@@ -251,6 +284,17 @@ typedef enum : NSUInteger {
     // 查看是否已经加载了BasicConfig，包含了可用的送餐时间和付款方式
     RACSignal *dtSignal = RACObserve([BasicConfigManager sharedDeliveryTimeManager], deliveryTimeSet);
     RACSignal *pmSignal = RACObserve([BasicConfigManager sharedDeliveryTimeManager], payMethodSet);
+    [RACObserve(self, availableDeliveryTime) subscribeNext:^(id x) {
+        if (self.availableDeliveryTime.count > 0) {
+            self.deliveryTimeIndex = 0;
+        }
+    }];
+    [RACObserve(self, availablePayMethod) subscribeNext:^(id x) {
+        if (self.availablePayMethod.count > 0) {
+            self.payMethodIndex = 0;
+        }
+    }];
+    
     [[RACSignal combineLatest:@[dtSignal, pmSignal] reduce:^(NSArray *dtArray, NSArray *pmArray){
         self.availableDeliveryTime = dtArray;
         self.availablePayMethod = pmArray;
@@ -262,6 +306,16 @@ typedef enum : NSUInteger {
         }
     }];
     
+    // 优惠券监听
+    [[selectCouponButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        SelectCouponViewController *controller = [kCartStoryBoard instantiateViewControllerWithIdentifier:kSelectCouponCollectionViewController];
+        controller.delegate = self;
+        [self.navigationController pushViewController:controller animated:YES];
+    }];
+    
+    // 设置tableview空view
+    addressTableView.emptyDataSetSource = self;
+    addressTableView.emptyDataSetDelegate = self;
 }
 
 #pragma mark - UITableViewDataSource -
@@ -284,5 +338,66 @@ typedef enum : NSUInteger {
     return cell;
 }
 
+
+
+#pragma mark - DZNEmptyDataSource -
+
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state
+{
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:[MegaTheme fontName] size:11.0]};
+    
+    return [[NSAttributedString alloc] initWithString:@"添加" attributes:attributes];
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *text = @"没有地址";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:14.0f],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+/**
+ *  添加收货地址
+ *
+ *  @param scrollView scrollview
+ */
+- (void)emptyDataSetDidTapButton:(UIScrollView *)scrollView{
+    AddAddressViewController *controller = [kUserStoryBoard instantiateViewControllerWithIdentifier:kAddAddressViewControllerStoryboardId];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)selectCoupon: (CouponModel *)coupon{
+    // 选择了优惠券
+    if (coupon) {
+        currentCouponLabelView.text = [NSString stringWithFormat:@"优惠:%@元", coupon.discount];
+        self.coupon = coupon;
+    }
+    else{
+        currentCouponLabelView.text = [NSString stringWithFormat:@"不使用"];
+
+        self.coupon = nil;
+    }
+}
+
+#pragma mark - PayResultHandlerDelegate -
+
+- (void)handle:(NSString *)result error:(PingppError *)error{
+    if (self.order) {
+        PayResultViewController *controller = [kCartStoryBoard instantiateViewControllerWithIdentifier:kPayResultViewControllerStoryBoardId];
+        
+        controller.order = self.order;
+        controller.payDone = [result isEqualToString:@"success"];
+        
+        [self.navigationController pushViewController:controller animated:YES];
+    
+        if (controller.payDone) {
+            [MBProgressHUD bwm_showTitle:@"支付成功" toView:kKeyWindow hideAfter:2.0 msgType:BWMMBProgressHUDMsgTypeSuccessful];
+        }
+
+    }
+}
 
 @end

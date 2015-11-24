@@ -44,7 +44,7 @@
 
     [signal subscribeNext:^(id responseObject) {
         if (kGetResponseCode(responseObject) == kSuccessCode) {
-            NSMutableArray *arrayOfCampus = [CampusModel objectArrayWithKeyValuesArray:kGetResponseData(responseObject)];
+            NSMutableArray *arrayOfCampus = [CampusModel objectArrayWithKeyValuesArray:[kGetResponseData(responseObject) objectForKey:@"campuses"]];
             self.campusList = arrayOfCampus;
         }
     }];

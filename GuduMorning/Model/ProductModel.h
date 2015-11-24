@@ -65,6 +65,12 @@
 @property (nonatomic, strong) NSArray *product_images;
 
 /**
+ *   产品月销量
+ */
+@property (nonatomic, copy) NSNumber *month_sale;
+
+
+/**
  *  获取指定specification_id的规格
  *
  *  @param specification_id 指定的id

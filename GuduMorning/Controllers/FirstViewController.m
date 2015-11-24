@@ -21,6 +21,9 @@
 #import "FXBlurView.h"
 #import "SearchResultTableView.h"
 #import <AutoScrollLabel/CBAutoScrollLabel.h>
+#import "VCFloatingActionButton.h"
+#import "CardView.h"
+#import "KLCPopup.h"
 // Category
 #import "UIView+CreateBorder.h"
 #import "UIView+Capture.h"
@@ -28,12 +31,11 @@
 // Model
 #import "SearchResultModel.h"
 #import "ProductModel.h"
-
+#import "RandomRecommendViewOwner.h"
 // ViewController
 #import "StoreIndexViewController.h"
 
-
-@interface FirstViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface FirstViewController ()<UITableViewDataSource, UITableViewDelegate, floatMenuDelegate>
 
 /**
  *  商铺模型列表
@@ -105,33 +107,44 @@ static NSString *cellIdentifier = @"store_list_cell";
     storeTableView.delegate = self;
     storeTableView.dataSource = self;
     
-    //设置普通状态的动画图片
-    NSMutableArray *idleImages = [NSMutableArray array];
-    for (NSUInteger i = 1; i<=60; ++i) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_anim__000%zd",i]];
-        [idleImages addObject:image];
-    }
+//    //设置普通状态的动画图片
+//    NSMutableArray *idleImages = [NSMutableArray array];
+//    for (NSUInteger i = 1; i<=60; ++i) {
+//        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_anim__000%zd",i]];
+//        [idleImages addObject:image];
+//    }
     @weakify(storeTableView);
-    MJRefreshGifHeader *gifHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+    MJRefreshHeader *gifHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         //下拉刷新回调
         NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:[kCampusFindOneUrl stringByReplacingOccurrencesOfString:@":campus_id" withString:[Tool getUserDefaultByKey:kCampusUsedKey]] params:nil];
         RACSignal *getStoreSignal = [Tool GET:url parameters:nil showNetworkError:YES];
         [getStoreSignal subscribeNext:^(id response) {
+            TsaoLog(@"查询学校返回:%@", response);
             if (kGetResponseCode(response) == kSuccessCode) {
-                self.storeList = [StoreModel objectArrayWithKeyValuesArray:[kGetResponseData(response) objectForKey:@"stores"]];
-                [self.campusLabel setText:[kGetResponseData(response) objectForKey:@"name"]];
+                [self.campusLabel setText:[[kGetResponseData(response) objectForKey:@"campus"] objectForKey:@"name"]];
             }
         } error:^(NSError *error) {
-            [storeTableView_weak_.header endRefreshing];
         } completed:^{
             [storeTableView_weak_.header endRefreshing];
         }];
+        
+        NSString *getStoresUrl = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:[kStoresInCampusUrl stringByReplacingOccurrencesOfString:@":campus_id" withString:[Tool getUserDefaultByKey:kCampusUsedKey]] params:nil];
+        [[Tool GET:getStoresUrl parameters:nil showNetworkError:YES] subscribeNext:^(id responseObject) {
+            self.storeList = [StoreModel objectArrayWithKeyValuesArray:[kGetResponseData(responseObject) objectForKey:@"stores"]];
+        }
+         error:^(NSError *error) {
+             [storeTableView_weak_.header endRefreshing];
+         }
+         completed:^{
+             [storeTableView_weak_.header endRefreshing];
+         }];
+        
     }];
     gifHeader.backgroundColor = [UIColor whiteColor];
     // 绑定TableView的header
     storeTableView.header = gifHeader;
     
-    [gifHeader setImages:idleImages forState:MJRefreshStateIdle];
+    //[gifHeader setImages:idleImages forState:MJRefreshStateIdle];
     
     //设置即将刷新状态的动画图片
     NSMutableArray *refreshingImages = [NSMutableArray array];
@@ -139,13 +152,22 @@ static NSString *cellIdentifier = @"store_list_cell";
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"dropdown_loading_0%zd",i]];
         [refreshingImages addObject:image];
     }
-    [gifHeader setImages:refreshingImages forState:MJRefreshStatePulling];
+//    [gifHeader setImages:refreshingImages forState:MJRefreshStatePulling];
     
     //设置正在刷新是的动画图片
-    [gifHeader setImages:refreshingImages forState:MJRefreshStateRefreshing];
+//    [gifHeader setImages:refreshingImages forState:MJRefreshStateRefreshing];
     
     //马上进入刷新状态
     [self.view addSubview:storeTableView];
+    
+        CGRect floatFrame = CGRectMake([UIScreen mainScreen].bounds.size.width - 44 - 20, [UIScreen mainScreen].bounds.size.height - 49 - 44 - 20, 44, 44);
+    // floating button
+    VCFloatingActionButton *addButton = [[VCFloatingActionButton alloc]initWithFrame:floatFrame normalImage:[UIImage imageNamed:@"plus"] andPressedImage:[UIImage imageNamed:@"cross"] withScrollview: storeTableView];
+    addButton.imageArray = @[@"dice"];
+    addButton.labelArray = @[@"随机推荐"];
+    addButton.delegate = self;
+    
+    [self.view addSubview:addButton];
     
 }
 
@@ -426,6 +448,36 @@ static NSString *cellIdentifier = @"store_list_cell";
  */
 - (BOOL)hideNavBar{
     return YES;
+}
+
+
+/**
+ *  随机推荐店铺
+ *
+ *  @param row 点击的按钮所在行
+ */
+-(void) didSelectMenuOptionAtIndex:(NSInteger)row{
+    NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:kRandomRecomment params:@{
+                                                                                                               @"campus_id": [Tool getUserDefaultByKey:kCampusUsedKey]
+                                                                                                               }];
+    [[Tool GET:url parameters:nil progressInView:self.view showNetworkError:YES] subscribeNext:^(id responseObject) {
+        if (kGetResponseCode(responseObject) == kSuccessCode) {
+            StoreModel *model = [StoreModel objectWithKeyValues:[kGetResponseData(responseObject) objectForKey:@"store"]];
+            RandomRecommendViewOwner *owner = [[RandomRecommendViewOwner alloc] init];
+            owner.sourceController = self;
+            UIView *rootView = [[[NSBundle mainBundle] loadNibNamed:@"RecommendStoreCardView" owner:owner options:nil] objectAtIndex:0];
+            rootView.frame = CGRectMake(20, 100, 280, 400);
+            
+            KLCPopup *pop = [KLCPopup popupWithContentView:rootView showType:KLCPopupShowTypeBounceInFromBottom dismissType:KLCPopupDismissTypeBounceOutToBottom maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
+            [pop show];
+            owner.store = model;
+            [owner setUpTrigger];
+        }
+       
+           } error:^(NSError *error) {
+        
+    }];
+   
 }
 
 @end

@@ -69,17 +69,18 @@
     
     [[submitButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         kDismissKeyboard
-        NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:kUpdateAddressUrl params:nil];
         AddressModel *temp = [AddressModel new];
         temp.address = addressField.text;
         temp.name = nameField.text;
         temp.phone = phoneField.text;
         temp.id = self.address.id;
+        
+        NSString *url = [Tool buildRequestURLHost:kHostBaseUrl APIVersion:nil requestURL:[kUpdateAddressUrl stringByReplacingOccurrencesOfString:@":address_id" withString: temp.id] params:nil];
+        
         NSDictionary *params = @{
                                  @"address" : [temp keyValues]                                };
         RACSignal *signal = [Tool PUT:url parameters:params progressInView:self.view showNetworkError:YES];
         [signal subscribeNext:^(id responseObject) {
-            TsaoLog(@"responseObject:%@", responseObject);
             if (kGetResponseCode(responseObject) == kSuccessCode) {
                 [MBProgressHUD bwm_showTitle:@"更新成功" toView:kKeyWindow hideAfter:2.0 msgType:BWMMBProgressHUDMsgTypeSuccessful];
                 self.address.name = temp.name;

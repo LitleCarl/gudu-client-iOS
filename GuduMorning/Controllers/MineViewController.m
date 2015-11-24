@@ -15,6 +15,8 @@
 #import "LoginViewController.h"
 #import "OrderTableViewController.h"
 #import "AddressManageViewController.h"
+#import "CouponCollectionViewController.h"
+
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray *rowData;
@@ -48,11 +50,15 @@
 }
 
 - (void)setUpTrigger{
-
+ 
 }
 
 -(void)createUI{
     self.title = @"我的资料";
+    
+    UIBarButtonItem *signOutButton = [[UIBarButtonItem alloc] initWithTitle:@"切换账号" style:UIBarButtonItemStylePlain target:self action:@selector(signOut)];
+    self.navigationItem.rightBarButtonItem = signOutButton;
+    
     rowData = [[NSMutableArray alloc] init];
     NSMutableDictionary *dic1 = [[NSMutableDictionary alloc] init];
     [dic1 setObject:@"全部订单" forKey:@"title"];
@@ -126,13 +132,24 @@
         UIImageView *userImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 55, 55)];
         userImage.layer.masksToBounds = YES;
         userImage.layer.cornerRadius = 27;
-        [userImage setImage:[UIImage imageNamed:@"Avatar"]];
         [headerView addSubview:userImage];
+        userImage.image = [UIImage imageNamed:@"Avatar"];
+        [[RACObserve([UserSession sharedUserSession], user) takeUntil:userImage.rac_willDeallocSignal] subscribeNext:^(UserModel *x) {
+            
+            if (x != nil && x.avatar) {
+                TsaoLog(@"来了一次");
+                [userImage sd_setImageWithURL:kUrlFromString(x.avatar)];
+                
+            }
+            else {
+                userImage.image = [UIImage imageNamed:@"Avatar"];
+            }
+        }];
+        
         //用户名
         UILabel *userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10+55+5, 15, 200, 30)];
         userNameLabel.font = [UIFont systemFontOfSize:13];
         RAC(userNameLabel, text) = [[RACObserve([UserSession sharedUserSession], user) takeUntil:headerView.rac_willDeallocSignal] map:^id(UserModel *user) {
-            TsaoLog(@"value:%@", user);
             if (user.phone == nil) {
                 return @"";
             }
@@ -216,9 +233,16 @@
         controller.orderType = done;
         [self.navigationController pushViewController:controller animated:YES];
     }
+    else if (indexPath.row == 4 && indexPath.section == 1) {
+        CouponCollectionViewController *controller = [kUserStoryBoard instantiateViewControllerWithIdentifier:kCouponCollectionViewStoryBoardId];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
     
 }
 
+- (void)signOut{
+    [[UserSession sharedUserSession] setSessionToken:nil];
+}
 
 /*
 #pragma mark - Navigation
